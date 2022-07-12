@@ -9,6 +9,13 @@ def _snake_to_pascal(text: str) -> str:
     return "".join(chunk.capitalize() for chunk in text.split("_"))
 
 
+# Error node dataclass
+@dataclass_json
+@dataclass
+class ERROR(Node):
+    children: list[Node]
+
+
 def TypeProvider(
     cls_name: str,
     node_types: list[NodeType],
@@ -17,17 +24,12 @@ def TypeProvider(
 ):
     # Dictionary of dataclasses for named nodes
     NodeClasses = {
-        as_cls_name(node_type.type): node_type.as_type(as_cls_name=as_cls_name, **kwargs)
+        as_cls_name(node_type.type): node_type.as_type(
+            as_cls_name=as_cls_name, **kwargs
+        )
         for node_type in node_types
         if node_type.named
     }
-
-    # Error node dataclass
-    @dataclass_json
-    @dataclass
-    class ERROR(Node):
-        children: list[Node]
-
     NodeClasses[as_cls_name("ERROR")] = ERROR
 
     # Dictionary of node types for named nodes
