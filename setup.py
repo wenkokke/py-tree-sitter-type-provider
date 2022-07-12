@@ -3,8 +3,7 @@ Py-Tree-Sitter-Type-Provider
 """
 
 from os import path
-from platform import system
-from setuptools import Extension, setup
+from setuptools import setup
 
 
 with open(path.join(path.dirname(__file__), "README.md")) as f:
@@ -31,8 +30,5 @@ setup(
     ],
     packages=["tree_sitter_type_provider"],
     project_urls={"Source": "https://github.com/wenkokke/py-tree-sitter-type-provider"},
-    install_requires=[
-        "tree_sitter",
-        "dataclasses-json"
-    ],
+    install_requires=["tree_sitter", "dataclasses-json"],
 )
