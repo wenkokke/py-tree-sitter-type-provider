@@ -20,7 +20,7 @@ setup(
     license="MIT",
     platforms=["any"],
     python_requires=">=3.3",
-    description="Type providers for the Python bindings to the tree-sitter library",
+    description="Type providers for tree-sitter in Python",
     long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
     classifiers=[
