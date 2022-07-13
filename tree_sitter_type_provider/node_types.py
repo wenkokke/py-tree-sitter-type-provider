@@ -80,8 +80,5 @@ class NodeType:
                 fields["children"] = self.children.as_type(as_cls_name=as_cls_name)
             fields["text"] = str
             return make_dataclass(
-                cls_name=cls_name,
-                fields=fields.items(),
-                bases=(Node,),
-                **kwargs
+                cls_name=cls_name, fields=fields.items(), bases=(Node,), **kwargs
             )

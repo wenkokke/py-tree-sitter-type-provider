@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from dataclasses_json import dataclass_json
-from typing import Any, Callable, Union
+from typing import Any, Callable, Optional, Union
 from .node_types import NodeType, Node
 import tree_sitter as ts
 
@@ -19,13 +19,20 @@ class ERROR(Node):
 def TypeProvider(
     cls_name: str,
     node_types: list[NodeType],
+    module_path: Optional[str] = None,
     as_cls_name: Callable[[str], str] = _snake_to_pascal,
     **kwargs,
 ):
+    def as_cls_qualname(node_type: str) -> str:
+        if module_path is not None:
+            return f"{module_path}.{as_cls_name(node_type)}"
+        else:
+            return as_cls_name(node_type)
+
     # Dictionary of dataclasses for named nodes
     NodeClasses = {
         as_cls_name(node_type.type): node_type.as_type(
-            as_cls_name=as_cls_name, **kwargs
+            as_cls_name=as_cls_qualname, **kwargs
         )
         for node_type in node_types
         if node_type.named
