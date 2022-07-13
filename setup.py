@@ -2,16 +2,16 @@
 Py-Tree-Sitter-Type-Provider
 """
 
-from os import path
+import os
 from setuptools import setup
 
 
-with open(path.join(path.dirname(__file__), "README.md")) as f:
+with open(os.path.join(os.path.dirname(__file__), "README.md")) as f:
     LONG_DESCRIPTION = f.read()
 
 setup(
     name="tree_sitter_type_provider",
-    version="0.1.0",
+    version="1.0.0",
     maintainer="Wen Kokke",
     maintainer_email="me@wen.works",
     author="Wen Kokke",
