@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field, make_dataclass
 from functools import reduce
 from dataclasses_json import DataClassJsonMixin, dataclass_json
-from typing import Callable, ForwardRef, Optional, Type, Union
+from typing import Callable, Optional, Type, Union
 
 
 @dataclass
@@ -17,7 +17,7 @@ class SimpleNodeType:
 
     def as_type(self, as_cls_name: Callable[[str], str]) -> Optional[Type]:
         if self.named:
-            return ForwardRef(as_cls_name(self.type))
+            return as_cls_name(self.type)
 
     @staticmethod
     def list_as_type(
