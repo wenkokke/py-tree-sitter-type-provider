@@ -4,3 +4,13 @@ requires = [
     "wheel>=0.36.2",
 ]
 build-backend = "setuptools.build_meta"
+
+[pytest]
+pythonpath = "test"
+testpaths = "test"
+
+[mypy]
+mypy_path = [
+    ".",
+    "test"
+]
