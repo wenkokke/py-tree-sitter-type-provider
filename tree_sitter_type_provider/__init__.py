@@ -35,22 +35,26 @@ class TreeSitterTypeProvider(ModuleType):
         if tsnode.is_named:
             # Convert children
             text: str = tsnode.text.decode("utf-8")
-            start_position: Point = self._tspoint_to_point(tsnode.start_position)
-            end_position: Point = self._tspoint_to_point(tsnode.end_position)
+            start_position: Point = self._tspoint_to_point(tsnode.start_point)
+            end_position: Point = self._tspoint_to_point(tsnode.end_point)
             fields: Dict[str, NodeChild] = {}
+            tsfield_hashes: Set[int] = set()
             children: List[NodeChild] = []
-            for i in range(0, tsnode.named_child_count):
-                tschild: Optional[ts.Node] = tsnode.named_child(i)
-                if tschild is not None:
-                    field_name: Optional[str] = tschild.field_name_for_child(i)
-                    if field_name is not None:
-                        fields[field_name] = self.from_tree_sitter(tschild)
-                    else:
+            node_type: Optional[NodeType] = self._node_types_by_type.get(tsnode.type, None)
+            if node_type:
+                for field_name in node_type.fields.keys():
+                    tsfield = tsnode.child_by_field_name(field_name)
+                    if tsfield.is_named:
+                        tsfield_hashes.add(hash((tsfield.start_byte, tsfield.end_byte)))
+                        fields[field_name] = self.from_tree_sitter(tsfield)
+            for tschild in tsnode.children:
+                if tschild.is_named:
+                    if tschild.__hash__ not in tsfield_hashes:
                         child_value = self.from_tree_sitter(tschild)
                         if not isinstance(child_value, str):
                             children.append(child_value)
             # Create node instance
-            if tsnode.is_error:
+            if tsnode.type == "ERROR":
                 return self.ERROR(
                     text=text,
                     type="ERROR",
@@ -64,7 +68,7 @@ class TreeSitterTypeProvider(ModuleType):
                 kwargs["text"] = text
                 kwargs["start_position"] = start_position
                 kwargs["end_position"] = end_position
-                if self._has_children(tsnode):
+                if self._node_has_children(tsnode):
                     kwargs["children"] = children
                 kwargs |= fields
                 return self._node_class(tsnode)(**kwargs)  # type: ignore
