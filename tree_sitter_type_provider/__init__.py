@@ -150,6 +150,8 @@ class TreeSitterTypeProvider(ModuleType):
         # Create NodeTransformer class
         Result = TypeVar("Result")
 
+        self.Result = Result
+
         def transform(self, node: Node) -> Result:
             if isinstance(node, Node):
                 cls_name = node.__class__.__name__.split(".")[-1]
