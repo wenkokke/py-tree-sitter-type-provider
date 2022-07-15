@@ -30,5 +30,10 @@ setup(
     ],
     packages=["tree_sitter_type_provider"],
     project_urls={"Source": "https://github.com/wenkokke/py-tree-sitter-type-provider"},
-    install_requires=["tree_sitter", "dataclasses-json"],
+    install_requires=[
+        "tree_sitter",
+        "dataclasses-json",
+        "pytest",
+        "pytest-golden",
+    ],
 )
