@@ -6,11 +6,8 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [pytest]
-pythonpath = "test"
 testpaths = "test"
 
-[mypy]
-mypy_path = [
-    ".",
-    "test"
-]
+[tool.pytest.ini_options]
+enable_assertion_pass_hook = true
+filterwarnings = ["ignore::DeprecationWarning:.*:"]

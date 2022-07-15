@@ -1,0 +1,578 @@
+input: javascript
+output: |-
+  from_tree_sitter(self, tsnode: tree_sitter.Node) -> Union[Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]
+  ERROR(text: str, type: str = 'ERROR', children: list[typing.Union[typing.Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]] = <factory>) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  Arguments(text: str, type: str, children: list[typing.Union[ForwardRef('Expression'), ForwardRef('SpreadElement')]]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  Array(text: str, type: str, children: list[typing.Union[ForwardRef('Expression'), ForwardRef('SpreadElement')]]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ArrayPattern(text: str, type: str, children: list[typing.Union[ForwardRef('AssignmentPattern'), ForwardRef('Pattern')]]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ArrowFunction(text: str, type: str, body: Union[ForwardRef('Expression'), ForwardRef('StatementBlock')], parameter: Optional[ForwardRef('Identifier')], parameters: Optional[ForwardRef('FormalParameters')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  AssignmentExpression(text: str, type: str, left: Union[ForwardRef('ArrayPattern'), ForwardRef('Identifier'), ForwardRef('MemberExpression'), ForwardRef('ObjectPattern'), ForwardRef('ParenthesizedExpression'), ForwardRef('SubscriptExpression'), ForwardRef('Undefined')], right: 'Expression') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  AssignmentPattern(text: str, type: str, left: 'Pattern', right: 'Expression') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  AugmentedAssignmentExpression(text: str, type: str, left: Union[ForwardRef('Identifier'), ForwardRef('MemberExpression'), ForwardRef('ParenthesizedExpression'), ForwardRef('SubscriptExpression')], right: 'Expression') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  AwaitExpression(text: str, type: str, children: 'Expression') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  BinaryExpression(text: str, type: str, left: 'Expression', right: 'Expression') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  BreakStatement(text: str, type: str, label: Optional[ForwardRef('StatementIdentifier')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  CallExpression(text: str, type: str, arguments: Union[ForwardRef('Arguments'), ForwardRef('TemplateString')], function: 'Expression') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  CatchClause(text: str, type: str, body: 'StatementBlock', parameter: Union[ForwardRef('ArrayPattern'), ForwardRef('Identifier'), ForwardRef('ObjectPattern'), NoneType]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  Class(text: str, type: str, body: 'ClassBody', decorator: list['Decorator'], name: Optional[ForwardRef('Identifier')], children: Optional[ForwardRef('ClassHeritage')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ClassBody(text: str, type: str, member: list[typing.Union[ForwardRef('FieldDefinition'), ForwardRef('MethodDefinition')]]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ClassDeclaration(text: str, type: str, body: 'ClassBody', decorator: list['Decorator'], name: 'Identifier', children: Optional[ForwardRef('ClassHeritage')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ClassHeritage(text: str, type: str, children: 'Expression') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  Comment(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ComputedPropertyName(text: str, type: str, children: 'Expression') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ContinueStatement(text: str, type: str, label: Optional[ForwardRef('StatementIdentifier')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  DebuggerStatement(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  Declaration(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  Decorator(text: str, type: str, children: Union[ForwardRef('CallExpression'), ForwardRef('Identifier'), ForwardRef('MemberExpression')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  DoStatement(text: str, type: str, body: 'Statement', condition: 'ParenthesizedExpression') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ElseClause(text: str, type: str, children: 'Statement') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  EmptyStatement(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  EscapeSequence(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ExportClause(text: str, type: str, children: list['ExportSpecifier']) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ExportSpecifier(text: str, type: str, alias: Optional[ForwardRef('Identifier')], name: 'Identifier') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ExportStatement(text: str, type: str, declaration: Optional[ForwardRef('Declaration')], decorator: list['Decorator'], source: Optional[ForwardRef('String')], value: Optional[ForwardRef('Expression')], children: Union[ForwardRef('ExportClause'), ForwardRef('NamespaceExport'), NoneType]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  Expression(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ExpressionStatement(text: str, type: str, children: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  False(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  FieldDefinition(text: str, type: str, decorator: list['Decorator'], property: Union[ForwardRef('ComputedPropertyName'), ForwardRef('Number'), ForwardRef('PrivatePropertyIdentifier'), ForwardRef('PropertyIdentifier'), ForwardRef('String')], value: Optional[ForwardRef('Expression')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  FinallyClause(text: str, type: str, body: 'StatementBlock') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ForInStatement(text: str, type: str, body: 'Statement', left: Union[ForwardRef('ArrayPattern'), ForwardRef('Identifier'), ForwardRef('MemberExpression'), ForwardRef('ObjectPattern'), ForwardRef('ParenthesizedExpression'), ForwardRef('SubscriptExpression'), ForwardRef('Undefined')], right: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')], value: Optional[ForwardRef('Expression')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ForStatement(text: str, type: str, body: 'Statement', condition: Union[ForwardRef('EmptyStatement'), ForwardRef('ExpressionStatement')], increment: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression'), NoneType], initializer: Union[ForwardRef('EmptyStatement'), ForwardRef('ExpressionStatement'), ForwardRef('LexicalDeclaration'), ForwardRef('VariableDeclaration')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  FormalParameters(text: str, type: str, children: list[typing.Union[ForwardRef('AssignmentPattern'), ForwardRef('Pattern')]]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  Function(text: str, type: str, body: 'StatementBlock', name: Optional[ForwardRef('Identifier')], parameters: 'FormalParameters') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  FunctionDeclaration(text: str, type: str, body: 'StatementBlock', name: 'Identifier', parameters: 'FormalParameters') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  GeneratorFunction(text: str, type: str, body: 'StatementBlock', name: Optional[ForwardRef('Identifier')], parameters: 'FormalParameters') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  GeneratorFunctionDeclaration(text: str, type: str, body: 'StatementBlock', name: 'Identifier', parameters: 'FormalParameters') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  HashBangLine(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  Identifier(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  IfStatement(text: str, type: str, alternative: Optional[ForwardRef('ElseClause')], condition: 'ParenthesizedExpression', consequence: 'Statement') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  Import(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ImportClause(text: str, type: str, children: list[typing.Union[ForwardRef('Identifier'), ForwardRef('NamedImports'), ForwardRef('NamespaceImport')]]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ImportSpecifier(text: str, type: str, alias: Optional[ForwardRef('Identifier')], name: 'Identifier') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ImportStatement(text: str, type: str, source: 'String', children: Optional[ForwardRef('ImportClause')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  JsxAttribute(text: str, type: str, children: list[typing.Union[ForwardRef('JsxElement'), ForwardRef('JsxExpression'), ForwardRef('JsxFragment'), ForwardRef('JsxNamespaceName'), ForwardRef('JsxSelfClosingElement'), ForwardRef('PropertyIdentifier'), ForwardRef('String')]]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  JsxClosingElement(text: str, type: str, name: Union[ForwardRef('Identifier'), ForwardRef('JsxNamespaceName'), ForwardRef('NestedIdentifier')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  JsxElement(text: str, type: str, close_tag: 'JsxClosingElement', open_tag: 'JsxOpeningElement', children: list[typing.Union[ForwardRef('JsxElement'), ForwardRef('JsxExpression'), ForwardRef('JsxFragment'), ForwardRef('JsxSelfClosingElement'), ForwardRef('JsxText')]]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  JsxExpression(text: str, type: str, children: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression'), ForwardRef('SpreadElement'), NoneType]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  JsxFragment(text: str, type: str, children: list[typing.Union[ForwardRef('JsxElement'), ForwardRef('JsxExpression'), ForwardRef('JsxFragment'), ForwardRef('JsxSelfClosingElement'), ForwardRef('JsxText')]]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  JsxNamespaceName(text: str, type: str, children: list['Identifier']) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  JsxOpeningElement(text: str, type: str, attribute: list[typing.Union[ForwardRef('JsxAttribute'), ForwardRef('JsxExpression')]], name: Union[ForwardRef('Identifier'), ForwardRef('JsxNamespaceName'), ForwardRef('NestedIdentifier')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  JsxSelfClosingElement(text: str, type: str, attribute: list[typing.Union[ForwardRef('JsxAttribute'), ForwardRef('JsxExpression')]], name: Union[ForwardRef('Identifier'), ForwardRef('JsxNamespaceName'), ForwardRef('NestedIdentifier')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  JsxText(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  LabeledStatement(text: str, type: str, body: 'Statement', label: 'StatementIdentifier') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  LexicalDeclaration(text: str, type: str, children: list['VariableDeclarator']) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  MemberExpression(text: str, type: str, object: 'Expression', property: Union[ForwardRef('PrivatePropertyIdentifier'), ForwardRef('PropertyIdentifier')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  MetaProperty(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  MethodDefinition(text: str, type: str, body: 'StatementBlock', decorator: list['Decorator'], name: Union[ForwardRef('ComputedPropertyName'), ForwardRef('Number'), ForwardRef('PrivatePropertyIdentifier'), ForwardRef('PropertyIdentifier'), ForwardRef('String')], parameters: 'FormalParameters') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  NamedImports(text: str, type: str, children: list['ImportSpecifier']) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  NamespaceExport(text: str, type: str, children: 'Identifier') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  NamespaceImport(text: str, type: str, children: 'Identifier') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  NestedIdentifier(text: str, type: str, children: list[typing.Union[ForwardRef('Identifier'), ForwardRef('NestedIdentifier')]]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  NewExpression(text: str, type: str, arguments: Optional[ForwardRef('Arguments')], constructor: Union[ForwardRef('NewExpression'), ForwardRef('PrimaryExpression')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  NodeTransformer()
+    transform(self, node: tree_sitter_type_provider.node_types.Node) -> ~Result
+    transform_Arguments(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_Array(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ArrayPattern(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ArrowFunction(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_AssignmentExpression(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_AssignmentPattern(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_AugmentedAssignmentExpression(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_AwaitExpression(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_BinaryExpression(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_BreakStatement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_CallExpression(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_CatchClause(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_Class(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ClassBody(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ClassDeclaration(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ClassHeritage(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_Comment(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ComputedPropertyName(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ContinueStatement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_DebuggerStatement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_Decorator(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_DoStatement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ERROR(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ElseClause(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_EmptyStatement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_EscapeSequence(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ExportClause(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ExportSpecifier(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ExportStatement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ExpressionStatement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_False(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_FieldDefinition(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_FinallyClause(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ForInStatement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ForStatement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_FormalParameters(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_Function(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_FunctionDeclaration(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_GeneratorFunction(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_GeneratorFunctionDeclaration(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_HashBangLine(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_Identifier(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_IfStatement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_Import(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ImportClause(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ImportSpecifier(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ImportStatement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_JsxAttribute(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_JsxClosingElement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_JsxElement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_JsxExpression(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_JsxFragment(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_JsxNamespaceName(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_JsxOpeningElement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_JsxSelfClosingElement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_JsxText(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_LabeledStatement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_LexicalDeclaration(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_MemberExpression(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_MetaProperty(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_MethodDefinition(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_NamedImports(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_NamespaceExport(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_NamespaceImport(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_NestedIdentifier(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_NewExpression(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_Null(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_Number(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_Object(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ObjectAssignmentPattern(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ObjectPattern(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_Pair(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_PairPattern(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ParenthesizedExpression(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_PrivatePropertyIdentifier(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_Program(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_PropertyIdentifier(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_Regex(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_RegexFlags(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_RegexPattern(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_RestPattern(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ReturnStatement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_SequenceExpression(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ShorthandPropertyIdentifier(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ShorthandPropertyIdentifierPattern(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_SpreadElement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_StatementBlock(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_StatementIdentifier(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_String(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_StringFragment(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_SubscriptExpression(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_Super(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_SwitchBody(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_SwitchCase(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_SwitchDefault(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_SwitchStatement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_TemplateString(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_TemplateSubstitution(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_TernaryExpression(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_This(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_ThrowStatement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_True(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_TryStatement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_UnaryExpression(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_Undefined(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_UpdateExpression(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_VariableDeclaration(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_VariableDeclarator(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_WhileStatement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_WithStatement(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform_YieldExpression(self, *, text: str, type: str, children: List[~Result] = [], **kwargs: Dict[str, Union[~Result, Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+  NodeVisitor()
+    generic_visit(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_Arguments(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_Array(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ArrayPattern(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ArrowFunction(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_AssignmentExpression(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_AssignmentPattern(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_AugmentedAssignmentExpression(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_AwaitExpression(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_BinaryExpression(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_BreakStatement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_CallExpression(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_CatchClause(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_Class(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ClassBody(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ClassDeclaration(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ClassHeritage(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_Comment(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ComputedPropertyName(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ContinueStatement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_DebuggerStatement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_Decorator(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_DoStatement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ERROR(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ElseClause(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_EmptyStatement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_EscapeSequence(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ExportClause(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ExportSpecifier(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ExportStatement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ExpressionStatement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_False(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_FieldDefinition(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_FinallyClause(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ForInStatement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ForStatement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_FormalParameters(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_Function(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_FunctionDeclaration(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_GeneratorFunction(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_GeneratorFunctionDeclaration(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_HashBangLine(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_Identifier(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_IfStatement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_Import(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ImportClause(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ImportSpecifier(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ImportStatement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_JsxAttribute(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_JsxClosingElement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_JsxElement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_JsxExpression(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_JsxFragment(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_JsxNamespaceName(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_JsxOpeningElement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_JsxSelfClosingElement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_JsxText(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_LabeledStatement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_LexicalDeclaration(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_MemberExpression(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_MetaProperty(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_MethodDefinition(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_NamedImports(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_NamespaceExport(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_NamespaceImport(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_NestedIdentifier(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_NewExpression(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_Null(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_Number(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_Object(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ObjectAssignmentPattern(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ObjectPattern(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_Pair(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_PairPattern(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ParenthesizedExpression(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_PrivatePropertyIdentifier(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_Program(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_PropertyIdentifier(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_Regex(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_RegexFlags(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_RegexPattern(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_RestPattern(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ReturnStatement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_SequenceExpression(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ShorthandPropertyIdentifier(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ShorthandPropertyIdentifierPattern(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_SpreadElement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_StatementBlock(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_StatementIdentifier(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_String(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_StringFragment(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_SubscriptExpression(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_Super(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_SwitchBody(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_SwitchCase(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_SwitchDefault(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_SwitchStatement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_TemplateString(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_TemplateSubstitution(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_TernaryExpression(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_This(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_ThrowStatement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_True(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_TryStatement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_UnaryExpression(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_Undefined(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_UpdateExpression(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_VariableDeclaration(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_VariableDeclarator(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_WhileStatement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_WithStatement(self, node: tree_sitter_type_provider.node_types.Node) -> None
+    visit_YieldExpression(self, node: tree_sitter_type_provider.node_types.Node) -> None
+  Null(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  Number(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  Object(text: str, type: str, children: list[typing.Union[ForwardRef('MethodDefinition'), ForwardRef('Pair'), ForwardRef('ShorthandPropertyIdentifier'), ForwardRef('SpreadElement')]]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ObjectAssignmentPattern(text: str, type: str, left: Union[ForwardRef('ArrayPattern'), ForwardRef('ObjectPattern'), ForwardRef('ShorthandPropertyIdentifierPattern')], right: 'Expression') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ObjectPattern(text: str, type: str, children: list[typing.Union[ForwardRef('ObjectAssignmentPattern'), ForwardRef('PairPattern'), ForwardRef('RestPattern'), ForwardRef('ShorthandPropertyIdentifierPattern')]]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  Pair(text: str, type: str, key: Union[ForwardRef('ComputedPropertyName'), ForwardRef('Number'), ForwardRef('PrivatePropertyIdentifier'), ForwardRef('PropertyIdentifier'), ForwardRef('String')], value: 'Expression') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  PairPattern(text: str, type: str, key: Union[ForwardRef('ComputedPropertyName'), ForwardRef('Number'), ForwardRef('PrivatePropertyIdentifier'), ForwardRef('PropertyIdentifier'), ForwardRef('String')], value: Union[ForwardRef('AssignmentPattern'), ForwardRef('Pattern')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ParenthesizedExpression(text: str, type: str, children: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  Pattern(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  PrimaryExpression(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  PrivatePropertyIdentifier(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  Program(text: str, type: str, children: list[typing.Union[ForwardRef('HashBangLine'), ForwardRef('Statement')]]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  PropertyIdentifier(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  Regex(text: str, type: str, flags: Optional[ForwardRef('RegexFlags')], pattern: 'RegexPattern') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  RegexFlags(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  RegexPattern(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  RestPattern(text: str, type: str, children: Union[ForwardRef('ArrayPattern'), ForwardRef('Identifier'), ForwardRef('MemberExpression'), ForwardRef('ObjectPattern'), ForwardRef('SubscriptExpression'), ForwardRef('Undefined')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ReturnStatement(text: str, type: str, children: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression'), NoneType]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  SequenceExpression(text: str, type: str, left: 'Expression', right: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ShorthandPropertyIdentifier(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ShorthandPropertyIdentifierPattern(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  SpreadElement(text: str, type: str, children: 'Expression') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  Statement(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  StatementBlock(text: str, type: str, children: list['Statement']) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  StatementIdentifier(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  String(text: str, type: str, children: list[typing.Union[ForwardRef('EscapeSequence'), ForwardRef('StringFragment')]]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  StringFragment(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  SubscriptExpression(text: str, type: str, index: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')], object: 'Expression') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  Super(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  SwitchBody(text: str, type: str, children: list[typing.Union[ForwardRef('SwitchCase'), ForwardRef('SwitchDefault')]]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  SwitchCase(text: str, type: str, body: list['Statement'], value: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  SwitchDefault(text: str, type: str, body: list['Statement']) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  SwitchStatement(text: str, type: str, body: 'SwitchBody', value: 'ParenthesizedExpression') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  TemplateString(text: str, type: str, children: list[typing.Union[ForwardRef('EscapeSequence'), ForwardRef('TemplateSubstitution')]]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  TemplateSubstitution(text: str, type: str, children: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  TernaryExpression(text: str, type: str, alternative: 'Expression', condition: 'Expression', consequence: 'Expression') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  This(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  ThrowStatement(text: str, type: str, children: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  True(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  TryStatement(text: str, type: str, body: 'StatementBlock', finalizer: Optional[ForwardRef('FinallyClause')], handler: Optional[ForwardRef('CatchClause')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  UnaryExpression(text: str, type: str, argument: 'Expression') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  Undefined(text: str, type: str) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  UpdateExpression(text: str, type: str, argument: 'Expression') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  VariableDeclaration(text: str, type: str, children: list['VariableDeclarator']) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  VariableDeclarator(text: str, type: str, name: Union[ForwardRef('ArrayPattern'), ForwardRef('Identifier'), ForwardRef('ObjectPattern')], value: Optional[ForwardRef('Expression')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  WhileStatement(text: str, type: str, body: 'Statement', condition: 'ParenthesizedExpression') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  WithStatement(text: str, type: str, body: 'Statement', object: 'ParenthesizedExpression') -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+  YieldExpression(text: str, type: str, children: Optional[ForwardRef('Expression')]) -> None
+    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
+    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str

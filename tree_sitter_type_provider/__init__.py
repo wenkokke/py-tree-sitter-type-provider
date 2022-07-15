@@ -23,7 +23,7 @@ class TreeSitterTypeProvider(ModuleType):
         return node_type is not None and node_type.children is not None
 
     def _node_class(self, node: Union[Node, NodeType, ts.Node]) -> Type[Node]:
-        return self._node_classes[node.type]
+        return self._node_dataclasses_by_type[node.type]
 
     def from_tree_sitter(self, tsnode: ts.Node) -> NodeChild:
         """
@@ -61,14 +61,14 @@ class TreeSitterTypeProvider(ModuleType):
         self,
         module_name: str,
         node_types: list[NodeType],
-        as_cls_name: Optional[Callable[[str], str]] = None,
+        as_class_name: Optional[Callable[[str], str]] = None,
         dataclass_kwargs: Dict[str, Any] = {},
     ):
         super().__init__(name=module_name)
 
-        # Set default value for as_cls_name
-        if as_cls_name is None:
-            as_cls_name = self._snake_to_pascal
+        # Set default value for as_class_name
+        if as_class_name is None:
+            as_class_name = self._snake_to_pascal
 
         # Dictionary of named node types
         self._node_types_by_type: Dict[str, NodeType] = {}
@@ -76,13 +76,33 @@ class TreeSitterTypeProvider(ModuleType):
             if node_type.named:
                 self._node_types_by_type[node_type.type] = node_type
 
-        # Dictionary of dataclasses
-        self._node_classes: Dict[str, Type[Node]] = {}
-        self._node_classes[as_cls_name("ERROR")] = self.ERROR
+        # Dictionary of abstract classes
+        self._node_bases_by_type: Dict[str, List[Type[Node]]] = {}
         for node_type in self._node_types_by_type.values():
-            cls = node_type.as_dataclass(as_cls_name, **dataclass_kwargs)
-            self._node_classes[node_type.type] = cls
-            setattr(self, as_cls_name(node_type.type), cls)
+            if node_type.abstract:
+                cls = node_type.as_class(as_class_name)
+                setattr(self, as_class_name(node_type.type), cls)
+                for subtype in node_type.subtypes:
+                    if subtype.named:
+                        if subtype.type not in self._node_bases_by_type:
+                            self._node_bases_by_type[subtype.type] = []
+                        self._node_bases_by_type[subtype.type].append(cls)
+
+        # Dictionary of dataclasses
+        self._node_dataclasses_by_type: Dict[str, Type[Node]] = {}
+        self._node_dataclasses_by_type["ERROR"] = self.ERROR
+        for node_type in self._node_types_by_type.values():
+            if node_type.type in self._node_bases_by_type:
+                bases = tuple(self._node_bases_by_type[node_type.type])
+            else:
+                bases = (Node,)
+            cls = node_type.as_class(
+                as_class_name,
+                bases=bases,
+                **dataclass_kwargs,
+            )
+            self._node_dataclasses_by_type[node_type.type] = cls
+            setattr(self, as_class_name(node_type.type), cls)
 
         # Create NodeVisitor class
         def visit(self, node: Node) -> None:
@@ -108,8 +128,9 @@ class TreeSitterTypeProvider(ModuleType):
                 "visit_ERROR": generic_visit,
             }
             | {
-                f"visit_{as_cls_name(node_type)}": generic_visit
-                for node_type in self._node_types_by_type.keys()
+                f"visit_{as_class_name(node_type.type)}": generic_visit
+                for node_type in self._node_types_by_type.values()
+                if not node_type.abstract
             },
         )
 
@@ -162,7 +183,10 @@ class TreeSitterTypeProvider(ModuleType):
                 "transform_ERROR": abstractmethod(generic_transform),
             }
             | {
-                f"transform_{as_cls_name(node_type_name)}": abstractmethod(generic_transform)
-                for node_type_name in self._node_types_by_type.keys()
+                f"transform_{as_class_name(node_type.type)}": abstractmethod(
+                    generic_transform
+                )
+                for node_type in self._node_types_by_type.values()
+                if not node_type.abstract
             },
         )
