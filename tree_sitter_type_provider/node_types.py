@@ -1,25 +1,21 @@
-from abc import ABC, abstractmethod
 from dataclasses import dataclass, field, make_dataclass
-from functools import reduce
-from types import NoneType
 from dataclasses_json import DataClassJsonMixin, dataclass_json
-from typing import (
-    Callable,
-    Dict,
-    List,
-    Optional,
-    Sequence,
-    Tuple,
-    Type,
-    Union,
-    cast,
-)
+from functools import reduce
+from typing import *
+
+
+@dataclass
+class Point:
+    row: int
+    column: int
 
 
 @dataclass
 class Node(DataClassJsonMixin):
     text: str
     type: str
+    start_position: Point
+    end_position: Point
 
 
 @dataclass_json
@@ -121,7 +117,9 @@ class NodeType(SimpleNodeType):
                         if field_type is not None:
                             fields[field_name] = field_type
                 if self.children is not None:
-                    children_type = self.children.as_typehint(as_class_name=as_class_name)
+                    children_type = self.children.as_typehint(
+                        as_class_name=as_class_name
+                    )
                     if children_type is not None:
                         fields["children"] = children_type
                 return make_dataclass(

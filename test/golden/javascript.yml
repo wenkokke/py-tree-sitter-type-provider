@@ -1,208 +1,208 @@
 input: javascript
 output: |-
   from_tree_sitter(self, tsnode: tree_sitter.Node) -> Union[Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]
-  ERROR(text: str, type: str = 'ERROR', children: list[typing.Union[typing.Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]] = <factory>) -> None
+  ERROR(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[typing.Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]] = <factory>) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  Arguments(text: str, type: str, children: list[typing.Union[ForwardRef('Expression'), ForwardRef('SpreadElement')]]) -> None
+  Arguments(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('Expression'), ForwardRef('SpreadElement')]]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  Array(text: str, type: str, children: list[typing.Union[ForwardRef('Expression'), ForwardRef('SpreadElement')]]) -> None
+  Array(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('Expression'), ForwardRef('SpreadElement')]]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ArrayPattern(text: str, type: str, children: list[typing.Union[ForwardRef('AssignmentPattern'), ForwardRef('Pattern')]]) -> None
+  ArrayPattern(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('AssignmentPattern'), ForwardRef('Pattern')]]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ArrowFunction(text: str, type: str, body: Union[ForwardRef('Expression'), ForwardRef('StatementBlock')], parameter: Optional[ForwardRef('Identifier')], parameters: Optional[ForwardRef('FormalParameters')]) -> None
+  ArrowFunction(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, body: Union[ForwardRef('Expression'), ForwardRef('StatementBlock')], parameter: Optional[ForwardRef('Identifier')], parameters: Optional[ForwardRef('FormalParameters')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  AssignmentExpression(text: str, type: str, left: Union[ForwardRef('ArrayPattern'), ForwardRef('Identifier'), ForwardRef('MemberExpression'), ForwardRef('ObjectPattern'), ForwardRef('ParenthesizedExpression'), ForwardRef('SubscriptExpression'), ForwardRef('Undefined')], right: 'Expression') -> None
+  AssignmentExpression(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, left: Union[ForwardRef('ArrayPattern'), ForwardRef('Identifier'), ForwardRef('MemberExpression'), ForwardRef('ObjectPattern'), ForwardRef('ParenthesizedExpression'), ForwardRef('SubscriptExpression'), ForwardRef('Undefined')], right: 'Expression') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  AssignmentPattern(text: str, type: str, left: 'Pattern', right: 'Expression') -> None
+  AssignmentPattern(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, left: 'Pattern', right: 'Expression') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  AugmentedAssignmentExpression(text: str, type: str, left: Union[ForwardRef('Identifier'), ForwardRef('MemberExpression'), ForwardRef('ParenthesizedExpression'), ForwardRef('SubscriptExpression')], right: 'Expression') -> None
+  AugmentedAssignmentExpression(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, left: Union[ForwardRef('Identifier'), ForwardRef('MemberExpression'), ForwardRef('ParenthesizedExpression'), ForwardRef('SubscriptExpression')], right: 'Expression') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  AwaitExpression(text: str, type: str, children: 'Expression') -> None
+  AwaitExpression(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: 'Expression') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  BinaryExpression(text: str, type: str, left: 'Expression', right: 'Expression') -> None
+  BinaryExpression(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, left: 'Expression', right: 'Expression') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  BreakStatement(text: str, type: str, label: Optional[ForwardRef('StatementIdentifier')]) -> None
+  BreakStatement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, label: Optional[ForwardRef('StatementIdentifier')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  CallExpression(text: str, type: str, arguments: Union[ForwardRef('Arguments'), ForwardRef('TemplateString')], function: 'Expression') -> None
+  CallExpression(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, arguments: Union[ForwardRef('Arguments'), ForwardRef('TemplateString')], function: 'Expression') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  CatchClause(text: str, type: str, body: 'StatementBlock', parameter: Union[ForwardRef('ArrayPattern'), ForwardRef('Identifier'), ForwardRef('ObjectPattern'), NoneType]) -> None
+  CatchClause(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, body: 'StatementBlock', parameter: Union[ForwardRef('ArrayPattern'), ForwardRef('Identifier'), ForwardRef('ObjectPattern'), NoneType]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  Class(text: str, type: str, body: 'ClassBody', decorator: list['Decorator'], name: Optional[ForwardRef('Identifier')], children: Optional[ForwardRef('ClassHeritage')]) -> None
+  Class(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, body: 'ClassBody', decorator: list['Decorator'], name: Optional[ForwardRef('Identifier')], children: Optional[ForwardRef('ClassHeritage')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ClassBody(text: str, type: str, member: list[typing.Union[ForwardRef('FieldDefinition'), ForwardRef('MethodDefinition')]]) -> None
+  ClassBody(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, member: list[typing.Union[ForwardRef('FieldDefinition'), ForwardRef('MethodDefinition')]]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ClassDeclaration(text: str, type: str, body: 'ClassBody', decorator: list['Decorator'], name: 'Identifier', children: Optional[ForwardRef('ClassHeritage')]) -> None
+  ClassDeclaration(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, body: 'ClassBody', decorator: list['Decorator'], name: 'Identifier', children: Optional[ForwardRef('ClassHeritage')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ClassHeritage(text: str, type: str, children: 'Expression') -> None
+  ClassHeritage(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: 'Expression') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  Comment(text: str, type: str) -> None
+  Comment(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ComputedPropertyName(text: str, type: str, children: 'Expression') -> None
+  ComputedPropertyName(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: 'Expression') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ContinueStatement(text: str, type: str, label: Optional[ForwardRef('StatementIdentifier')]) -> None
+  ContinueStatement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, label: Optional[ForwardRef('StatementIdentifier')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  DebuggerStatement(text: str, type: str) -> None
+  DebuggerStatement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  Declaration(text: str, type: str) -> None
+  Declaration(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  Decorator(text: str, type: str, children: Union[ForwardRef('CallExpression'), ForwardRef('Identifier'), ForwardRef('MemberExpression')]) -> None
+  Decorator(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: Union[ForwardRef('CallExpression'), ForwardRef('Identifier'), ForwardRef('MemberExpression')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  DoStatement(text: str, type: str, body: 'Statement', condition: 'ParenthesizedExpression') -> None
+  DoStatement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, body: 'Statement', condition: 'ParenthesizedExpression') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ElseClause(text: str, type: str, children: 'Statement') -> None
+  ElseClause(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: 'Statement') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  EmptyStatement(text: str, type: str) -> None
+  EmptyStatement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  EscapeSequence(text: str, type: str) -> None
+  EscapeSequence(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ExportClause(text: str, type: str, children: list['ExportSpecifier']) -> None
+  ExportClause(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list['ExportSpecifier']) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ExportSpecifier(text: str, type: str, alias: Optional[ForwardRef('Identifier')], name: 'Identifier') -> None
+  ExportSpecifier(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, alias: Optional[ForwardRef('Identifier')], name: 'Identifier') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ExportStatement(text: str, type: str, declaration: Optional[ForwardRef('Declaration')], decorator: list['Decorator'], source: Optional[ForwardRef('String')], value: Optional[ForwardRef('Expression')], children: Union[ForwardRef('ExportClause'), ForwardRef('NamespaceExport'), NoneType]) -> None
+  ExportStatement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, declaration: Optional[ForwardRef('Declaration')], decorator: list['Decorator'], source: Optional[ForwardRef('String')], value: Optional[ForwardRef('Expression')], children: Union[ForwardRef('ExportClause'), ForwardRef('NamespaceExport'), NoneType]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  Expression(text: str, type: str) -> None
+  Expression(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ExpressionStatement(text: str, type: str, children: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')]) -> None
+  ExpressionStatement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  False(text: str, type: str) -> None
+  False(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  FieldDefinition(text: str, type: str, decorator: list['Decorator'], property: Union[ForwardRef('ComputedPropertyName'), ForwardRef('Number'), ForwardRef('PrivatePropertyIdentifier'), ForwardRef('PropertyIdentifier'), ForwardRef('String')], value: Optional[ForwardRef('Expression')]) -> None
+  FieldDefinition(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, decorator: list['Decorator'], property: Union[ForwardRef('ComputedPropertyName'), ForwardRef('Number'), ForwardRef('PrivatePropertyIdentifier'), ForwardRef('PropertyIdentifier'), ForwardRef('String')], value: Optional[ForwardRef('Expression')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  FinallyClause(text: str, type: str, body: 'StatementBlock') -> None
+  FinallyClause(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, body: 'StatementBlock') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ForInStatement(text: str, type: str, body: 'Statement', left: Union[ForwardRef('ArrayPattern'), ForwardRef('Identifier'), ForwardRef('MemberExpression'), ForwardRef('ObjectPattern'), ForwardRef('ParenthesizedExpression'), ForwardRef('SubscriptExpression'), ForwardRef('Undefined')], right: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')], value: Optional[ForwardRef('Expression')]) -> None
+  ForInStatement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, body: 'Statement', left: Union[ForwardRef('ArrayPattern'), ForwardRef('Identifier'), ForwardRef('MemberExpression'), ForwardRef('ObjectPattern'), ForwardRef('ParenthesizedExpression'), ForwardRef('SubscriptExpression'), ForwardRef('Undefined')], right: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')], value: Optional[ForwardRef('Expression')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ForStatement(text: str, type: str, body: 'Statement', condition: Union[ForwardRef('EmptyStatement'), ForwardRef('ExpressionStatement')], increment: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression'), NoneType], initializer: Union[ForwardRef('EmptyStatement'), ForwardRef('ExpressionStatement'), ForwardRef('LexicalDeclaration'), ForwardRef('VariableDeclaration')]) -> None
+  ForStatement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, body: 'Statement', condition: Union[ForwardRef('EmptyStatement'), ForwardRef('ExpressionStatement')], increment: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression'), NoneType], initializer: Union[ForwardRef('EmptyStatement'), ForwardRef('ExpressionStatement'), ForwardRef('LexicalDeclaration'), ForwardRef('VariableDeclaration')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  FormalParameters(text: str, type: str, children: list[typing.Union[ForwardRef('AssignmentPattern'), ForwardRef('Pattern')]]) -> None
+  FormalParameters(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('AssignmentPattern'), ForwardRef('Pattern')]]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  Function(text: str, type: str, body: 'StatementBlock', name: Optional[ForwardRef('Identifier')], parameters: 'FormalParameters') -> None
+  Function(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, body: 'StatementBlock', name: Optional[ForwardRef('Identifier')], parameters: 'FormalParameters') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  FunctionDeclaration(text: str, type: str, body: 'StatementBlock', name: 'Identifier', parameters: 'FormalParameters') -> None
+  FunctionDeclaration(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, body: 'StatementBlock', name: 'Identifier', parameters: 'FormalParameters') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  GeneratorFunction(text: str, type: str, body: 'StatementBlock', name: Optional[ForwardRef('Identifier')], parameters: 'FormalParameters') -> None
+  GeneratorFunction(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, body: 'StatementBlock', name: Optional[ForwardRef('Identifier')], parameters: 'FormalParameters') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  GeneratorFunctionDeclaration(text: str, type: str, body: 'StatementBlock', name: 'Identifier', parameters: 'FormalParameters') -> None
+  GeneratorFunctionDeclaration(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, body: 'StatementBlock', name: 'Identifier', parameters: 'FormalParameters') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  HashBangLine(text: str, type: str) -> None
+  HashBangLine(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  Identifier(text: str, type: str) -> None
+  Identifier(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  IfStatement(text: str, type: str, alternative: Optional[ForwardRef('ElseClause')], condition: 'ParenthesizedExpression', consequence: 'Statement') -> None
+  IfStatement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, alternative: Optional[ForwardRef('ElseClause')], condition: 'ParenthesizedExpression', consequence: 'Statement') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  Import(text: str, type: str) -> None
+  Import(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ImportClause(text: str, type: str, children: list[typing.Union[ForwardRef('Identifier'), ForwardRef('NamedImports'), ForwardRef('NamespaceImport')]]) -> None
+  ImportClause(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('Identifier'), ForwardRef('NamedImports'), ForwardRef('NamespaceImport')]]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ImportSpecifier(text: str, type: str, alias: Optional[ForwardRef('Identifier')], name: 'Identifier') -> None
+  ImportSpecifier(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, alias: Optional[ForwardRef('Identifier')], name: 'Identifier') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ImportStatement(text: str, type: str, source: 'String', children: Optional[ForwardRef('ImportClause')]) -> None
+  ImportStatement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, source: 'String', children: Optional[ForwardRef('ImportClause')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  JsxAttribute(text: str, type: str, children: list[typing.Union[ForwardRef('JsxElement'), ForwardRef('JsxExpression'), ForwardRef('JsxFragment'), ForwardRef('JsxNamespaceName'), ForwardRef('JsxSelfClosingElement'), ForwardRef('PropertyIdentifier'), ForwardRef('String')]]) -> None
+  JsxAttribute(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('JsxElement'), ForwardRef('JsxExpression'), ForwardRef('JsxFragment'), ForwardRef('JsxNamespaceName'), ForwardRef('JsxSelfClosingElement'), ForwardRef('PropertyIdentifier'), ForwardRef('String')]]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  JsxClosingElement(text: str, type: str, name: Union[ForwardRef('Identifier'), ForwardRef('JsxNamespaceName'), ForwardRef('NestedIdentifier')]) -> None
+  JsxClosingElement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, name: Union[ForwardRef('Identifier'), ForwardRef('JsxNamespaceName'), ForwardRef('NestedIdentifier')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  JsxElement(text: str, type: str, close_tag: 'JsxClosingElement', open_tag: 'JsxOpeningElement', children: list[typing.Union[ForwardRef('JsxElement'), ForwardRef('JsxExpression'), ForwardRef('JsxFragment'), ForwardRef('JsxSelfClosingElement'), ForwardRef('JsxText')]]) -> None
+  JsxElement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, close_tag: 'JsxClosingElement', open_tag: 'JsxOpeningElement', children: list[typing.Union[ForwardRef('JsxElement'), ForwardRef('JsxExpression'), ForwardRef('JsxFragment'), ForwardRef('JsxSelfClosingElement'), ForwardRef('JsxText')]]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  JsxExpression(text: str, type: str, children: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression'), ForwardRef('SpreadElement'), NoneType]) -> None
+  JsxExpression(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression'), ForwardRef('SpreadElement'), NoneType]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  JsxFragment(text: str, type: str, children: list[typing.Union[ForwardRef('JsxElement'), ForwardRef('JsxExpression'), ForwardRef('JsxFragment'), ForwardRef('JsxSelfClosingElement'), ForwardRef('JsxText')]]) -> None
+  JsxFragment(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('JsxElement'), ForwardRef('JsxExpression'), ForwardRef('JsxFragment'), ForwardRef('JsxSelfClosingElement'), ForwardRef('JsxText')]]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  JsxNamespaceName(text: str, type: str, children: list['Identifier']) -> None
+  JsxNamespaceName(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list['Identifier']) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  JsxOpeningElement(text: str, type: str, attribute: list[typing.Union[ForwardRef('JsxAttribute'), ForwardRef('JsxExpression')]], name: Union[ForwardRef('Identifier'), ForwardRef('JsxNamespaceName'), ForwardRef('NestedIdentifier')]) -> None
+  JsxOpeningElement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, attribute: list[typing.Union[ForwardRef('JsxAttribute'), ForwardRef('JsxExpression')]], name: Union[ForwardRef('Identifier'), ForwardRef('JsxNamespaceName'), ForwardRef('NestedIdentifier')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  JsxSelfClosingElement(text: str, type: str, attribute: list[typing.Union[ForwardRef('JsxAttribute'), ForwardRef('JsxExpression')]], name: Union[ForwardRef('Identifier'), ForwardRef('JsxNamespaceName'), ForwardRef('NestedIdentifier')]) -> None
+  JsxSelfClosingElement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, attribute: list[typing.Union[ForwardRef('JsxAttribute'), ForwardRef('JsxExpression')]], name: Union[ForwardRef('Identifier'), ForwardRef('JsxNamespaceName'), ForwardRef('NestedIdentifier')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  JsxText(text: str, type: str) -> None
+  JsxText(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  LabeledStatement(text: str, type: str, body: 'Statement', label: 'StatementIdentifier') -> None
+  LabeledStatement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, body: 'Statement', label: 'StatementIdentifier') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  LexicalDeclaration(text: str, type: str, children: list['VariableDeclarator']) -> None
+  LexicalDeclaration(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list['VariableDeclarator']) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  MemberExpression(text: str, type: str, object: 'Expression', property: Union[ForwardRef('PrivatePropertyIdentifier'), ForwardRef('PropertyIdentifier')]) -> None
+  MemberExpression(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, object: 'Expression', property: Union[ForwardRef('PrivatePropertyIdentifier'), ForwardRef('PropertyIdentifier')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  MetaProperty(text: str, type: str) -> None
+  MetaProperty(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  MethodDefinition(text: str, type: str, body: 'StatementBlock', decorator: list['Decorator'], name: Union[ForwardRef('ComputedPropertyName'), ForwardRef('Number'), ForwardRef('PrivatePropertyIdentifier'), ForwardRef('PropertyIdentifier'), ForwardRef('String')], parameters: 'FormalParameters') -> None
+  MethodDefinition(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, body: 'StatementBlock', decorator: list['Decorator'], name: Union[ForwardRef('ComputedPropertyName'), ForwardRef('Number'), ForwardRef('PrivatePropertyIdentifier'), ForwardRef('PropertyIdentifier'), ForwardRef('String')], parameters: 'FormalParameters') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  NamedImports(text: str, type: str, children: list['ImportSpecifier']) -> None
+  NamedImports(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list['ImportSpecifier']) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  NamespaceExport(text: str, type: str, children: 'Identifier') -> None
+  NamespaceExport(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: 'Identifier') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  NamespaceImport(text: str, type: str, children: 'Identifier') -> None
+  NamespaceImport(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: 'Identifier') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  NestedIdentifier(text: str, type: str, children: list[typing.Union[ForwardRef('Identifier'), ForwardRef('NestedIdentifier')]]) -> None
+  NestedIdentifier(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('Identifier'), ForwardRef('NestedIdentifier')]]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  NewExpression(text: str, type: str, arguments: Optional[ForwardRef('Arguments')], constructor: Union[ForwardRef('NewExpression'), ForwardRef('PrimaryExpression')]) -> None
+  NewExpression(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, arguments: Optional[ForwardRef('Arguments')], constructor: Union[ForwardRef('NewExpression'), ForwardRef('PrimaryExpression')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
   NodeTransformer()
@@ -432,147 +432,147 @@ output: |-
     visit_WhileStatement(self, node: tree_sitter_type_provider.node_types.Node) -> None
     visit_WithStatement(self, node: tree_sitter_type_provider.node_types.Node) -> None
     visit_YieldExpression(self, node: tree_sitter_type_provider.node_types.Node) -> None
-  Null(text: str, type: str) -> None
+  Null(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  Number(text: str, type: str) -> None
+  Number(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  Object(text: str, type: str, children: list[typing.Union[ForwardRef('MethodDefinition'), ForwardRef('Pair'), ForwardRef('ShorthandPropertyIdentifier'), ForwardRef('SpreadElement')]]) -> None
+  Object(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('MethodDefinition'), ForwardRef('Pair'), ForwardRef('ShorthandPropertyIdentifier'), ForwardRef('SpreadElement')]]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ObjectAssignmentPattern(text: str, type: str, left: Union[ForwardRef('ArrayPattern'), ForwardRef('ObjectPattern'), ForwardRef('ShorthandPropertyIdentifierPattern')], right: 'Expression') -> None
+  ObjectAssignmentPattern(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, left: Union[ForwardRef('ArrayPattern'), ForwardRef('ObjectPattern'), ForwardRef('ShorthandPropertyIdentifierPattern')], right: 'Expression') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ObjectPattern(text: str, type: str, children: list[typing.Union[ForwardRef('ObjectAssignmentPattern'), ForwardRef('PairPattern'), ForwardRef('RestPattern'), ForwardRef('ShorthandPropertyIdentifierPattern')]]) -> None
+  ObjectPattern(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('ObjectAssignmentPattern'), ForwardRef('PairPattern'), ForwardRef('RestPattern'), ForwardRef('ShorthandPropertyIdentifierPattern')]]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  Pair(text: str, type: str, key: Union[ForwardRef('ComputedPropertyName'), ForwardRef('Number'), ForwardRef('PrivatePropertyIdentifier'), ForwardRef('PropertyIdentifier'), ForwardRef('String')], value: 'Expression') -> None
+  Pair(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, key: Union[ForwardRef('ComputedPropertyName'), ForwardRef('Number'), ForwardRef('PrivatePropertyIdentifier'), ForwardRef('PropertyIdentifier'), ForwardRef('String')], value: 'Expression') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  PairPattern(text: str, type: str, key: Union[ForwardRef('ComputedPropertyName'), ForwardRef('Number'), ForwardRef('PrivatePropertyIdentifier'), ForwardRef('PropertyIdentifier'), ForwardRef('String')], value: Union[ForwardRef('AssignmentPattern'), ForwardRef('Pattern')]) -> None
+  PairPattern(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, key: Union[ForwardRef('ComputedPropertyName'), ForwardRef('Number'), ForwardRef('PrivatePropertyIdentifier'), ForwardRef('PropertyIdentifier'), ForwardRef('String')], value: Union[ForwardRef('AssignmentPattern'), ForwardRef('Pattern')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ParenthesizedExpression(text: str, type: str, children: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')]) -> None
+  ParenthesizedExpression(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  Pattern(text: str, type: str) -> None
+  Pattern(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  PrimaryExpression(text: str, type: str) -> None
+  PrimaryExpression(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  PrivatePropertyIdentifier(text: str, type: str) -> None
+  PrivatePropertyIdentifier(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  Program(text: str, type: str, children: list[typing.Union[ForwardRef('HashBangLine'), ForwardRef('Statement')]]) -> None
+  Program(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('HashBangLine'), ForwardRef('Statement')]]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  PropertyIdentifier(text: str, type: str) -> None
+  PropertyIdentifier(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  Regex(text: str, type: str, flags: Optional[ForwardRef('RegexFlags')], pattern: 'RegexPattern') -> None
+  Regex(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, flags: Optional[ForwardRef('RegexFlags')], pattern: 'RegexPattern') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  RegexFlags(text: str, type: str) -> None
+  RegexFlags(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  RegexPattern(text: str, type: str) -> None
+  RegexPattern(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  RestPattern(text: str, type: str, children: Union[ForwardRef('ArrayPattern'), ForwardRef('Identifier'), ForwardRef('MemberExpression'), ForwardRef('ObjectPattern'), ForwardRef('SubscriptExpression'), ForwardRef('Undefined')]) -> None
+  RestPattern(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: Union[ForwardRef('ArrayPattern'), ForwardRef('Identifier'), ForwardRef('MemberExpression'), ForwardRef('ObjectPattern'), ForwardRef('SubscriptExpression'), ForwardRef('Undefined')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ReturnStatement(text: str, type: str, children: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression'), NoneType]) -> None
+  ReturnStatement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression'), NoneType]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  SequenceExpression(text: str, type: str, left: 'Expression', right: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')]) -> None
+  SequenceExpression(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, left: 'Expression', right: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ShorthandPropertyIdentifier(text: str, type: str) -> None
+  ShorthandPropertyIdentifier(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ShorthandPropertyIdentifierPattern(text: str, type: str) -> None
+  ShorthandPropertyIdentifierPattern(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  SpreadElement(text: str, type: str, children: 'Expression') -> None
+  SpreadElement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: 'Expression') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  Statement(text: str, type: str) -> None
+  Statement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  StatementBlock(text: str, type: str, children: list['Statement']) -> None
+  StatementBlock(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list['Statement']) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  StatementIdentifier(text: str, type: str) -> None
+  StatementIdentifier(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  String(text: str, type: str, children: list[typing.Union[ForwardRef('EscapeSequence'), ForwardRef('StringFragment')]]) -> None
+  String(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('EscapeSequence'), ForwardRef('StringFragment')]]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  StringFragment(text: str, type: str) -> None
+  StringFragment(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  SubscriptExpression(text: str, type: str, index: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')], object: 'Expression') -> None
+  SubscriptExpression(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, index: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')], object: 'Expression') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  Super(text: str, type: str) -> None
+  Super(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  SwitchBody(text: str, type: str, children: list[typing.Union[ForwardRef('SwitchCase'), ForwardRef('SwitchDefault')]]) -> None
+  SwitchBody(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('SwitchCase'), ForwardRef('SwitchDefault')]]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  SwitchCase(text: str, type: str, body: list['Statement'], value: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')]) -> None
+  SwitchCase(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, body: list['Statement'], value: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  SwitchDefault(text: str, type: str, body: list['Statement']) -> None
+  SwitchDefault(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, body: list['Statement']) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  SwitchStatement(text: str, type: str, body: 'SwitchBody', value: 'ParenthesizedExpression') -> None
+  SwitchStatement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, body: 'SwitchBody', value: 'ParenthesizedExpression') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TemplateString(text: str, type: str, children: list[typing.Union[ForwardRef('EscapeSequence'), ForwardRef('TemplateSubstitution')]]) -> None
+  TemplateString(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('EscapeSequence'), ForwardRef('TemplateSubstitution')]]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TemplateSubstitution(text: str, type: str, children: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')]) -> None
+  TemplateSubstitution(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TernaryExpression(text: str, type: str, alternative: 'Expression', condition: 'Expression', consequence: 'Expression') -> None
+  TernaryExpression(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, alternative: 'Expression', condition: 'Expression', consequence: 'Expression') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  This(text: str, type: str) -> None
+  This(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  ThrowStatement(text: str, type: str, children: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')]) -> None
+  ThrowStatement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: Union[ForwardRef('Expression'), ForwardRef('SequenceExpression')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  True(text: str, type: str) -> None
+  True(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TryStatement(text: str, type: str, body: 'StatementBlock', finalizer: Optional[ForwardRef('FinallyClause')], handler: Optional[ForwardRef('CatchClause')]) -> None
+  TryStatement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, body: 'StatementBlock', finalizer: Optional[ForwardRef('FinallyClause')], handler: Optional[ForwardRef('CatchClause')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  UnaryExpression(text: str, type: str, argument: 'Expression') -> None
+  UnaryExpression(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, argument: 'Expression') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  Undefined(text: str, type: str) -> None
+  Undefined(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  UpdateExpression(text: str, type: str, argument: 'Expression') -> None
+  UpdateExpression(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, argument: 'Expression') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  VariableDeclaration(text: str, type: str, children: list['VariableDeclarator']) -> None
+  VariableDeclaration(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list['VariableDeclarator']) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  VariableDeclarator(text: str, type: str, name: Union[ForwardRef('ArrayPattern'), ForwardRef('Identifier'), ForwardRef('ObjectPattern')], value: Optional[ForwardRef('Expression')]) -> None
+  VariableDeclarator(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, name: Union[ForwardRef('ArrayPattern'), ForwardRef('Identifier'), ForwardRef('ObjectPattern')], value: Optional[ForwardRef('Expression')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  WhileStatement(text: str, type: str, body: 'Statement', condition: 'ParenthesizedExpression') -> None
+  WhileStatement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, body: 'Statement', condition: 'ParenthesizedExpression') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  WithStatement(text: str, type: str, body: 'Statement', object: 'ParenthesizedExpression') -> None
+  WithStatement(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, body: 'Statement', object: 'ParenthesizedExpression') -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  YieldExpression(text: str, type: str, children: Optional[ForwardRef('Expression')]) -> None
+  YieldExpression(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: Optional[ForwardRef('Expression')]) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str

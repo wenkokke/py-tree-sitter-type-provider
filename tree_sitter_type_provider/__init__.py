@@ -1,4 +1,4 @@
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from types import ModuleType
 from dataclasses_json import dataclass_json
@@ -11,8 +11,11 @@ class TreeSitterTypeProvider(ModuleType):
     @dataclass_json
     @dataclass
     class ERROR(Node):
-        type: str = "ERROR"
         children: list[NodeChild] = field(default_factory=list)
+
+    @staticmethod
+    def _tspoint_to_point(tspoint: Tuple[int, int]) -> Point:
+        return Point(row=tspoint[0], column=tspoint[1])
 
     @staticmethod
     def _snake_to_pascal(text: str) -> str:
@@ -32,6 +35,8 @@ class TreeSitterTypeProvider(ModuleType):
         if tsnode.is_named:
             # Convert children
             text: str = tsnode.text.decode("utf-8")
+            start_position: Point = self._tspoint_to_point(tsnode.start_position)
+            end_position: Point = self._tspoint_to_point(tsnode.end_position)
             fields: Dict[str, NodeChild] = {}
             children: List[NodeChild] = []
             for i in range(0, tsnode.named_child_count):
@@ -46,11 +51,19 @@ class TreeSitterTypeProvider(ModuleType):
                             children.append(child_value)
             # Create node instance
             if tsnode.is_error:
-                return self.ERROR(type="ERROR", text=text, children=children)
+                return self.ERROR(
+                    text=text,
+                    type="ERROR",
+                    start_position=start_position,
+                    end_position=end_position,
+                    children=children,
+                )
             else:
-                kwargs: Dict[str, Union[str, NodeChild, List[NodeChild]]] = {}
+                kwargs: Dict[str, Union[str, Point, NodeChild, List[NodeChild]]] = {}
                 kwargs["type"] = tsnode.type
                 kwargs["text"] = text
+                kwargs["start_position"] = start_position
+                kwargs["end_position"] = end_position
                 if self._has_children(tsnode):
                     kwargs["children"] = children
                 kwargs |= fields
