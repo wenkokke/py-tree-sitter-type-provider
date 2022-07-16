@@ -1,4 +1,4 @@
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from types import ModuleType
 import types
@@ -132,7 +132,8 @@ class TreeSitterTypeProvider(ModuleType):
                 visit_node_type(node)
 
         def generic_visit(self, node: Node) -> None:
-            for field_value in node.__dataclass_fields__.values():
+            for field_name in node.__dataclass_fields__.keys():
+                field_value = getattr(node, field_name)
                 if isinstance(field_value, list):
                     for item in field_value:
                         self.visit(item)
@@ -166,7 +167,8 @@ class TreeSitterTypeProvider(ModuleType):
                 cls_name = node.__class__.__name__.split(".")[-1]
                 func: Callable[..., Result] = getattr(self, f"transform_{cls_name}")
                 kwargs: Dict[str, str | NodeChild | Result | List[Result]] = {}
-                for field_name, field_value in node.__dataclass_fields__.items():
+                for field_name in node.__dataclass_fields__.keys():
+                    field_value = getattr(node, field_name)
                     if isinstance(field_value, str):
                         kwargs[field_name] = field_value
                     elif isinstance(field_value, Node):
@@ -213,7 +215,7 @@ class TreeSitterTypeProvider(ModuleType):
 
         self.NodeTransformer = types.new_class(
             name="NodeTransformer",
-            bases=(Generic[Result],),
+            bases=(ABC, Generic[Result],),
             kwds={},
             exec_body=NodeTransformer_exec_body,
         )
