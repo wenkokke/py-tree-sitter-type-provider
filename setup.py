@@ -36,4 +36,5 @@ setup(
         "pytest",
         "pytest-golden",
     ],
+    package_data={"tree_sitter_type_provider": ["py.typed"]},
 )

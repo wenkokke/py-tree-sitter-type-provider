@@ -1,6 +1,6 @@
 input: talon
 output: |-
-  from_tree_sitter(self, tsnode: tree_sitter.Node) -> Union[Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]
+  from_tree_sitter(self, tsnode: tree_sitter.Node, encoding: str = 'utf-8') -> Union[Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]
   ERROR(text: str, type: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[typing.Sequence[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]] = <factory>) -> None
     to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
     to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
