@@ -194,7 +194,6 @@ class TreeSitterTypeProvider(ModuleType):
             *,
             text: str,
             type: str,
-            children: List[Result] = [],
             **kwargs: Dict[str, Result | NodeChild],
         ) -> Result:
             """
@@ -204,7 +203,6 @@ class TreeSitterTypeProvider(ModuleType):
         def NodeTransformer_exec_body(ns):
             ns["__module__"] = module_name
             ns["transform"] = transform
-            ns["generic_transform"] = abstractmethod(generic_transform)
             ns["transform_ERROR"] = abstractmethod(generic_transform)
             for node_type in self._node_types_by_type.values():
                 if not node_type.abstract:
