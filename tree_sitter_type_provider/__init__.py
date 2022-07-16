@@ -1,6 +1,7 @@
-from abc import ABC, abstractmethod
+from abc import abstractmethod
 from dataclasses import dataclass
 from types import ModuleType
+import types
 from dataclasses_json import dataclass_json
 from typing import Any, Callable, Dict, List, Optional, Type, TypeVar, Union
 from .node_types import *
@@ -40,7 +41,9 @@ class TreeSitterTypeProvider(ModuleType):
             fields: Dict[str, NodeChild] = {}
             tsfield_hashes: Set[int] = set()
             children: List[NodeChild] = []
-            node_type: Optional[NodeType] = self._node_types_by_type.get(tsnode.type, None)
+            node_type: Optional[NodeType] = self._node_types_by_type.get(
+                tsnode.type, None
+            )
             if node_type:
                 for field_name in node_type.fields.keys():
                     tsfield = tsnode.child_by_field_name(field_name)
@@ -136,19 +139,21 @@ class TreeSitterTypeProvider(ModuleType):
                 if isinstance(field_value, Node):
                     self.visit(field_value)
 
-        self.NodeVisitor: Type = type(
-            "NodeVisitor",
-            (object,),
-            {
-                "visit": visit,
-                "generic_visit": generic_visit,
-                "visit_ERROR": generic_visit,
-            }
-            | {
-                f"visit_{as_class_name(node_type.type)}": generic_visit
-                for node_type in self._node_types_by_type.values()
-                if not node_type.abstract
-            },
+        def NodeVisitor_exec_body(ns):
+            ns["__module__"] = module_name
+            ns["visit"] = visit
+            ns["generic_visit"] = generic_visit
+            ns["visit_ERROR"] = generic_visit
+            for node_type in self._node_types_by_type.values():
+                if not node_type.abstract:
+                    ns[f"visit_{as_class_name(node_type.type)}"] = generic_visit
+            return ns
+
+        self.NodeVisitor: Type = types.new_class(
+            name="NodeVisitor",
+            bases=(object,),
+            kwds={},
+            exec_body=NodeVisitor_exec_body,
         )
 
         # Create NodeTransformer class
@@ -194,18 +199,21 @@ class TreeSitterTypeProvider(ModuleType):
             Transform any node type.
             """
 
-        self.NodeTransformer = type(
-            "NodeTransformer",
-            (Generic[Result],),
-            {
-                "transform": transform,
-                "transform_ERROR": abstractmethod(generic_transform),
-            }
-            | {
-                f"transform_{as_class_name(node_type.type)}": abstractmethod(
-                    generic_transform
-                )
-                for node_type in self._node_types_by_type.values()
-                if not node_type.abstract
-            },
+        def NodeTransformer_exec_body(ns):
+            ns["__module__"] = module_name
+            ns["transform"] = transform
+            ns["generic_transform"] = abstractmethod(generic_transform)
+            ns["transform_ERROR"] = abstractmethod(generic_transform)
+            for node_type in self._node_types_by_type.values():
+                if not node_type.abstract:
+                    ns[f"transform_{as_class_name(node_type.type)}"] = abstractmethod(
+                        generic_transform
+                    )
+            return ns
+
+        self.NodeTransformer = types.new_class(
+            name="NodeTransformer",
+            bases=(Generic[Result],),
+            kwds={},
+            exec_body=NodeTransformer_exec_body,
         )
