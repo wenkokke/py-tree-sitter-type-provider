@@ -169,10 +169,8 @@ class TreeSitterTypeProvider(ModuleType):
                 kwargs: Dict[str, str | NodeChild | Result | List[Result]] = {}
                 for field_name in node.__dataclass_fields__.keys():
                     field_value = getattr(node, field_name)
-                    if isinstance(field_value, str):
-                        kwargs[field_name] = field_value
-                    elif isinstance(field_value, Node):
-                        kwargs[field_name] = self.transform(node)
+                    if isinstance(field_value, Node):
+                        kwargs[field_name] = self.transform(field_value)
                         kwargs[f"{field_name}_hist"] = field_value
                     elif isinstance(field_value, list):
                         field_value_results: List[Result] = []
@@ -184,7 +182,7 @@ class TreeSitterTypeProvider(ModuleType):
                         kwargs[field_name] = field_value_results
                         kwargs[f"{field_name}_hist"] = field_value
                     else:
-                        raise ValueError({field_name: field_value})
+                        kwargs[field_name] = field_value
                 return func(**kwargs)
             else:
                 return ValueError(node)
@@ -194,6 +192,8 @@ class TreeSitterTypeProvider(ModuleType):
             *,
             text: str,
             type: str,
+            start_position: Point,
+            end_poisition: Point,
             **kwargs: Dict[str, Result | NodeChild],
         ) -> Result:
             """
