@@ -196,7 +196,7 @@ class TreeSitterTypeProvider(ModuleType):
 
         self.NodeTransformer = type(
             "NodeTransformer",
-            (ABC,),
+            (Generic[Result],),
             {
                 "transform": transform,
                 "transform_ERROR": abstractmethod(generic_transform),
