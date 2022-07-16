@@ -29,13 +29,13 @@ class TreeSitterTypeProvider(ModuleType):
     def _node_class(self, node: Union[Node, NodeType, ts.Node]) -> Type[Node]:
         return self._node_dataclasses_by_type[node.type]
 
-    def from_tree_sitter(self, tsnode: ts.Node) -> NodeChild:
+    def from_tree_sitter(self, tsnode: ts.Node, encoding: str = "utf-8") -> NodeChild:
         """
         Convert a tree-sitter Node to an instance of a generated dataclass.
         """
         if tsnode.is_named:
             # Convert children
-            text: str = tsnode.text.decode("utf-8")
+            text: str = tsnode.text.decode(encoding)
             start_position: Point = self._tspoint_to_point(tsnode.start_point)
             end_position: Point = self._tspoint_to_point(tsnode.end_point)
             fields: Dict[str, NodeChild] = {}
@@ -49,11 +49,11 @@ class TreeSitterTypeProvider(ModuleType):
                     tsfield = tsnode.child_by_field_name(field_name)
                     if tsfield.is_named:
                         tsfield_hashes.add(hash((tsfield.start_byte, tsfield.end_byte)))
-                        fields[field_name] = self.from_tree_sitter(tsfield)
+                        fields[field_name] = self.from_tree_sitter(tsfield, encoding)
             for tschild in tsnode.children:
                 if tschild.is_named:
                     if tschild.__hash__ not in tsfield_hashes:
-                        child_value = self.from_tree_sitter(tschild)
+                        child_value = self.from_tree_sitter(tschild, encoding)
                         if not isinstance(child_value, str):
                             children.append(child_value)
             # Create node instance
