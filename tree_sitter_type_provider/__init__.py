@@ -193,7 +193,7 @@ class TreeSitterTypeProvider(ModuleType):
             text: str,
             type: str,
             start_position: Point,
-            end_poisition: Point,
+            end_position: Point,
             **kwargs: Dict[str, Result | NodeChild],
         ) -> Result:
             """
