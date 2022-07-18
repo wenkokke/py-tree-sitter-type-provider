@@ -192,7 +192,7 @@ class TreeSitterTypeProvider(ModuleType):
             self,
             *,
             text: str,
-            type: str,
+            type_name: str,
             start_position: Point,
             end_position: Point,
             **kwargs: dict[str, Result | NodeChild],
