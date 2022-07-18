@@ -1,7 +1,8 @@
+from collections.abc import Callable
 from dataclasses import dataclass, field, make_dataclass
-from dataclasses_json import DataClassJsonMixin, dataclass_json
+from typing import Optional, Sequence, Union, cast
+from dataclasses_json import DataClassJsonMixin, config, dataclass_json
 from functools import reduce
-from typing import *
 
 
 @dataclass
@@ -13,7 +14,7 @@ class Point:
 @dataclass
 class Node(DataClassJsonMixin):
     text: str
-    type: str
+    type_name: str = field(metadata=config(field_name="type"))
     start_position: Point
     end_position: Point
 
@@ -21,20 +22,20 @@ class Node(DataClassJsonMixin):
 @dataclass_json
 @dataclass
 class SimpleNodeType:
-    type: str
+    type_name: str = field(metadata=config(field_name="type"))
     named: bool
 
-    def as_typehint(self, as_class_name: Callable[[str], str]) -> Type[Node]:
+    def as_typehint(self, as_class_name: Callable[[str], str]) -> type[Node]:
         if self.named:
-            return cast(Type, as_class_name(self.type))
+            return cast(type, as_class_name(self.type_name))
         raise ValueError(self)
 
     @staticmethod
     def many_as_typehint(
         simple_node_types: list["SimpleNodeType"],
         as_class_name: Callable[[str], str],
-    ) -> Type[Node]:
-        Ts: list[Type] = []
+    ) -> type[Node]:
+        Ts: list[type] = []
         for simple_node_type in simple_node_types:
             if simple_node_type.named:
                 Ts.append(simple_node_type.as_typehint(as_class_name=as_class_name))
@@ -45,7 +46,7 @@ class SimpleNodeType:
         if len(Ts) == 1:
             return Ts[0]
 
-        return reduce(lambda R, T: cast(Type, Union[R, T]), Ts)
+        return reduce(lambda R, T: cast(type, Union[R, T]), Ts)
 
 
 NodeChild = Union[Sequence[Node], Node, Optional[Node]]
@@ -65,7 +66,7 @@ class NodeArgsType:
     def as_typehint(
         self,
         as_class_name: Callable[[str], str],
-    ) -> Type[NodeChild]:
+    ) -> type[NodeChild]:
         T = SimpleNodeType.many_as_typehint(self.types, as_class_name=as_class_name)
         if T is not None:
             if self.multiple:
@@ -102,15 +103,15 @@ class NodeType(SimpleNodeType):
     def as_class(
         self,
         as_class_name: Callable[[str], str],
-        bases: Tuple[Type[Node], ...] = (Node,),
+        bases: tuple[type[Node], ...] = (Node,),
         **kwargs
-    ) -> Type[Node]:
+    ) -> type[Node]:
         if self.named:
-            cls_name = as_class_name(self.type)
+            cls_name = as_class_name(self.type_name)
             if self.abstract:
                 return type(cls_name, (Node,), {})
             else:
-                fields: Dict[str, Type[NodeChild]] = {}
+                fields: dict[str, type[NodeChild]] = {}
                 for field_name, field in self.fields.items():
                     if field.named:
                         field_type = field.as_typehint(as_class_name=as_class_name)

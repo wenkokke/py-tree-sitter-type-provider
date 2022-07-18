@@ -1,9 +1,10 @@
 from abc import ABC, abstractmethod
+from collections.abc import Callable
 from dataclasses import dataclass
 from types import ModuleType
 import types
 from dataclasses_json import dataclass_json
-from typing import Any, Callable, Dict, List, Optional, Type, TypeVar, Union
+from typing import Any, Generic, Optional, TypeVar, Union
 from .node_types import *
 import tree_sitter as ts
 
@@ -15,7 +16,7 @@ class TreeSitterTypeProvider(ModuleType):
         children: list[NodeChild] = field(default_factory=list)
 
     @staticmethod
-    def _tspoint_to_point(tspoint: Tuple[int, int]) -> Point:
+    def _tspoint_to_point(tspoint: tuple[int, int]) -> Point:
         return Point(row=tspoint[0], column=tspoint[1])
 
     @staticmethod
@@ -23,11 +24,11 @@ class TreeSitterTypeProvider(ModuleType):
         return "".join(chunk.capitalize() for chunk in text.split("_"))
 
     def _node_has_children(self, node: Union[Node, NodeType, ts.Node]) -> bool:
-        node_type = self._node_types_by_type.get(node.type, None)
+        node_type = self._node_types_by_type.get(node.type_name, None)
         return node_type is not None and node_type.children is not None
 
-    def _node_class(self, node: Union[Node, NodeType, ts.Node]) -> Type[Node]:
-        return self._node_dataclasses_by_type[node.type]
+    def _node_class(self, node: Union[Node, NodeType, ts.Node]) -> type[Node]:
+        return self._node_dataclasses_by_type[node.type_name]
 
     def from_tree_sitter(self, tsnode: ts.Node, encoding: str = "utf-8") -> NodeChild:
         """
@@ -38,9 +39,9 @@ class TreeSitterTypeProvider(ModuleType):
             text: str = tsnode.text.decode(encoding)
             start_position: Point = self._tspoint_to_point(tsnode.start_point)
             end_position: Point = self._tspoint_to_point(tsnode.end_point)
-            fields: Dict[str, NodeChild] = {}
-            tsfield_hashes: Set[int] = set()
-            children: List[NodeChild] = []
+            fields: dict[str, NodeChild] = {}
+            tsfield_hashes: set[int] = set()
+            children: list[NodeChild] = []
             node_type: Optional[NodeType] = self._node_types_by_type.get(
                 tsnode.type, None
             )
@@ -60,14 +61,14 @@ class TreeSitterTypeProvider(ModuleType):
             if tsnode.type == "ERROR":
                 return self.ERROR(
                     text=text,
-                    type="ERROR",
+                    type_name="ERROR",
                     start_position=start_position,
                     end_position=end_position,
                     children=children,
                 )
             else:
-                kwargs: Dict[str, Union[str, Point, NodeChild, List[NodeChild]]] = {}
-                kwargs["type"] = tsnode.type
+                kwargs: dict[str, Union[str, Point, NodeChild, list[NodeChild]]] = {}
+                kwargs["type_name"] = tsnode.type
                 kwargs["text"] = text
                 kwargs["start_position"] = start_position
                 kwargs["end_position"] = end_position
@@ -82,38 +83,38 @@ class TreeSitterTypeProvider(ModuleType):
         module_name: str,
         node_types: list[NodeType],
         as_class_name: Optional[Callable[[str], str]] = None,
-        dataclass_kwargs: Dict[str, Any] = {},
+        dataclass_kwargs: dict[str, Any] = {},
     ):
         super().__init__(name=module_name)
 
-        # Set default value for as_class_name
+        # set default value for as_class_name
         if as_class_name is None:
             as_class_name = self._snake_to_pascal
 
         # Dictionary of named node types
-        self._node_types_by_type: Dict[str, NodeType] = {}
+        self._node_types_by_type: dict[str, NodeType] = {}
         for node_type in node_types:
             if node_type.named:
-                self._node_types_by_type[node_type.type] = node_type
+                self._node_types_by_type[node_type.type_name] = node_type
 
         # Dictionary of abstract classes
-        self._node_bases_by_type: Dict[str, List[Type[Node]]] = {}
+        self._node_bases_by_type: dict[str, list[type[Node]]] = {}
         for node_type in self._node_types_by_type.values():
             if node_type.abstract:
                 cls = node_type.as_class(as_class_name)
-                setattr(self, as_class_name(node_type.type), cls)
+                setattr(self, as_class_name(node_type.type_name), cls)
                 for subtype in node_type.subtypes:
                     if subtype.named:
-                        if subtype.type not in self._node_bases_by_type:
-                            self._node_bases_by_type[subtype.type] = []
-                        self._node_bases_by_type[subtype.type].append(cls)
+                        if subtype.type_name not in self._node_bases_by_type:
+                            self._node_bases_by_type[subtype.type_name] = []
+                        self._node_bases_by_type[subtype.type_name].append(cls)
 
         # Dictionary of dataclasses
-        self._node_dataclasses_by_type: Dict[str, Type[Node]] = {}
+        self._node_dataclasses_by_type: dict[str, type[Node]] = {}
         self._node_dataclasses_by_type["ERROR"] = self.ERROR
         for node_type in self._node_types_by_type.values():
-            if node_type.type in self._node_bases_by_type:
-                bases = tuple(self._node_bases_by_type[node_type.type])
+            if node_type.type_name in self._node_bases_by_type:
+                bases = tuple(self._node_bases_by_type[node_type.type_name])
             else:
                 bases = (Node,)
             cls = node_type.as_class(
@@ -121,8 +122,8 @@ class TreeSitterTypeProvider(ModuleType):
                 bases=bases,
                 **dataclass_kwargs,
             )
-            self._node_dataclasses_by_type[node_type.type] = cls
-            setattr(self, as_class_name(node_type.type), cls)
+            self._node_dataclasses_by_type[node_type.type_name] = cls
+            setattr(self, as_class_name(node_type.type_name), cls)
 
         # Create NodeVisitor class
         def visit(self, node: Node) -> None:
@@ -147,10 +148,10 @@ class TreeSitterTypeProvider(ModuleType):
             ns["visit_ERROR"] = generic_visit
             for node_type in self._node_types_by_type.values():
                 if not node_type.abstract:
-                    ns[f"visit_{as_class_name(node_type.type)}"] = generic_visit
+                    ns[f"visit_{as_class_name(node_type.type_name)}"] = generic_visit
             return ns
 
-        self.NodeVisitor: Type = types.new_class(
+        self.NodeVisitor: type = types.new_class(
             name="NodeVisitor",
             bases=(object,),
             kwds={},
@@ -166,14 +167,14 @@ class TreeSitterTypeProvider(ModuleType):
             if isinstance(node, Node):
                 cls_name = node.__class__.__name__.split(".")[-1]
                 func: Callable[..., Result] = getattr(self, f"transform_{cls_name}")
-                kwargs: Dict[str, str | NodeChild | Result | List[Result]] = {}
+                kwargs: dict[str, str | NodeChild | Result | list[Result]] = {}
                 for field_name in node.__dataclass_fields__.keys():
                     field_value = getattr(node, field_name)
                     if isinstance(field_value, Node):
                         kwargs[field_name] = self.transform(field_value)
                         kwargs[f"{field_name}_hist"] = field_value
                     elif isinstance(field_value, list):
-                        field_value_results: List[Result] = []
+                        field_value_results: list[Result] = []
                         for field_value_item in field_value:
                             if isinstance(field_value_item, Node):
                                 field_value_results.append(
@@ -194,7 +195,7 @@ class TreeSitterTypeProvider(ModuleType):
             type: str,
             start_position: Point,
             end_position: Point,
-            **kwargs: Dict[str, Result | NodeChild],
+            **kwargs: dict[str, Result | NodeChild],
         ) -> Result:
             """
             Transform any node type.
@@ -206,14 +207,14 @@ class TreeSitterTypeProvider(ModuleType):
             ns["transform_ERROR"] = abstractmethod(generic_transform)
             for node_type in self._node_types_by_type.values():
                 if not node_type.abstract:
-                    ns[f"transform_{as_class_name(node_type.type)}"] = abstractmethod(
+                    ns[f"transform_{as_class_name(node_type.type_name)}"] = abstractmethod(
                         generic_transform
                     )
             return ns
 
         self.NodeTransformer = types.new_class(
             name="NodeTransformer",
-            bases=(ABC, Generic[Result],),
+            bases=(Generic[Result],),
             kwds={},
             exec_body=NodeTransformer_exec_body,
         )
