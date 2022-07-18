@@ -207,6 +207,7 @@ class TreeSitterTypeProvider(ModuleType):
             ns["transform_ERROR"] = abstractmethod(generic_transform)
             for node_type in self._node_types_by_type.values():
                 if not node_type.abstract:
+                    # TODO: generate function with more accurate type signature
                     ns[f"transform_{as_class_name(node_type.type_name)}"] = abstractmethod(
                         generic_transform
                     )
