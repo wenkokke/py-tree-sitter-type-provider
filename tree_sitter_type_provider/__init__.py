@@ -126,7 +126,6 @@ class TreeSitterTypeProvider(types.ModuleType):
             else:
                 bases = (Node,)
             cls_name = as_class_name(node_type.type_name)
-            print(cls_name)
             cls = node_type.as_class(
                 bases=bases,
                 as_class_name=as_class_name,
