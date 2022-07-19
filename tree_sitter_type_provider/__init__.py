@@ -24,7 +24,10 @@ class TreeSitterTypeProvider(types.ModuleType):
         return node_type is not None and node_type.children is not None
 
     def _node_class(self, node: typing.Union[Node, NodeType, ts.Node]) -> type[Node]:
-        return self._node_dataclasses_by_type[node.type_name]
+        if isinstance(node, ts.Node):
+            return self._node_dataclasses_by_type[node.type]
+        else:
+            return self._node_dataclasses_by_type[node.type_name]
 
     def from_tree_sitter(self, tsnode: ts.Node, encoding: str = "utf-8") -> NodeChild:
         """
