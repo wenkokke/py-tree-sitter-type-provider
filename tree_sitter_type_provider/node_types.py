@@ -1,8 +1,9 @@
 from collections.abc import Callable
 from dataclasses import dataclass, field, make_dataclass
-from typing import Optional, Sequence, Union, cast
 from dataclasses_json import DataClassJsonMixin, config, dataclass_json
 from functools import reduce
+
+import typing
 
 
 @dataclass
@@ -25,14 +26,15 @@ class SimpleNodeType:
     type_name: str = field(metadata=config(field_name="type"))
     named: bool
 
-    def as_typehint(self, as_class_name: Callable[[str], str]) -> type[Node]:
+    def as_typehint(self, *, as_class_name: Callable[[str], str]) -> type[Node]:
         if self.named:
-            return cast(type, as_class_name(self.type_name))
+            return typing.cast(type, as_class_name(self.type_name))
         raise ValueError(self)
 
     @staticmethod
     def many_as_typehint(
         simple_node_types: list["SimpleNodeType"],
+        *,
         as_class_name: Callable[[str], str],
     ) -> type[Node]:
         Ts: list[type] = []
@@ -46,10 +48,10 @@ class SimpleNodeType:
         if len(Ts) == 1:
             return Ts[0]
 
-        return reduce(lambda R, T: cast(type, Union[R, T]), Ts)
+        return reduce(lambda R, T: typing.cast(type, typing.Union[R, T]), Ts)
 
 
-NodeChild = Union[Sequence[Node], Node, Optional[Node]]
+NodeChild = list[Node] | Node | None
 
 
 @dataclass_json
@@ -65,6 +67,7 @@ class NodeArgsType:
 
     def as_typehint(
         self,
+        *,
         as_class_name: Callable[[str], str],
     ) -> type[NodeChild]:
         T = SimpleNodeType.many_as_typehint(self.types, as_class_name=as_class_name)
@@ -75,7 +78,7 @@ class NodeArgsType:
                 if self.required:
                     return T
                 else:
-                    return Optional[T]  # type: ignore
+                    return typing.Optional[T]  # type: ignore
         else:
             raise ValueError(self)
 
@@ -84,7 +87,7 @@ class NodeArgsType:
 @dataclass
 class NodeType(SimpleNodeType):
     fields: dict[str, NodeArgsType] = field(default_factory=dict)
-    children: Optional[NodeArgsType] = None
+    children: NodeArgsType | None = None
     subtypes: list[SimpleNodeType] = field(default_factory=list)
 
     def __post_init__(self, **kwargs):
@@ -102,9 +105,10 @@ class NodeType(SimpleNodeType):
 
     def as_class(
         self,
-        as_class_name: Callable[[str], str],
+        *,
         bases: tuple[type[Node], ...] = (Node,),
-        **kwargs
+        as_class_name: Callable[[str], str],
+        **kwargs,
     ) -> type[Node]:
         if self.named:
             cls_name = as_class_name(self.type_name)
