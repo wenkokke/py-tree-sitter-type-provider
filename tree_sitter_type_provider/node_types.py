@@ -20,6 +20,15 @@ class Node(DataClassJsonMixin):
     end_position: Point
 
 
+NodeChild = list[Node] | Node | None
+
+
+@dataclass_json
+@dataclass
+class ERROR(Node):
+    children: list[NodeChild] = field(default_factory=list)
+
+
 @dataclass_json
 @dataclass
 class SimpleNodeType:
@@ -49,9 +58,6 @@ class SimpleNodeType:
             return Ts[0]
 
         return reduce(lambda R, T: typing.cast(type, typing.Union[R, T]), Ts)
-
-
-NodeChild = list[Node] | Node | None
 
 
 @dataclass_json

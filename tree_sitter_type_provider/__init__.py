@@ -1,8 +1,6 @@
 from abc import abstractmethod
 from collections.abc import Callable
-from dataclasses import dataclass
-from dataclasses_json import dataclass_json
-from tree_sitter_type_provider.node_types import *
+from tree_sitter_type_provider.node_types import NodeType, Point, Node, NodeChild, ERROR
 
 import tree_sitter as ts
 import typing
@@ -10,11 +8,6 @@ import types
 
 
 class TreeSitterTypeProvider(types.ModuleType):
-    @dataclass_json
-    @dataclass
-    class ERROR(Node):
-        children: list[NodeChild] = field(default_factory=list)
-
     @staticmethod
     def _tspoint_to_point(tspoint: tuple[int, int]) -> Point:
         return Point(row=tspoint[0], column=tspoint[1])
@@ -61,7 +54,7 @@ class TreeSitterTypeProvider(types.ModuleType):
                             children.append(child_value)
             # Create node instance
             if tsnode.type == "ERROR":
-                return self.ERROR(
+                return ERROR(
                     text=text,
                     type_name="ERROR",
                     start_position=start_position,
@@ -119,13 +112,12 @@ class TreeSitterTypeProvider(types.ModuleType):
 
         # Dictionary of dataclasses
         self._node_dataclasses_by_type: dict[str, type[Node]] = {}
-        self._node_dataclasses_by_type["ERROR"] = self.ERROR
+        self._node_dataclasses_by_type["ERROR"] = ERROR
         for node_type in self._node_types_by_type.values():
             if node_type.type_name in self._node_bases_by_type:
                 bases = tuple(self._node_bases_by_type[node_type.type_name])
             else:
                 bases = (Node,)
-            cls_name = as_class_name(node_type.type_name)
             cls = node_type.as_class(
                 bases=bases,
                 as_class_name=as_class_name,
@@ -152,12 +144,12 @@ class TreeSitterTypeProvider(types.ModuleType):
 
         def NodeVisitor_exec_body(ns):
             ns["__module__"] = module_name
-            ns["visit"] = visit
-            ns["generic_visit"] = generic_visit
-            ns["visit_ERROR"] = generic_visit
             for node_type in self._node_types_by_type.values():
                 if not node_type.abstract:
                     ns[f"visit_{as_class_name(node_type.type_name)}"] = generic_visit
+            ns["visit_ERROR"] = generic_visit
+            ns["visit"] = visit
+            ns["generic_visit"] = generic_visit
             return ns
 
         self.NodeVisitor: type = types.new_class(
