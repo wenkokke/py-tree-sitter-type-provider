@@ -20,7 +20,10 @@ class TreeSitterTypeProvider(types.ModuleType):
         return Point(row=tspoint[0], column=tspoint[1])
 
     def _node_has_children(self, node: typing.Union[Node, NodeType, ts.Node]) -> bool:
-        node_type = self._node_types_by_type.get(node.type_name, None)
+        if isinstance(node, ts.Node):
+            node_type = self._node_types_by_type.get(node.type, None)
+        else:
+            node_type = self._node_types_by_type.get(node.type_name, None)
         return node_type is not None and node_type.children is not None
 
     def _node_class(self, node: typing.Union[Node, NodeType, ts.Node]) -> type[Node]:
