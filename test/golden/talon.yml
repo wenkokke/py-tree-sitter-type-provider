@@ -2,7 +2,7 @@ input:
   name: talon
   class_prefix: Talon
 output: |-
-  from_tree_sitter(self, tsnode: tree_sitter.Node, encoding: str = 'utf-8') -> list[tree_sitter_type_provider.node_types.Node] | tree_sitter_type_provider.node_types.Node | None
+  from_tree_sitter(self, tsnode: tree_sitter.Node, encoding: str = 'utf-8') -> Union[list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]
   NodeTransformer()
     transform(self, node: tree_sitter_type_provider.node_types.Node) -> ~Result
     transform_ERROR(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
