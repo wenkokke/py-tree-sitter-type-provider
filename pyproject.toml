@@ -1,9 +1,28 @@
 [build-system]
-requires = [
-    "setuptools>=43.0.0",
-    "wheel>=0.36.2",
-]
+requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "tree_sitter_type_provider"
+version = "1.1.0"
+description = "Type providers for tree-sitter in Python"
+readme = "README.md"
+requires-python = ">=3.3"
+keywords = ["type-provider"]
+authors = [{ name = "Wen Kokke", email = "me@wen.works" }]
+maintainers = [{ name = "Wen Kokke", email = "me@wen.works" }]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Software Development :: Compilers",
+]
+dependencies = ["tree_sitter", "dataclasses-json", "pytest", "pytest-golden"]
+
+[project.urls]
+repository = "https://github.com/wenkokke/py-tree-sitter-type-provider"
+
+[tool.setuptools.package-data]
+tree_sitter_type_provider = ["py.typed"]
 
 [pytest]
 testpaths = "test"
@@ -11,3 +30,14 @@ testpaths = "test"
 [tool.pytest.ini_options]
 enable_assertion_pass_hook = true
 filterwarnings = ["ignore::DeprecationWarning:.*:"]
+
+[tool.bumpver]
+current_version = "1.1.0"
+version_pattern = "MAJOR.MINOR.PATCH"
+commit_message = "Bump version {old_version} -> {new_version}"
+commit = true
+tag = true
+push = true
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = ['current_version = "{version}"', 'version = "{version}"']
