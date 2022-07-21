@@ -27,7 +27,7 @@ The module contains a number of dataclasses which represent the AST nodes:
 
 ```python
 import tree_sitter as ts
-import tstp as tstp
+import tree_sitter_type_provider as tstp
 
 @dataclass
 class JsArray(tstp.Node):
