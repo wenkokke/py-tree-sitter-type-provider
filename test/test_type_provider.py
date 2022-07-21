@@ -1,7 +1,6 @@
 from collections.abc import Generator
 from pathlib import Path
-from tree_sitter_type_provider import TreeSitterTypeProvider
-from tree_sitter_type_provider.node_types import *
+from tree_sitter_type_provider import TreeSitterTypeProvider, NodeType
 import pytest
 import inspect
 

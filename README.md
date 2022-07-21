@@ -2,12 +2,12 @@
 
 Create a type AST from any `node-types.json` file, as well as a generic visitor class and a transformer class, and a function to convert to the AST from the `tree_sitter.Node` type.
 
-For example, the following code creates an AST from `tree-sitter-javascript`...
+For example, the following code defines a module `tree_sitter_javascript` from `tree-sitter-javascript/src/nodes.json`:
 
 ```python
 from pathlib import Path
 from tree_sitter_type_provider import TreeSitterTypeProvider
-from tstp import NodeType
+from tree_sitter_type_provider.node_types import NodeType
 
 node_types_json = Path("tree-sitter-javascript/src/node-types.json")
 node_types = NodeType.schema().loads(node_types_json.read_text(), many=True)
@@ -20,11 +20,11 @@ def as_class_name(node_type_name: str) -> str:
 
 
 sys.modules[__name__] = TreeSitterTypeProvider(
-    module_name, node_types, as_class_name=as_class_name
+    "tree_sitter_javascript", node_types, as_class_name=as_class_name
 )
 ```
 
-... which creats a number of dataclasses to represent the AST nodes:
+Which creats a number of dataclasses to represent the AST nodes:
 
 ```python
 import tree_sitter as ts

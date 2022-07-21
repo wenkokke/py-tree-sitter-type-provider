@@ -1,6 +1,12 @@
 from abc import abstractmethod
 from collections.abc import Callable
-from tree_sitter_type_provider.node_types import NodeType, Point, Node, NodeChild, ERROR
+from tree_sitter_type_provider.node_types import (
+    NodeType as NodeType,
+    Point as Point,
+    Node as Node,
+    NodeChild as NodeChild,
+    ERROR as ERROR,
+)
 
 import tree_sitter as ts
 import typing
