@@ -20,7 +20,7 @@ class Node(DataClassJsonMixin):
     end_position: Point
 
 
-NodeChild = list[Node] | Node | None
+NodeChild = typing.Union[list[Node], Node, None]
 
 
 @dataclass_json
@@ -93,7 +93,7 @@ class NodeArgsType:
 @dataclass
 class NodeType(SimpleNodeType):
     fields: dict[str, NodeArgsType] = field(default_factory=dict)
-    children: NodeArgsType | None = None
+    children: typing.Union[NodeArgsType, None] = None
     subtypes: list[SimpleNodeType] = field(default_factory=list)
 
     def __post_init__(self, **kwargs):

@@ -174,7 +174,7 @@ class TreeSitterTypeProvider(types.ModuleType):
             if isinstance(node, Node):
                 cls_name = node.__class__.__name__.split(".")[-1]
                 func: Callable[..., Result] = getattr(self, f"transform_{cls_name}")
-                kwargs: dict[str, str | NodeChild | Result | list[Result]] = {}
+                kwargs: dict[str, typing.Union[str, NodeChild, Result, list[Result]]] = {}
                 for field_name in node.__dataclass_fields__.keys():
                     field_value = getattr(node, field_name)
                     if isinstance(field_value, Node):
@@ -202,7 +202,7 @@ class TreeSitterTypeProvider(types.ModuleType):
             type_name: str,
             start_position: Point,
             end_position: Point,
-            **kwargs: dict[str, Result | NodeChild],
+            **kwargs: dict[str, typing.Union[Result, NodeChild]],
         ) -> Result:
             """
             Transform any node type.
