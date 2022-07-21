@@ -6,14 +6,17 @@ build-backend = "setuptools.build_meta"
 name = "tree_sitter_type_provider"
 version = "1.2.2"
 description = "Type providers for tree-sitter in Python"
-requires-python = ">=3.9"
+requires-python = ">=3.7"
 keywords = ["type-provider"]
 authors = [{ name = "Wen Kokke" }]
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Topic :: Software Development :: Compilers",
 ]
-dependencies = ["tree_sitter", "dataclasses-json", "pytest", "pytest-golden"]
+dependencies = ["tree_sitter", "dataclasses-json"]
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-golden"]
 
 [project.readme]
 file = "README.md"
