@@ -1,84 +1,120 @@
-from collections.abc import Callable
-from dataclasses import dataclass, field, make_dataclass
-from dataclasses_json import DataClassJsonMixin, config, dataclass_json
-from functools import reduce
-
+import dataclasses
+import dataclasses_json
+import functools
 import typing
+import collections.abc
 
 
-@dataclass
+class NodeTypeError(Exception):
+    pass
+
+
+@dataclasses.dataclass
 class Point:
     row: int
     column: int
 
 
-@dataclass
-class Node(DataClassJsonMixin):
+NodeTypeName: typing.TypeAlias = str
+NodeFieldName: typing.TypeAlias = str
+AsClassName: typing.TypeAlias = collections.abc.Callable[[NodeTypeName], str]
+
+
+@dataclasses.dataclass
+class Node(dataclasses_json.DataClassJsonMixin):
     text: str
-    type_name: str = field(metadata=config(field_name="type"))
+    type_name: NodeTypeName = dataclasses.field(
+        metadata=dataclasses_json.config(field_name="type")
+    )
     start_position: Point
     end_position: Point
 
 
-NodeChild = typing.Union[list[Node], Node, None]
+@dataclasses.dataclass
+class Leaf(Node):
+    pass
 
 
-@dataclass_json
-@dataclass
-class ERROR(Node):
-    children: list[NodeChild] = field(default_factory=list)
+@dataclasses.dataclass
+class Extra(Leaf):
+    pass
 
 
-@dataclass_json
-@dataclass
+@dataclasses.dataclass
+class Branch(Node):
+    children: typing.Union[None, Node, list[Node]]
+
+
+@dataclasses.dataclass
+class ERROR(Branch):
+    children: list[Node]
+
+
+@dataclasses_json.dataclass_json
+@dataclasses.dataclass
 class SimpleNodeType:
-    type_name: str = field(metadata=config(field_name="type"))
+    type_name: NodeTypeName = dataclasses.field(
+        metadata=dataclasses_json.config(field_name="type")
+    )
     named: bool
 
-    def as_typehint(self, *, as_class_name: Callable[[str], str]) -> type[Node]:
+    def is_extra(self, *, extra: typing.Sequence["SimpleNodeType"]) -> bool:
+        return any(self.type_name == other.type_name for other in extra)
+
+    def as_typehint(self, *, as_class_name: AsClassName) -> type[Node]:
         if self.named:
             return typing.cast(type, as_class_name(self.type_name))
         raise ValueError(self)
 
     @staticmethod
     def many_as_typehint(
-        simple_node_types: list["SimpleNodeType"],
+        simple_node_types: typing.Sequence["SimpleNodeType"],
         *,
-        as_class_name: Callable[[str], str],
-    ) -> type[Node]:
+        as_class_name: AsClassName,
+    ) -> typing.Optional[type[Node]]:
         Ts: list[type] = []
         for simple_node_type in simple_node_types:
             if simple_node_type.named:
                 Ts.append(simple_node_type.as_typehint(as_class_name=as_class_name))
 
         if len(Ts) == 0:
-            raise ValueError(simple_node_types)
+            return None
 
         if len(Ts) == 1:
             return Ts[0]
 
-        return reduce(lambda R, T: typing.cast(type, typing.Union[R, T]), Ts)
+        return functools.reduce(lambda R, T: typing.cast(type, typing.Union[R, T]), Ts)
 
 
-@dataclass_json
-@dataclass
+@dataclasses_json.dataclass_json
+@dataclasses.dataclass
 class NodeArgsType:
-    multiple: bool
-    required: bool
-    types: list[SimpleNodeType]
+    multiple: bool = False
+    required: bool = False
+    types: list[SimpleNodeType] = dataclasses.field(default_factory=list)
 
     @property
     def named(self) -> bool:
         return any(type.named for type in self.types)
 
+    def __bool__(self) -> bool:
+        return bool(self.types)
+
     def as_typehint(
         self,
         *,
-        as_class_name: Callable[[str], str],
-    ) -> type[NodeChild]:
-        T = SimpleNodeType.many_as_typehint(self.types, as_class_name=as_class_name)
+        as_class_name: AsClassName,
+        extra: typing.Sequence[SimpleNodeType],
+    ) -> typing.Optional[type[Node]]:
+        # Add the extra nodes into the possible children
+        types_with_extra = tuple((*self.types, *extra))
+        # If there are extra nodes, any node can have any number of children
+        multiple_with_extra = bool(extra) or self.multiple
+        T = SimpleNodeType.many_as_typehint(
+            types_with_extra, as_class_name=as_class_name
+        )
         if T is not None:
-            if self.multiple:
+            if multiple_with_extra:
                 return list[T]  # type: ignore
             else:
                 if self.required:
@@ -86,55 +122,84 @@ class NodeArgsType:
                 else:
                     return typing.Optional[T]  # type: ignore
         else:
-            raise ValueError(self)
+            return None
 
 
-@dataclass_json
-@dataclass
+@dataclasses_json.dataclass_json
+@dataclasses.dataclass
 class NodeType(SimpleNodeType):
-    fields: dict[str, NodeArgsType] = field(default_factory=dict)
-    children: typing.Union[NodeArgsType, None] = None
-    subtypes: list[SimpleNodeType] = field(default_factory=list)
+    fields: dict[NodeFieldName, NodeArgsType] = dataclasses.field(default_factory=dict)
+    children: NodeArgsType = dataclasses.field(default_factory=NodeArgsType)
+    subtypes: list[SimpleNodeType] = dataclasses.field(default_factory=list)
 
     def __post_init__(self, **kwargs):
         assert not (
-            self.abstract and self.has_content
+            self.is_abstract and self.has_content
         ), "Nodes can have either fields and children or subtypes, but not both."
 
     @property
-    def abstract(self) -> bool:
+    def is_abstract(self) -> bool:
         return len(self.subtypes) > 0
 
     @property
     def has_content(self) -> bool:
-        return len(self.fields) > 0 or self.children is not None
+        return len(self.fields) > 0 or bool(self.children)
 
-    def as_class(
+    def as_type(
         self,
         *,
-        bases: tuple[type[Node], ...] = (Node,),
-        as_class_name: Callable[[str], str],
+        as_class_name: AsClassName,
+        mixins: typing.Sequence[type] = (),
+        extra: typing.Sequence[SimpleNodeType],
         **kwargs,
     ) -> type[Node]:
         if self.named:
             cls_name = as_class_name(self.type_name)
-            if self.abstract:
+            if self.is_abstract:
+                # TODO: should be a dynamic type alias
                 return type(cls_name, (Node,), {})
             else:
-                fields: dict[str, type[NodeChild]] = {}
-                for field_name, field in self.fields.items():
-                    if field.named:
-                        field_type = field.as_typehint(as_class_name=as_class_name)
-                        if field_type is not None:
-                            fields[field_name] = field_type
-                if self.children is not None:
-                    children_type = self.children.as_typehint(
-                        as_class_name=as_class_name
-                    )
-                    if children_type is not None:
-                        fields["children"] = children_type
-                return make_dataclass(
-                    cls_name=cls_name, fields=fields.items(), bases=bases, **kwargs
+                fields: dict[NodeFieldName, type] = {}
+
+                # NOTE: Extra nodes cannot have fields or children.
+                if not self.is_extra(extra=extra):
+
+                    # Create fields for dataclass
+                    for field_name, field in self.fields.items():
+                        if field.named:
+                            field_type = field.as_typehint(
+                                as_class_name=as_class_name, extra=extra
+                            )
+                            if field_type is not None:
+                                fields[field_name] = field_type
+
+                    # Create children for dataclass
+                    if self.has_content:
+                        children_type = self.children.as_typehint(
+                            as_class_name=as_class_name, extra=extra
+                        )
+                        if children_type:
+                            fields["children"] = children_type
+                        else:
+                            fields["children"] = typing.cast(type, None)
+
+                # Create bases for dataclass
+                base: type[Node]
+                if self.is_abstract:
+                    base = Node
+                if self.is_extra(extra=extra):
+                    base = Extra
+                elif self.has_content:
+                    base = Branch
+                else:
+                    base = Leaf
+
+                # Create and return dataclass
+                return dataclasses.make_dataclass(
+                    cls_name=cls_name,
+                    fields=fields.items(),
+                    bases=(base, *mixins),
+                    **kwargs,
                 )
         else:
             raise ValueError(self)

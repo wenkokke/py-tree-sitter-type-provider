@@ -1,232 +1,164 @@
 input:
   name: talon
+  file: node-types/talon.json
   class_prefix: Talon
+  extra: [comment]
 output: |-
-  from_tree_sitter(self, tsnode: tree_sitter.Node, encoding: str = 'utf-8') -> Union[list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]
+  from_tree_sitter(self, tsnode: tree_sitter.Node, *, encoding: str = 'utf-8') -> Node
+  AsClassName()
+  Branch(text: str, type_name: str, start_position: Point, end_position: Point, children: Union[None, Node, list[Node]]) -> None
+  ERROR(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Node]) -> None
+  Extra(text: str, type_name: str, start_position: Point, end_position: Point) -> None
+  Leaf(text: str, type_name: str, start_position: Point, end_position: Point) -> None
+  Node(text: str, type_name: str, start_position: Point, end_position: Point) -> None
+  NodeArgsType(multiple: bool = False, required: bool = False, types: list[SimpleNodeType] = <factory>) -> None
+    as_typehint(self, *, as_class_name: collections.Callable[[str], str], extra: Sequence[SimpleNodeType]) -> Optional[type[Node]]
   NodeTransformer()
-    transform(self, node: tree_sitter_type_provider.node_types.Node) -> ~Result
-    transform_ERROR(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonAction(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonAnd(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonArgumentList(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonAssignment(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonBinaryOperator(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonBlock(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonCapture(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonChoice(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonCommand(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonComment(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonContext(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonDocstring(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonEndAnchor(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonExpression(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonFloat(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonIdentifier(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonImplicitString(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonIncludeTag(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonInteger(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonInterpolation(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonKeyAction(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonList(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonMatch(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonNot(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonNumber(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonOperator(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonOptional(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonOr(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonParenthesizedExpression(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonParenthesizedRule(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonRegexEscapeSequence(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonRepeat(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonRepeat1(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonRule(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonSeq(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonSettings(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonSleepAction(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonSourceFile(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonStartAnchor(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonString(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonStringContent(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonStringEscapeSequence(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonVariable(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
-    transform_TalonWord(self, *, text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, **kwargs: dict[str, typing.Union[~Result, list[tree_sitter_type_provider.node_types.Node], tree_sitter_type_provider.node_types.Node, NoneType]]) -> ~Result
+    transform(self, node: Node) -> Result
+    transform_ERROR(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonAction(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonAnd(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonArgumentList(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonAssignment(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonBinaryOperator(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonBlock(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonCapture(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonChoice(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonCommand(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonComment(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonContext(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonDocstring(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonEndAnchor(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonExpression(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonFloat(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonIdentifier(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonImplicitString(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonIncludeTag(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonInteger(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonInterpolation(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonKeyAction(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonList(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonMatch(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonNot(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonNumber(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonOperator(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonOptional(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonOr(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonParenthesizedExpression(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonParenthesizedRule(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonRegexEscapeSequence(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonRepeat(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonRepeat1(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonRule(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonSeq(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonSettings(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonSleepAction(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonSourceFile(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonStartAnchor(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonString(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonStringContent(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonStringEscapeSequence(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonVariable(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+    transform_TalonWord(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
+  NodeType(type_name: str, named: bool, fields: dict[str, NodeArgsType] = <factory>, children: NodeArgsType = <factory>, subtypes: list[SimpleNodeType] = <factory>) -> None
+    as_type(self, *, as_class_name: collections.Callable[[str], str], mixins: Sequence[type] = (), extra: Sequence[SimpleNodeType], **kwargs) -> type[Node]
+    as_typehint(self, *, as_class_name: collections.Callable[[str], str]) -> type[Node]
+    is_extra(self, *, extra: Sequence[SimpleNodeType]) -> bool
+    many_as_typehint(simple_node_types: Sequence[SimpleNodeType], *, as_class_name: collections.Callable[[str], str]) -> Optional[type[Node]]
   NodeVisitor()
-    generic_visit(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_ERROR(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonAction(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonAnd(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonArgumentList(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonAssignment(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonBinaryOperator(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonBlock(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonCapture(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonChoice(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonCommand(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonComment(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonContext(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonDocstring(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonEndAnchor(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonExpression(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonFloat(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonIdentifier(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonImplicitString(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonIncludeTag(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonInteger(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonInterpolation(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonKeyAction(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonList(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonMatch(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonNot(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonNumber(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonOperator(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonOptional(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonOr(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonParenthesizedExpression(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonParenthesizedRule(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonRegexEscapeSequence(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonRepeat(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonRepeat1(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonRule(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonSeq(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonSettings(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonSleepAction(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonSourceFile(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonStartAnchor(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonString(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonStringContent(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonStringEscapeSequence(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonVariable(self, node: tree_sitter_type_provider.node_types.Node) -> None
-    visit_TalonWord(self, node: tree_sitter_type_provider.node_types.Node) -> None
-  TalonAction(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, action_name: 'TalonIdentifier', arguments: 'TalonArgumentList') -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonAnd(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('TalonAnd'), ForwardRef('TalonMatch'), ForwardRef('TalonNot')]]) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonArgumentList(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('TalonAction'), ForwardRef('TalonBinaryOperator'), ForwardRef('TalonFloat'), ForwardRef('TalonInteger'), ForwardRef('TalonKeyAction'), ForwardRef('TalonParenthesizedExpression'), ForwardRef('TalonSleepAction'), ForwardRef('TalonString'), ForwardRef('TalonVariable')]]) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonAssignment(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, left: 'TalonIdentifier', right: Union[ForwardRef('TalonAction'), ForwardRef('TalonBinaryOperator'), ForwardRef('TalonFloat'), ForwardRef('TalonInteger'), ForwardRef('TalonKeyAction'), ForwardRef('TalonParenthesizedExpression'), ForwardRef('TalonSleepAction'), ForwardRef('TalonString'), ForwardRef('TalonVariable')]) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonBinaryOperator(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, left: Union[ForwardRef('TalonAction'), ForwardRef('TalonBinaryOperator'), ForwardRef('TalonFloat'), ForwardRef('TalonInteger'), ForwardRef('TalonKeyAction'), ForwardRef('TalonParenthesizedExpression'), ForwardRef('TalonSleepAction'), ForwardRef('TalonString'), ForwardRef('TalonVariable')], operator: 'TalonOperator', right: Union[ForwardRef('TalonAction'), ForwardRef('TalonBinaryOperator'), ForwardRef('TalonFloat'), ForwardRef('TalonInteger'), ForwardRef('TalonKeyAction'), ForwardRef('TalonParenthesizedExpression'), ForwardRef('TalonSleepAction'), ForwardRef('TalonString'), ForwardRef('TalonVariable')]) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonBlock(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('TalonAssignment'), ForwardRef('TalonDocstring'), ForwardRef('TalonExpression')]]) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonCapture(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, capture_name: 'TalonIdentifier') -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonChoice(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('TalonCapture'), ForwardRef('TalonEndAnchor'), ForwardRef('TalonList'), ForwardRef('TalonOptional'), ForwardRef('TalonParenthesizedRule'), ForwardRef('TalonRepeat'), ForwardRef('TalonRepeat1'), ForwardRef('TalonSeq'), ForwardRef('TalonStartAnchor'), ForwardRef('TalonWord')]]) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonCommand(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, rule: 'TalonRule', script: 'TalonBlock') -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonComment(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonContext(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('TalonAnd'), ForwardRef('TalonDocstring'), ForwardRef('TalonMatch'), ForwardRef('TalonNot'), ForwardRef('TalonOr')]]) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonDocstring(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonEndAnchor(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonExpression(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, expression: Union[ForwardRef('TalonAction'), ForwardRef('TalonBinaryOperator'), ForwardRef('TalonFloat'), ForwardRef('TalonInteger'), ForwardRef('TalonKeyAction'), ForwardRef('TalonParenthesizedExpression'), ForwardRef('TalonSleepAction'), ForwardRef('TalonString'), ForwardRef('TalonVariable')]) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonFloat(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonIdentifier(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonImplicitString(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonIncludeTag(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, tag: 'TalonIdentifier') -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonInteger(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonInterpolation(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: Union[ForwardRef('TalonAction'), ForwardRef('TalonBinaryOperator'), ForwardRef('TalonFloat'), ForwardRef('TalonInteger'), ForwardRef('TalonKeyAction'), ForwardRef('TalonParenthesizedExpression'), ForwardRef('TalonSleepAction'), ForwardRef('TalonString'), ForwardRef('TalonVariable')]) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonKeyAction(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, arguments: 'TalonImplicitString') -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonList(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, list_name: 'TalonIdentifier') -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonMatch(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, key: 'TalonIdentifier', pattern: 'TalonImplicitString') -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonNot(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: 'TalonMatch') -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonNumber(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: Union[ForwardRef('TalonFloat'), ForwardRef('TalonInteger')]) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonOperator(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonOptional(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('TalonCapture'), ForwardRef('TalonChoice'), ForwardRef('TalonEndAnchor'), ForwardRef('TalonList'), ForwardRef('TalonOptional'), ForwardRef('TalonParenthesizedRule'), ForwardRef('TalonRepeat'), ForwardRef('TalonRepeat1'), ForwardRef('TalonSeq'), ForwardRef('TalonStartAnchor'), ForwardRef('TalonWord')]]) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonOr(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('TalonAnd'), ForwardRef('TalonMatch'), ForwardRef('TalonNot')]]) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonParenthesizedExpression(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: Union[ForwardRef('TalonAction'), ForwardRef('TalonBinaryOperator'), ForwardRef('TalonFloat'), ForwardRef('TalonInteger'), ForwardRef('TalonKeyAction'), ForwardRef('TalonParenthesizedExpression'), ForwardRef('TalonSleepAction'), ForwardRef('TalonString'), ForwardRef('TalonVariable')]) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonParenthesizedRule(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('TalonCapture'), ForwardRef('TalonChoice'), ForwardRef('TalonEndAnchor'), ForwardRef('TalonList'), ForwardRef('TalonOptional'), ForwardRef('TalonParenthesizedRule'), ForwardRef('TalonRepeat'), ForwardRef('TalonRepeat1'), ForwardRef('TalonSeq'), ForwardRef('TalonStartAnchor'), ForwardRef('TalonWord')]]) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonRegexEscapeSequence(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: Optional[ForwardRef('TalonRegexEscapeSequence')]) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonRepeat(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: Union[ForwardRef('TalonCapture'), ForwardRef('TalonList'), ForwardRef('TalonOptional'), ForwardRef('TalonParenthesizedRule'), ForwardRef('TalonRepeat'), ForwardRef('TalonRepeat1'), ForwardRef('TalonWord')]) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonRepeat1(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: Union[ForwardRef('TalonCapture'), ForwardRef('TalonList'), ForwardRef('TalonOptional'), ForwardRef('TalonParenthesizedRule'), ForwardRef('TalonRepeat'), ForwardRef('TalonRepeat1'), ForwardRef('TalonWord')]) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonRule(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('TalonCapture'), ForwardRef('TalonChoice'), ForwardRef('TalonEndAnchor'), ForwardRef('TalonList'), ForwardRef('TalonOptional'), ForwardRef('TalonParenthesizedRule'), ForwardRef('TalonRepeat'), ForwardRef('TalonRepeat1'), ForwardRef('TalonSeq'), ForwardRef('TalonStartAnchor'), ForwardRef('TalonWord')]]) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonSeq(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('TalonCapture'), ForwardRef('TalonList'), ForwardRef('TalonOptional'), ForwardRef('TalonParenthesizedRule'), ForwardRef('TalonRepeat'), ForwardRef('TalonRepeat1'), ForwardRef('TalonWord')]]) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonSettings(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: 'TalonBlock') -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonSleepAction(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, arguments: 'TalonImplicitString') -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonSourceFile(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('TalonCommand'), ForwardRef('TalonContext'), ForwardRef('TalonIncludeTag'), ForwardRef('TalonSettings')]]) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonStartAnchor(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonString(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, children: list[typing.Union[ForwardRef('TalonInterpolation'), ForwardRef('TalonStringContent'), ForwardRef('TalonStringEscapeSequence')]]) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonStringContent(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonStringEscapeSequence(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonVariable(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point, variable_name: 'TalonIdentifier') -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
-  TalonWord(text: str, type_name: str, start_position: tree_sitter_type_provider.node_types.Point, end_position: tree_sitter_type_provider.node_types.Point) -> None
-    to_dict(self, encode_json=False) -> Dict[str, Union[dict, list, str, int, float, bool, NoneType]]
-    to_json(self, *, skipkeys: bool = False, ensure_ascii: bool = True, check_circular: bool = True, allow_nan: bool = True, indent: Union[int, str, NoneType] = None, separators: Tuple[str, str] = None, default: Callable = None, sort_keys: bool = False, **kw) -> str
+    generic_visit(self, node: Node) -> None
+    visit(self, node: Node) -> None
+    visit_ERROR(self, node: Node) -> None
+    visit_TalonAction(self, node: Node) -> None
+    visit_TalonAnd(self, node: Node) -> None
+    visit_TalonArgumentList(self, node: Node) -> None
+    visit_TalonAssignment(self, node: Node) -> None
+    visit_TalonBinaryOperator(self, node: Node) -> None
+    visit_TalonBlock(self, node: Node) -> None
+    visit_TalonCapture(self, node: Node) -> None
+    visit_TalonChoice(self, node: Node) -> None
+    visit_TalonCommand(self, node: Node) -> None
+    visit_TalonComment(self, node: Node) -> None
+    visit_TalonContext(self, node: Node) -> None
+    visit_TalonDocstring(self, node: Node) -> None
+    visit_TalonEndAnchor(self, node: Node) -> None
+    visit_TalonExpression(self, node: Node) -> None
+    visit_TalonFloat(self, node: Node) -> None
+    visit_TalonIdentifier(self, node: Node) -> None
+    visit_TalonImplicitString(self, node: Node) -> None
+    visit_TalonIncludeTag(self, node: Node) -> None
+    visit_TalonInteger(self, node: Node) -> None
+    visit_TalonInterpolation(self, node: Node) -> None
+    visit_TalonKeyAction(self, node: Node) -> None
+    visit_TalonList(self, node: Node) -> None
+    visit_TalonMatch(self, node: Node) -> None
+    visit_TalonNot(self, node: Node) -> None
+    visit_TalonNumber(self, node: Node) -> None
+    visit_TalonOperator(self, node: Node) -> None
+    visit_TalonOptional(self, node: Node) -> None
+    visit_TalonOr(self, node: Node) -> None
+    visit_TalonParenthesizedExpression(self, node: Node) -> None
+    visit_TalonParenthesizedRule(self, node: Node) -> None
+    visit_TalonRegexEscapeSequence(self, node: Node) -> None
+    visit_TalonRepeat(self, node: Node) -> None
+    visit_TalonRepeat1(self, node: Node) -> None
+    visit_TalonRule(self, node: Node) -> None
+    visit_TalonSeq(self, node: Node) -> None
+    visit_TalonSettings(self, node: Node) -> None
+    visit_TalonSleepAction(self, node: Node) -> None
+    visit_TalonSourceFile(self, node: Node) -> None
+    visit_TalonStartAnchor(self, node: Node) -> None
+    visit_TalonString(self, node: Node) -> None
+    visit_TalonStringContent(self, node: Node) -> None
+    visit_TalonStringEscapeSequence(self, node: Node) -> None
+    visit_TalonVariable(self, node: Node) -> None
+    visit_TalonWord(self, node: Node) -> None
+  Point(row: int, column: int) -> None
+  SimpleNodeType(type_name: str, named: bool) -> None
+    as_typehint(self, *, as_class_name: collections.Callable[[str], str]) -> type[Node]
+    is_extra(self, *, extra: Sequence[SimpleNodeType]) -> bool
+    many_as_typehint(simple_node_types: Sequence[SimpleNodeType], *, as_class_name: collections.Callable[[str], str]) -> Optional[type[Node]]
+  TalonAction(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], action_name: list[Union[TalonIdentifier, TalonComment]], arguments: list[Union[TalonArgumentList, TalonComment]]) -> None
+  TalonAnd(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonAnd, TalonMatch, TalonNot, TalonComment]]) -> None
+  TalonArgumentList(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment]]) -> None
+  TalonAssignment(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], left: list[Union[TalonIdentifier, TalonComment]], right: list[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment]]) -> None
+  TalonBinaryOperator(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], left: list[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment]], operator: list[Union[TalonOperator, TalonComment]], right: list[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment]]) -> None
+  TalonBlock(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonAssignment, TalonDocstring, TalonExpression, TalonComment]]) -> None
+  TalonCapture(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], capture_name: list[Union[TalonIdentifier, TalonComment]]) -> None
+  TalonChoice(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCapture, TalonEndAnchor, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonSeq, TalonStartAnchor, TalonWord, TalonComment]]) -> None
+  TalonCommand(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], rule: list[Union[TalonRule, TalonComment]], script: list[Union[TalonBlock, TalonComment]]) -> None
+  TalonComment(text: str, type_name: str, start_position: Point, end_position: Point) -> None
+  TalonContext(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonAnd, TalonDocstring, TalonMatch, TalonNot, TalonOr, TalonComment]]) -> None
+  TalonDocstring(text: str, type_name: str, start_position: Point, end_position: Point) -> None
+  TalonEndAnchor(text: str, type_name: str, start_position: Point, end_position: Point) -> None
+  TalonExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], expression: list[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment]]) -> None
+  TalonFloat(text: str, type_name: str, start_position: Point, end_position: Point) -> None
+  TalonIdentifier(text: str, type_name: str, start_position: Point, end_position: Point) -> None
+  TalonImplicitString(text: str, type_name: str, start_position: Point, end_position: Point) -> None
+  TalonIncludeTag(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], tag: list[Union[TalonIdentifier, TalonComment]]) -> None
+  TalonInteger(text: str, type_name: str, start_position: Point, end_position: Point) -> None
+  TalonInterpolation(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment]]) -> None
+  TalonKeyAction(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], arguments: list[Union[TalonImplicitString, TalonComment]]) -> None
+  TalonList(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], list_name: list[Union[TalonIdentifier, TalonComment]]) -> None
+  TalonMatch(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], key: list[Union[TalonIdentifier, TalonComment]], pattern: list[Union[TalonImplicitString, TalonComment]]) -> None
+  TalonNot(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonMatch, TalonComment]]) -> None
+  TalonNumber(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonFloat, TalonInteger, TalonComment]]) -> None
+  TalonOperator(text: str, type_name: str, start_position: Point, end_position: Point) -> None
+  TalonOptional(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCapture, TalonChoice, TalonEndAnchor, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonSeq, TalonStartAnchor, TalonWord, TalonComment]]) -> None
+  TalonOr(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonAnd, TalonMatch, TalonNot, TalonComment]]) -> None
+  TalonParenthesizedExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment]]) -> None
+  TalonParenthesizedRule(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCapture, TalonChoice, TalonEndAnchor, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonSeq, TalonStartAnchor, TalonWord, TalonComment]]) -> None
+  TalonRegexEscapeSequence(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonRegexEscapeSequence, TalonComment]]) -> None
+  TalonRepeat(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCapture, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonWord, TalonComment]]) -> None
+  TalonRepeat1(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCapture, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonWord, TalonComment]]) -> None
+  TalonRule(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCapture, TalonChoice, TalonEndAnchor, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonSeq, TalonStartAnchor, TalonWord, TalonComment]]) -> None
+  TalonSeq(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCapture, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonWord, TalonComment]]) -> None
+  TalonSettings(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonBlock, TalonComment]]) -> None
+  TalonSleepAction(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], arguments: list[Union[TalonImplicitString, TalonComment]]) -> None
+  TalonSourceFile(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCommand, TalonContext, TalonIncludeTag, TalonSettings, TalonComment]]) -> None
+  TalonStartAnchor(text: str, type_name: str, start_position: Point, end_position: Point) -> None
+  TalonString(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonInterpolation, TalonStringContent, TalonStringEscapeSequence, TalonComment]]) -> None
+  TalonStringContent(text: str, type_name: str, start_position: Point, end_position: Point) -> None
+  TalonStringEscapeSequence(text: str, type_name: str, start_position: Point, end_position: Point) -> None
+  TalonVariable(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], variable_name: list[Union[TalonIdentifier, TalonComment]]) -> None
+  TalonWord(text: str, type_name: str, start_position: Point, end_position: Point) -> None
