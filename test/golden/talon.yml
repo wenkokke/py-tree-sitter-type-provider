@@ -5,160 +5,48 @@ input:
   extra: [comment]
 output: |-
   from_tree_sitter(self, tsnode: tree_sitter.Node, *, encoding: str = 'utf-8') -> Node
-  AsClassName()
-  Branch(text: str, type_name: str, start_position: Point, end_position: Point, children: Union[None, Node, list[Node]]) -> None
-  ERROR(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Node]) -> None
-  Extra(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  Leaf(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  Node(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  NodeArgsType(multiple: bool = False, required: bool = False, types: list[SimpleNodeType] = <factory>) -> None
-    as_typehint(self, *, as_class_name: collections.Callable[[str], str], extra: Sequence[SimpleNodeType]) -> Optional[type[Node]]
-  NodeTransformer()
-    transform(self, node: Node) -> Result
-    transform_ERROR(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonAction(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonAnd(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonArgumentList(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonAssignment(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonBinaryOperator(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonBlock(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonCapture(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonChoice(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonCommand(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonComment(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonContext(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonDocstring(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonEndAnchor(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonExpression(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonFloat(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonIdentifier(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonImplicitString(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonIncludeTag(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonInteger(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonInterpolation(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonKeyAction(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonList(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonMatch(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonNot(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonNumber(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonOperator(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonOptional(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonOr(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonParenthesizedExpression(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonParenthesizedRule(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonRegexEscapeSequence(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonRepeat(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonRepeat1(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonRule(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonSeq(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonSettings(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonSleepAction(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonSourceFile(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonStartAnchor(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonString(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonStringContent(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonStringEscapeSequence(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonVariable(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_TalonWord(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-  NodeType(type_name: str, named: bool, fields: dict[str, NodeArgsType] = <factory>, children: NodeArgsType = <factory>, subtypes: list[SimpleNodeType] = <factory>) -> None
-    as_type(self, *, as_class_name: collections.Callable[[str], str], mixins: Sequence[type] = (), extra: Sequence[SimpleNodeType], **kwargs) -> type[Node]
-    as_typehint(self, *, as_class_name: collections.Callable[[str], str]) -> type[Node]
-    is_extra(self, *, extra: Sequence[SimpleNodeType]) -> bool
-    many_as_typehint(simple_node_types: Sequence[SimpleNodeType], *, as_class_name: collections.Callable[[str], str]) -> Optional[type[Node]]
-  NodeVisitor()
-    generic_visit(self, node: Node) -> None
-    visit(self, node: Node) -> None
-    visit_ERROR(self, node: Node) -> None
-    visit_TalonAction(self, node: Node) -> None
-    visit_TalonAnd(self, node: Node) -> None
-    visit_TalonArgumentList(self, node: Node) -> None
-    visit_TalonAssignment(self, node: Node) -> None
-    visit_TalonBinaryOperator(self, node: Node) -> None
-    visit_TalonBlock(self, node: Node) -> None
-    visit_TalonCapture(self, node: Node) -> None
-    visit_TalonChoice(self, node: Node) -> None
-    visit_TalonCommand(self, node: Node) -> None
-    visit_TalonComment(self, node: Node) -> None
-    visit_TalonContext(self, node: Node) -> None
-    visit_TalonDocstring(self, node: Node) -> None
-    visit_TalonEndAnchor(self, node: Node) -> None
-    visit_TalonExpression(self, node: Node) -> None
-    visit_TalonFloat(self, node: Node) -> None
-    visit_TalonIdentifier(self, node: Node) -> None
-    visit_TalonImplicitString(self, node: Node) -> None
-    visit_TalonIncludeTag(self, node: Node) -> None
-    visit_TalonInteger(self, node: Node) -> None
-    visit_TalonInterpolation(self, node: Node) -> None
-    visit_TalonKeyAction(self, node: Node) -> None
-    visit_TalonList(self, node: Node) -> None
-    visit_TalonMatch(self, node: Node) -> None
-    visit_TalonNot(self, node: Node) -> None
-    visit_TalonNumber(self, node: Node) -> None
-    visit_TalonOperator(self, node: Node) -> None
-    visit_TalonOptional(self, node: Node) -> None
-    visit_TalonOr(self, node: Node) -> None
-    visit_TalonParenthesizedExpression(self, node: Node) -> None
-    visit_TalonParenthesizedRule(self, node: Node) -> None
-    visit_TalonRegexEscapeSequence(self, node: Node) -> None
-    visit_TalonRepeat(self, node: Node) -> None
-    visit_TalonRepeat1(self, node: Node) -> None
-    visit_TalonRule(self, node: Node) -> None
-    visit_TalonSeq(self, node: Node) -> None
-    visit_TalonSettings(self, node: Node) -> None
-    visit_TalonSleepAction(self, node: Node) -> None
-    visit_TalonSourceFile(self, node: Node) -> None
-    visit_TalonStartAnchor(self, node: Node) -> None
-    visit_TalonString(self, node: Node) -> None
-    visit_TalonStringContent(self, node: Node) -> None
-    visit_TalonStringEscapeSequence(self, node: Node) -> None
-    visit_TalonVariable(self, node: Node) -> None
-    visit_TalonWord(self, node: Node) -> None
-  Point(row: int, column: int) -> None
-  SimpleNodeType(type_name: str, named: bool) -> None
-    as_typehint(self, *, as_class_name: collections.Callable[[str], str]) -> type[Node]
-    is_extra(self, *, extra: Sequence[SimpleNodeType]) -> bool
-    many_as_typehint(simple_node_types: Sequence[SimpleNodeType], *, as_class_name: collections.Callable[[str], str]) -> Optional[type[Node]]
-  TalonAction(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], action_name: list[Union[TalonIdentifier, TalonComment]], arguments: list[Union[TalonArgumentList, TalonComment]]) -> None
-  TalonAnd(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonAnd, TalonMatch, TalonNot, TalonComment]]) -> None
-  TalonArgumentList(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment]]) -> None
-  TalonAssignment(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], left: list[Union[TalonIdentifier, TalonComment]], right: list[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment]]) -> None
-  TalonBinaryOperator(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], left: list[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment]], operator: list[Union[TalonOperator, TalonComment]], right: list[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment]]) -> None
-  TalonBlock(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonAssignment, TalonDocstring, TalonExpression, TalonComment]]) -> None
-  TalonCapture(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], capture_name: list[Union[TalonIdentifier, TalonComment]]) -> None
-  TalonChoice(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCapture, TalonEndAnchor, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonSeq, TalonStartAnchor, TalonWord, TalonComment]]) -> None
-  TalonCommand(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], rule: list[Union[TalonRule, TalonComment]], script: list[Union[TalonBlock, TalonComment]]) -> None
+  TalonAction(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonComment, TalonError]], action_name: list[Union[TalonIdentifier, TalonComment, TalonError]], arguments: list[Union[TalonArgumentList, TalonComment, TalonError]]) -> None
+  TalonAnd(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonAnd, TalonMatch, TalonNot, TalonComment, TalonError]]) -> None
+  TalonArgumentList(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment, TalonError]]) -> None
+  TalonAssignment(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonComment, TalonError]], left: list[Union[TalonIdentifier, TalonComment, TalonError]], right: list[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment, TalonError]]) -> None
+  TalonBinaryOperator(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonComment, TalonError]], left: list[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment, TalonError]], operator: list[Union[TalonOperator, TalonComment, TalonError]], right: list[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment, TalonError]]) -> None
+  TalonBlock(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonAssignment, TalonDocstring, TalonExpression, TalonComment, TalonError]]) -> None
+  TalonCapture(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonComment, TalonError]], capture_name: list[Union[TalonIdentifier, TalonComment, TalonError]]) -> None
+  TalonChoice(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCapture, TalonEndAnchor, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonSeq, TalonStartAnchor, TalonWord, TalonComment, TalonError]]) -> None
+  TalonCommand(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonComment, TalonError]], rule: list[Union[TalonRule, TalonComment, TalonError]], script: list[Union[TalonBlock, TalonComment, TalonError]]) -> None
   TalonComment(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  TalonContext(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonAnd, TalonDocstring, TalonMatch, TalonNot, TalonOr, TalonComment]]) -> None
+  TalonContext(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonAnd, TalonDocstring, TalonMatch, TalonNot, TalonOr, TalonComment, TalonError]]) -> None
   TalonDocstring(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   TalonEndAnchor(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  TalonExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], expression: list[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment]]) -> None
+  TalonError(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonAction, TalonAnd, TalonArgumentList, TalonAssignment, TalonBinaryOperator, TalonBlock, TalonCapture, TalonChoice, TalonCommand, TalonContext, TalonExpression, TalonIncludeTag, TalonInterpolation, TalonKeyAction, TalonList, TalonMatch, TalonNot, TalonNumber, TalonOptional, TalonOr, TalonParenthesizedExpression, TalonParenthesizedRule, TalonRegexEscapeSequence, TalonRepeat, TalonRepeat1, TalonRule, TalonSeq, TalonSettings, TalonSleepAction, TalonSourceFile, TalonString, TalonStringContent, TalonVariable, TalonComment, TalonDocstring, TalonEndAnchor, TalonFloat, TalonIdentifier, TalonImplicitString, TalonInteger, TalonOperator, TalonStartAnchor, TalonStringEscapeSequence, TalonWord, TalonError]]) -> None
+  TalonExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonComment, TalonError]], expression: list[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment, TalonError]]) -> None
   TalonFloat(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   TalonIdentifier(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   TalonImplicitString(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  TalonIncludeTag(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], tag: list[Union[TalonIdentifier, TalonComment]]) -> None
+  TalonIncludeTag(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonComment, TalonError]], tag: list[Union[TalonIdentifier, TalonComment, TalonError]]) -> None
   TalonInteger(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  TalonInterpolation(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment]]) -> None
-  TalonKeyAction(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], arguments: list[Union[TalonImplicitString, TalonComment]]) -> None
-  TalonList(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], list_name: list[Union[TalonIdentifier, TalonComment]]) -> None
-  TalonMatch(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], key: list[Union[TalonIdentifier, TalonComment]], pattern: list[Union[TalonImplicitString, TalonComment]]) -> None
-  TalonNot(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonMatch, TalonComment]]) -> None
-  TalonNumber(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonFloat, TalonInteger, TalonComment]]) -> None
+  TalonInterpolation(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment, TalonError]]) -> None
+  TalonKeyAction(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonComment, TalonError]], arguments: list[Union[TalonImplicitString, TalonComment, TalonError]]) -> None
+  TalonList(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonComment, TalonError]], list_name: list[Union[TalonIdentifier, TalonComment, TalonError]]) -> None
+  TalonMatch(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonComment, TalonError]], key: list[Union[TalonIdentifier, TalonComment, TalonError]], pattern: list[Union[TalonImplicitString, TalonComment, TalonError]]) -> None
+  TalonNot(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonMatch, TalonComment, TalonError]]) -> None
+  TalonNumber(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonFloat, TalonInteger, TalonComment, TalonError]]) -> None
   TalonOperator(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  TalonOptional(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCapture, TalonChoice, TalonEndAnchor, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonSeq, TalonStartAnchor, TalonWord, TalonComment]]) -> None
-  TalonOr(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonAnd, TalonMatch, TalonNot, TalonComment]]) -> None
-  TalonParenthesizedExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment]]) -> None
-  TalonParenthesizedRule(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCapture, TalonChoice, TalonEndAnchor, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonSeq, TalonStartAnchor, TalonWord, TalonComment]]) -> None
-  TalonRegexEscapeSequence(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonRegexEscapeSequence, TalonComment]]) -> None
-  TalonRepeat(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCapture, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonWord, TalonComment]]) -> None
-  TalonRepeat1(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCapture, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonWord, TalonComment]]) -> None
-  TalonRule(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCapture, TalonChoice, TalonEndAnchor, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonSeq, TalonStartAnchor, TalonWord, TalonComment]]) -> None
-  TalonSeq(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCapture, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonWord, TalonComment]]) -> None
-  TalonSettings(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonBlock, TalonComment]]) -> None
-  TalonSleepAction(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], arguments: list[Union[TalonImplicitString, TalonComment]]) -> None
-  TalonSourceFile(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCommand, TalonContext, TalonIncludeTag, TalonSettings, TalonComment]]) -> None
+  TalonOptional(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCapture, TalonChoice, TalonEndAnchor, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonSeq, TalonStartAnchor, TalonWord, TalonComment, TalonError]]) -> None
+  TalonOr(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonAnd, TalonMatch, TalonNot, TalonComment, TalonError]]) -> None
+  TalonParenthesizedExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment, TalonError]]) -> None
+  TalonParenthesizedRule(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCapture, TalonChoice, TalonEndAnchor, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonSeq, TalonStartAnchor, TalonWord, TalonComment, TalonError]]) -> None
+  TalonRegexEscapeSequence(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonRegexEscapeSequence, TalonComment, TalonError]]) -> None
+  TalonRepeat(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCapture, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonWord, TalonComment, TalonError]]) -> None
+  TalonRepeat1(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCapture, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonWord, TalonComment, TalonError]]) -> None
+  TalonRule(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCapture, TalonChoice, TalonEndAnchor, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonSeq, TalonStartAnchor, TalonWord, TalonComment, TalonError]]) -> None
+  TalonSeq(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCapture, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonWord, TalonComment, TalonError]]) -> None
+  TalonSettings(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonBlock, TalonComment, TalonError]]) -> None
+  TalonSleepAction(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonComment, TalonError]], arguments: list[Union[TalonImplicitString, TalonComment, TalonError]]) -> None
+  TalonSourceFile(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonCommand, TalonContext, TalonIncludeTag, TalonSettings, TalonComment, TalonError]]) -> None
   TalonStartAnchor(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  TalonString(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonInterpolation, TalonStringContent, TalonStringEscapeSequence, TalonComment]]) -> None
+  TalonString(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonInterpolation, TalonStringContent, TalonStringEscapeSequence, TalonComment, TalonError]]) -> None
   TalonStringContent(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   TalonStringEscapeSequence(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  TalonVariable(text: str, type_name: str, start_position: Point, end_position: Point, children: list['TalonComment'], variable_name: list[Union[TalonIdentifier, TalonComment]]) -> None
+  TalonVariable(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonComment, TalonError]], variable_name: list[Union[TalonIdentifier, TalonComment, TalonError]]) -> None
   TalonWord(text: str, type_name: str, start_position: Point, end_position: Point) -> None

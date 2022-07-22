@@ -16,7 +16,9 @@ class Point:
 
 
 NodeTypeName: typing.TypeAlias = str
+
 NodeFieldName: typing.TypeAlias = str
+
 AsClassName: typing.TypeAlias = collections.abc.Callable[[NodeTypeName], str]
 
 
@@ -36,18 +38,8 @@ class Leaf(Node):
 
 
 @dataclasses.dataclass
-class Extra(Leaf):
-    pass
-
-
-@dataclasses.dataclass
 class Branch(Node):
-    children: typing.Union[None, Node, list[Node]]
-
-
-@dataclasses.dataclass
-class ERROR(Branch):
-    children: list[Node]
+    children: typing.Union[None, Node, typing.Sequence[Node]]
 
 
 @dataclasses_json.dataclass_json
@@ -161,34 +153,29 @@ class NodeType(SimpleNodeType):
             else:
                 fields: dict[NodeFieldName, type] = {}
 
-                # NOTE: Extra nodes cannot have fields or children.
-                if not self.is_extra(extra=extra):
-
-                    # Create fields for dataclass
-                    for field_name, field in self.fields.items():
-                        if field.named:
-                            field_type = field.as_typehint(
-                                as_class_name=as_class_name, extra=extra
-                            )
-                            if field_type is not None:
-                                fields[field_name] = field_type
-
-                    # Create children for dataclass
-                    if self.has_content:
-                        children_type = self.children.as_typehint(
+                # Create fields for dataclass
+                for field_name, field in self.fields.items():
+                    if field.named:
+                        field_type = field.as_typehint(
                             as_class_name=as_class_name, extra=extra
                         )
-                        if children_type:
-                            fields["children"] = children_type
-                        else:
-                            fields["children"] = typing.cast(type, None)
+                        if field_type is not None:
+                            fields[field_name] = field_type
+
+                # Create children for dataclass
+                if self.has_content:
+                    children_type = self.children.as_typehint(
+                        as_class_name=as_class_name, extra=extra
+                    )
+                    if children_type:
+                        fields["children"] = children_type
+                    else:
+                        fields["children"] = typing.cast(type, None)
 
                 # Create bases for dataclass
                 base: type[Node]
                 if self.is_abstract:
                     base = Node
-                if self.is_extra(extra=extra):
-                    base = Extra
                 elif self.has_content:
                     base = Branch
                 else:

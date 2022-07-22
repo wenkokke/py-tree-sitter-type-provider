@@ -5,363 +5,119 @@ input:
   extra: []
 output: |-
   from_tree_sitter(self, tsnode: tree_sitter.Node, *, encoding: str = 'utf-8') -> Node
-  AsClassName()
-  Branch(text: str, type_name: str, start_position: Point, end_position: Point, children: Union[None, Node, list[Node]]) -> None
-  ERROR(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Node]) -> None
-  Extra(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsArguments(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSpreadElement]]) -> None
-  JsArray(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSpreadElement]]) -> None
-  JsArrayPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsAssignmentPattern, JsPattern]]) -> None
-  JsArrowFunction(text: str, type_name: str, start_position: Point, end_position: Point, children: None, body: Union[JsExpression, JsStatementBlock], parameter: Optional[JsIdentifier], parameters: Optional[JsFormalParameters]) -> None
-  JsAssignmentExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: None, left: Union[JsArrayPattern, JsIdentifier, JsMemberExpression, JsObjectPattern, JsParenthesizedExpression, JsSubscriptExpression, JsUndefined], right: JsExpression) -> None
-  JsAssignmentPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: None, left: JsPattern, right: JsExpression) -> None
-  JsAugmentedAssignmentExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: None, left: Union[JsIdentifier, JsMemberExpression, JsParenthesizedExpression, JsSubscriptExpression], right: JsExpression) -> None
-  JsAwaitExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: JsExpression) -> None
-  JsBinaryExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: None, left: JsExpression, right: JsExpression) -> None
-  JsBreakStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: None, label: Optional[JsStatementIdentifier]) -> None
-  JsCallExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: None, arguments: Union[JsArguments, JsTemplateString], function: JsExpression) -> None
-  JsCatchClause(text: str, type_name: str, start_position: Point, end_position: Point, children: None, body: JsStatementBlock, parameter: Union[JsArrayPattern, JsIdentifier, JsObjectPattern, None]) -> None
-  JsClass(text: str, type_name: str, start_position: Point, end_position: Point, children: Optional[JsClassHeritage], body: JsClassBody, decorator: list['JsDecorator'], name: Optional[JsIdentifier]) -> None
-  JsClassBody(text: str, type_name: str, start_position: Point, end_position: Point, children: None, member: list[Union[JsFieldDefinition, JsMethodDefinition]]) -> None
-  JsClassDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: Optional[JsClassHeritage], body: JsClassBody, decorator: list['JsDecorator'], name: JsIdentifier) -> None
-  JsClassHeritage(text: str, type_name: str, start_position: Point, end_position: Point, children: JsExpression) -> None
+  JsArguments(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSpreadElement, JsError]]) -> None
+  JsArray(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSpreadElement, JsError]]) -> None
+  JsArrayPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsAssignmentPattern, JsPattern, JsError]]) -> None
+  JsArrowFunction(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: list[Union[JsExpression, JsStatementBlock, JsError]], parameter: list[Union[JsIdentifier, JsError]], parameters: list[Union[JsFormalParameters, JsError]]) -> None
+  JsAssignmentExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: list[Union[JsArrayPattern, JsIdentifier, JsMemberExpression, JsObjectPattern, JsParenthesizedExpression, JsSubscriptExpression, JsUndefined, JsError]], right: list[Union[JsExpression, JsError]]) -> None
+  JsAssignmentPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: list[Union[JsPattern, JsError]], right: list[Union[JsExpression, JsError]]) -> None
+  JsAugmentedAssignmentExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: list[Union[JsIdentifier, JsMemberExpression, JsParenthesizedExpression, JsSubscriptExpression, JsError]], right: list[Union[JsExpression, JsError]]) -> None
+  JsAwaitExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsError]]) -> None
+  JsBinaryExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: list[Union[JsExpression, JsError]], right: list[Union[JsExpression, JsError]]) -> None
+  JsBreakStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], label: list[Union[JsStatementIdentifier, JsError]]) -> None
+  JsCallExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], arguments: list[Union[JsArguments, JsTemplateString, JsError]], function: list[Union[JsExpression, JsError]]) -> None
+  JsCatchClause(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: list[Union[JsStatementBlock, JsError]], parameter: list[Union[JsArrayPattern, JsIdentifier, JsObjectPattern, JsError]]) -> None
+  JsClass(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsClassHeritage, JsError]], body: list[Union[JsClassBody, JsError]], decorator: list[Union[JsDecorator, JsError]], name: list[Union[JsIdentifier, JsError]]) -> None
+  JsClassBody(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], member: list[Union[JsFieldDefinition, JsMethodDefinition, JsError]]) -> None
+  JsClassDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsClassHeritage, JsError]], body: list[Union[JsClassBody, JsError]], decorator: list[Union[JsDecorator, JsError]], name: list[Union[JsIdentifier, JsError]]) -> None
+  JsClassHeritage(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsError]]) -> None
   JsComment(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsComputedPropertyName(text: str, type_name: str, start_position: Point, end_position: Point, children: JsExpression) -> None
-  JsContinueStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: None, label: Optional[JsStatementIdentifier]) -> None
+  JsComputedPropertyName(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsError]]) -> None
+  JsContinueStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], label: list[Union[JsStatementIdentifier, JsError]]) -> None
   JsDebuggerStatement(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsDeclaration(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsDecorator(text: str, type_name: str, start_position: Point, end_position: Point, children: Union[JsCallExpression, JsIdentifier, JsMemberExpression]) -> None
-  JsDoStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: None, body: JsStatement, condition: JsParenthesizedExpression) -> None
-  JsElseClause(text: str, type_name: str, start_position: Point, end_position: Point, children: JsStatement) -> None
+  JsDecorator(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsCallExpression, JsIdentifier, JsMemberExpression, JsError]]) -> None
+  JsDoStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: list[Union[JsStatement, JsError]], condition: list[Union[JsParenthesizedExpression, JsError]]) -> None
+  JsElseClause(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsStatement, JsError]]) -> None
   JsEmptyStatement(text: str, type_name: str, start_position: Point, end_position: Point) -> None
+  JsError(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsDeclaration, JsExpression, JsPattern, JsPrimaryExpression, JsStatement, JsArguments, JsArray, JsArrayPattern, JsArrowFunction, JsAssignmentExpression, JsAssignmentPattern, JsAugmentedAssignmentExpression, JsAwaitExpression, JsBinaryExpression, JsBreakStatement, JsCallExpression, JsCatchClause, JsClass, JsClassBody, JsClassDeclaration, JsClassHeritage, JsComputedPropertyName, JsContinueStatement, JsDebuggerStatement, JsDecorator, JsDoStatement, JsElseClause, JsEmptyStatement, JsExportClause, JsExportSpecifier, JsExportStatement, JsExpressionStatement, JsFieldDefinition, JsFinallyClause, JsForInStatement, JsForStatement, JsFormalParameters, JsFunction, JsFunctionDeclaration, JsGeneratorFunction, JsGeneratorFunctionDeclaration, JsIfStatement, JsImport, JsImportClause, JsImportSpecifier, JsImportStatement, JsJsxAttribute, JsJsxClosingElement, JsJsxElement, JsJsxExpression, JsJsxFragment, JsJsxNamespaceName, JsJsxOpeningElement, JsJsxSelfClosingElement, JsLabeledStatement, JsLexicalDeclaration, JsMemberExpression, JsMetaProperty, JsMethodDefinition, JsNamedImports, JsNamespaceExport, JsNamespaceImport, JsNestedIdentifier, JsNewExpression, JsObject, JsObjectAssignmentPattern, JsObjectPattern, JsPair, JsPairPattern, JsParenthesizedExpression, JsProgram, JsRegex, JsRestPattern, JsReturnStatement, JsSequenceExpression, JsSpreadElement, JsStatementBlock, JsString, JsSubscriptExpression, JsSwitchBody, JsSwitchCase, JsSwitchDefault, JsSwitchStatement, JsTemplateString, JsTemplateSubstitution, JsTernaryExpression, JsThrowStatement, JsTryStatement, JsUnaryExpression, JsUpdateExpression, JsVariableDeclaration, JsVariableDeclarator, JsWhileStatement, JsWithStatement, JsYieldExpression, JsComment, JsEscapeSequence, JsFalse, JsHashBangLine, JsIdentifier, JsJsxText, JsNull, JsNumber, JsPrivatePropertyIdentifier, JsPropertyIdentifier, JsRegexFlags, JsRegexPattern, JsShorthandPropertyIdentifier, JsShorthandPropertyIdentifierPattern, JsStatementIdentifier, JsStringFragment, JsSuper, JsThis, JsTrue, JsUndefined, JsError]]) -> None
   JsEscapeSequence(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsExportClause(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsExportSpecifier']) -> None
-  JsExportSpecifier(text: str, type_name: str, start_position: Point, end_position: Point, children: None, alias: Optional[JsIdentifier], name: JsIdentifier) -> None
-  JsExportStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: Union[JsExportClause, JsNamespaceExport, None], declaration: Optional[JsDeclaration], decorator: list['JsDecorator'], source: Optional[JsString], value: Optional[JsExpression]) -> None
+  JsExportClause(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExportSpecifier, JsError]]) -> None
+  JsExportSpecifier(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], alias: list[Union[JsIdentifier, JsError]], name: list[Union[JsIdentifier, JsError]]) -> None
+  JsExportStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExportClause, JsNamespaceExport, JsError]], declaration: list[Union[JsDeclaration, JsError]], decorator: list[Union[JsDecorator, JsError]], source: list[Union[JsString, JsError]], value: list[Union[JsExpression, JsError]]) -> None
   JsExpression(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsExpressionStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: Union[JsExpression, JsSequenceExpression]) -> None
+  JsExpressionStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSequenceExpression, JsError]]) -> None
   JsFalse(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsFieldDefinition(text: str, type_name: str, start_position: Point, end_position: Point, children: None, decorator: list['JsDecorator'], property: Union[JsComputedPropertyName, JsNumber, JsPrivatePropertyIdentifier, JsPropertyIdentifier, JsString], value: Optional[JsExpression]) -> None
-  JsFinallyClause(text: str, type_name: str, start_position: Point, end_position: Point, children: None, body: JsStatementBlock) -> None
-  JsForInStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: None, body: JsStatement, left: Union[JsArrayPattern, JsIdentifier, JsMemberExpression, JsObjectPattern, JsParenthesizedExpression, JsSubscriptExpression, JsUndefined], right: Union[JsExpression, JsSequenceExpression], value: Optional[JsExpression]) -> None
-  JsForStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: None, body: JsStatement, condition: Union[JsEmptyStatement, JsExpressionStatement], increment: Union[JsExpression, JsSequenceExpression, None], initializer: Union[JsEmptyStatement, JsExpressionStatement, JsLexicalDeclaration, JsVariableDeclaration]) -> None
-  JsFormalParameters(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsAssignmentPattern, JsPattern]]) -> None
-  JsFunction(text: str, type_name: str, start_position: Point, end_position: Point, children: None, body: JsStatementBlock, name: Optional[JsIdentifier], parameters: JsFormalParameters) -> None
-  JsFunctionDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: None, body: JsStatementBlock, name: JsIdentifier, parameters: JsFormalParameters) -> None
-  JsGeneratorFunction(text: str, type_name: str, start_position: Point, end_position: Point, children: None, body: JsStatementBlock, name: Optional[JsIdentifier], parameters: JsFormalParameters) -> None
-  JsGeneratorFunctionDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: None, body: JsStatementBlock, name: JsIdentifier, parameters: JsFormalParameters) -> None
+  JsFieldDefinition(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], decorator: list[Union[JsDecorator, JsError]], property: list[Union[JsComputedPropertyName, JsNumber, JsPrivatePropertyIdentifier, JsPropertyIdentifier, JsString, JsError]], value: list[Union[JsExpression, JsError]]) -> None
+  JsFinallyClause(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: list[Union[JsStatementBlock, JsError]]) -> None
+  JsForInStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: list[Union[JsStatement, JsError]], left: list[Union[JsArrayPattern, JsIdentifier, JsMemberExpression, JsObjectPattern, JsParenthesizedExpression, JsSubscriptExpression, JsUndefined, JsError]], right: list[Union[JsExpression, JsSequenceExpression, JsError]], value: list[Union[JsExpression, JsError]]) -> None
+  JsForStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: list[Union[JsStatement, JsError]], condition: list[Union[JsEmptyStatement, JsExpressionStatement, JsError]], increment: list[Union[JsExpression, JsSequenceExpression, JsError]], initializer: list[Union[JsEmptyStatement, JsExpressionStatement, JsLexicalDeclaration, JsVariableDeclaration, JsError]]) -> None
+  JsFormalParameters(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsAssignmentPattern, JsPattern, JsError]]) -> None
+  JsFunction(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: list[Union[JsStatementBlock, JsError]], name: list[Union[JsIdentifier, JsError]], parameters: list[Union[JsFormalParameters, JsError]]) -> None
+  JsFunctionDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: list[Union[JsStatementBlock, JsError]], name: list[Union[JsIdentifier, JsError]], parameters: list[Union[JsFormalParameters, JsError]]) -> None
+  JsGeneratorFunction(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: list[Union[JsStatementBlock, JsError]], name: list[Union[JsIdentifier, JsError]], parameters: list[Union[JsFormalParameters, JsError]]) -> None
+  JsGeneratorFunctionDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: list[Union[JsStatementBlock, JsError]], name: list[Union[JsIdentifier, JsError]], parameters: list[Union[JsFormalParameters, JsError]]) -> None
   JsHashBangLine(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsIdentifier(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsIfStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: None, alternative: Optional[JsElseClause], condition: JsParenthesizedExpression, consequence: JsStatement) -> None
+  JsIfStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], alternative: list[Union[JsElseClause, JsError]], condition: list[Union[JsParenthesizedExpression, JsError]], consequence: list[Union[JsStatement, JsError]]) -> None
   JsImport(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsImportClause(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsIdentifier, JsNamedImports, JsNamespaceImport]]) -> None
-  JsImportSpecifier(text: str, type_name: str, start_position: Point, end_position: Point, children: None, alias: Optional[JsIdentifier], name: JsIdentifier) -> None
-  JsImportStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: Optional[JsImportClause], source: JsString) -> None
-  JsJsxAttribute(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsJsxElement, JsJsxExpression, JsJsxFragment, JsJsxNamespaceName, JsJsxSelfClosingElement, JsPropertyIdentifier, JsString]]) -> None
-  JsJsxClosingElement(text: str, type_name: str, start_position: Point, end_position: Point, children: None, name: Union[JsIdentifier, JsJsxNamespaceName, JsNestedIdentifier]) -> None
-  JsJsxElement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsJsxElement, JsJsxExpression, JsJsxFragment, JsJsxSelfClosingElement, JsJsxText]], close_tag: JsJsxClosingElement, open_tag: JsJsxOpeningElement) -> None
-  JsJsxExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: Union[JsExpression, JsSequenceExpression, JsSpreadElement, None]) -> None
-  JsJsxFragment(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsJsxElement, JsJsxExpression, JsJsxFragment, JsJsxSelfClosingElement, JsJsxText]]) -> None
-  JsJsxNamespaceName(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsIdentifier']) -> None
-  JsJsxOpeningElement(text: str, type_name: str, start_position: Point, end_position: Point, children: None, attribute: list[Union[JsJsxAttribute, JsJsxExpression]], name: Union[JsIdentifier, JsJsxNamespaceName, JsNestedIdentifier]) -> None
-  JsJsxSelfClosingElement(text: str, type_name: str, start_position: Point, end_position: Point, children: None, attribute: list[Union[JsJsxAttribute, JsJsxExpression]], name: Union[JsIdentifier, JsJsxNamespaceName, JsNestedIdentifier]) -> None
+  JsImportClause(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsIdentifier, JsNamedImports, JsNamespaceImport, JsError]]) -> None
+  JsImportSpecifier(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], alias: list[Union[JsIdentifier, JsError]], name: list[Union[JsIdentifier, JsError]]) -> None
+  JsImportStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsImportClause, JsError]], source: list[Union[JsString, JsError]]) -> None
+  JsJsxAttribute(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsJsxElement, JsJsxExpression, JsJsxFragment, JsJsxNamespaceName, JsJsxSelfClosingElement, JsPropertyIdentifier, JsString, JsError]]) -> None
+  JsJsxClosingElement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], name: list[Union[JsIdentifier, JsJsxNamespaceName, JsNestedIdentifier, JsError]]) -> None
+  JsJsxElement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsJsxElement, JsJsxExpression, JsJsxFragment, JsJsxSelfClosingElement, JsJsxText, JsError]], close_tag: list[Union[JsJsxClosingElement, JsError]], open_tag: list[Union[JsJsxOpeningElement, JsError]]) -> None
+  JsJsxExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSequenceExpression, JsSpreadElement, JsError]]) -> None
+  JsJsxFragment(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsJsxElement, JsJsxExpression, JsJsxFragment, JsJsxSelfClosingElement, JsJsxText, JsError]]) -> None
+  JsJsxNamespaceName(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsIdentifier, JsError]]) -> None
+  JsJsxOpeningElement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], attribute: list[Union[JsJsxAttribute, JsJsxExpression, JsError]], name: list[Union[JsIdentifier, JsJsxNamespaceName, JsNestedIdentifier, JsError]]) -> None
+  JsJsxSelfClosingElement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], attribute: list[Union[JsJsxAttribute, JsJsxExpression, JsError]], name: list[Union[JsIdentifier, JsJsxNamespaceName, JsNestedIdentifier, JsError]]) -> None
   JsJsxText(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsLabeledStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: None, body: JsStatement, label: JsStatementIdentifier) -> None
-  JsLexicalDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsVariableDeclarator']) -> None
-  JsMemberExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: None, object: JsExpression, property: Union[JsPrivatePropertyIdentifier, JsPropertyIdentifier]) -> None
+  JsLabeledStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: list[Union[JsStatement, JsError]], label: list[Union[JsStatementIdentifier, JsError]]) -> None
+  JsLexicalDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsVariableDeclarator, JsError]]) -> None
+  JsMemberExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], object: list[Union[JsExpression, JsError]], property: list[Union[JsPrivatePropertyIdentifier, JsPropertyIdentifier, JsError]]) -> None
   JsMetaProperty(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsMethodDefinition(text: str, type_name: str, start_position: Point, end_position: Point, children: None, body: JsStatementBlock, decorator: list['JsDecorator'], name: Union[JsComputedPropertyName, JsNumber, JsPrivatePropertyIdentifier, JsPropertyIdentifier, JsString], parameters: JsFormalParameters) -> None
-  JsNamedImports(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsImportSpecifier']) -> None
-  JsNamespaceExport(text: str, type_name: str, start_position: Point, end_position: Point, children: JsIdentifier) -> None
-  JsNamespaceImport(text: str, type_name: str, start_position: Point, end_position: Point, children: JsIdentifier) -> None
-  JsNestedIdentifier(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsIdentifier, JsNestedIdentifier]]) -> None
-  JsNewExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: None, arguments: Optional[JsArguments], constructor: Union[JsNewExpression, JsPrimaryExpression]) -> None
+  JsMethodDefinition(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: list[Union[JsStatementBlock, JsError]], decorator: list[Union[JsDecorator, JsError]], name: list[Union[JsComputedPropertyName, JsNumber, JsPrivatePropertyIdentifier, JsPropertyIdentifier, JsString, JsError]], parameters: list[Union[JsFormalParameters, JsError]]) -> None
+  JsNamedImports(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsImportSpecifier, JsError]]) -> None
+  JsNamespaceExport(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsIdentifier, JsError]]) -> None
+  JsNamespaceImport(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsIdentifier, JsError]]) -> None
+  JsNestedIdentifier(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsIdentifier, JsNestedIdentifier, JsError]]) -> None
+  JsNewExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], arguments: list[Union[JsArguments, JsError]], constructor: list[Union[JsNewExpression, JsPrimaryExpression, JsError]]) -> None
   JsNull(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsNumber(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsObject(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsMethodDefinition, JsPair, JsShorthandPropertyIdentifier, JsSpreadElement]]) -> None
-  JsObjectAssignmentPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: None, left: Union[JsArrayPattern, JsObjectPattern, JsShorthandPropertyIdentifierPattern], right: JsExpression) -> None
-  JsObjectPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsObjectAssignmentPattern, JsPairPattern, JsRestPattern, JsShorthandPropertyIdentifierPattern]]) -> None
-  JsPair(text: str, type_name: str, start_position: Point, end_position: Point, children: None, key: Union[JsComputedPropertyName, JsNumber, JsPrivatePropertyIdentifier, JsPropertyIdentifier, JsString], value: JsExpression) -> None
-  JsPairPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: None, key: Union[JsComputedPropertyName, JsNumber, JsPrivatePropertyIdentifier, JsPropertyIdentifier, JsString], value: Union[JsAssignmentPattern, JsPattern]) -> None
-  JsParenthesizedExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: Union[JsExpression, JsSequenceExpression]) -> None
+  JsObject(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsMethodDefinition, JsPair, JsShorthandPropertyIdentifier, JsSpreadElement, JsError]]) -> None
+  JsObjectAssignmentPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: list[Union[JsArrayPattern, JsObjectPattern, JsShorthandPropertyIdentifierPattern, JsError]], right: list[Union[JsExpression, JsError]]) -> None
+  JsObjectPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsObjectAssignmentPattern, JsPairPattern, JsRestPattern, JsShorthandPropertyIdentifierPattern, JsError]]) -> None
+  JsPair(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], key: list[Union[JsComputedPropertyName, JsNumber, JsPrivatePropertyIdentifier, JsPropertyIdentifier, JsString, JsError]], value: list[Union[JsExpression, JsError]]) -> None
+  JsPairPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], key: list[Union[JsComputedPropertyName, JsNumber, JsPrivatePropertyIdentifier, JsPropertyIdentifier, JsString, JsError]], value: list[Union[JsAssignmentPattern, JsPattern, JsError]]) -> None
+  JsParenthesizedExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSequenceExpression, JsError]]) -> None
   JsPattern(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsPrimaryExpression(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsPrivatePropertyIdentifier(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsProgram(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsHashBangLine, JsStatement]]) -> None
+  JsProgram(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsHashBangLine, JsStatement, JsError]]) -> None
   JsPropertyIdentifier(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsRegex(text: str, type_name: str, start_position: Point, end_position: Point, children: None, flags: Optional[JsRegexFlags], pattern: JsRegexPattern) -> None
+  JsRegex(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], flags: list[Union[JsRegexFlags, JsError]], pattern: list[Union[JsRegexPattern, JsError]]) -> None
   JsRegexFlags(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsRegexPattern(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsRestPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: Union[JsArrayPattern, JsIdentifier, JsMemberExpression, JsObjectPattern, JsSubscriptExpression, JsUndefined]) -> None
-  JsReturnStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: Union[JsExpression, JsSequenceExpression, None]) -> None
-  JsSequenceExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: None, left: JsExpression, right: Union[JsExpression, JsSequenceExpression]) -> None
+  JsRestPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsArrayPattern, JsIdentifier, JsMemberExpression, JsObjectPattern, JsSubscriptExpression, JsUndefined, JsError]]) -> None
+  JsReturnStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSequenceExpression, JsError]]) -> None
+  JsSequenceExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: list[Union[JsExpression, JsError]], right: list[Union[JsExpression, JsSequenceExpression, JsError]]) -> None
   JsShorthandPropertyIdentifier(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsShorthandPropertyIdentifierPattern(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsSpreadElement(text: str, type_name: str, start_position: Point, end_position: Point, children: JsExpression) -> None
+  JsSpreadElement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsError]]) -> None
   JsStatement(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsStatementBlock(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsStatement']) -> None
+  JsStatementBlock(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsStatement, JsError]]) -> None
   JsStatementIdentifier(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsString(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsEscapeSequence, JsStringFragment]]) -> None
+  JsString(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsEscapeSequence, JsStringFragment, JsError]]) -> None
   JsStringFragment(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsSubscriptExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: None, index: Union[JsExpression, JsSequenceExpression], object: JsExpression) -> None
+  JsSubscriptExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], index: list[Union[JsExpression, JsSequenceExpression, JsError]], object: list[Union[JsExpression, JsError]]) -> None
   JsSuper(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsSwitchBody(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsSwitchCase, JsSwitchDefault]]) -> None
-  JsSwitchCase(text: str, type_name: str, start_position: Point, end_position: Point, children: None, body: list['JsStatement'], value: Union[JsExpression, JsSequenceExpression]) -> None
-  JsSwitchDefault(text: str, type_name: str, start_position: Point, end_position: Point, children: None, body: list['JsStatement']) -> None
-  JsSwitchStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: None, body: JsSwitchBody, value: JsParenthesizedExpression) -> None
-  JsTemplateString(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsEscapeSequence, JsTemplateSubstitution]]) -> None
-  JsTemplateSubstitution(text: str, type_name: str, start_position: Point, end_position: Point, children: Union[JsExpression, JsSequenceExpression]) -> None
-  JsTernaryExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: None, alternative: JsExpression, condition: JsExpression, consequence: JsExpression) -> None
+  JsSwitchBody(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsSwitchCase, JsSwitchDefault, JsError]]) -> None
+  JsSwitchCase(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: list[Union[JsStatement, JsError]], value: list[Union[JsExpression, JsSequenceExpression, JsError]]) -> None
+  JsSwitchDefault(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: list[Union[JsStatement, JsError]]) -> None
+  JsSwitchStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: list[Union[JsSwitchBody, JsError]], value: list[Union[JsParenthesizedExpression, JsError]]) -> None
+  JsTemplateString(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsEscapeSequence, JsTemplateSubstitution, JsError]]) -> None
+  JsTemplateSubstitution(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSequenceExpression, JsError]]) -> None
+  JsTernaryExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], alternative: list[Union[JsExpression, JsError]], condition: list[Union[JsExpression, JsError]], consequence: list[Union[JsExpression, JsError]]) -> None
   JsThis(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsThrowStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: Union[JsExpression, JsSequenceExpression]) -> None
+  JsThrowStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSequenceExpression, JsError]]) -> None
   JsTrue(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsTryStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: None, body: JsStatementBlock, finalizer: Optional[JsFinallyClause], handler: Optional[JsCatchClause]) -> None
-  JsUnaryExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: None, argument: JsExpression) -> None
+  JsTryStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: list[Union[JsStatementBlock, JsError]], finalizer: list[Union[JsFinallyClause, JsError]], handler: list[Union[JsCatchClause, JsError]]) -> None
+  JsUnaryExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], argument: list[Union[JsExpression, JsError]]) -> None
   JsUndefined(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsUpdateExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: None, argument: JsExpression) -> None
-  JsVariableDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsVariableDeclarator']) -> None
-  JsVariableDeclarator(text: str, type_name: str, start_position: Point, end_position: Point, children: None, name: Union[JsArrayPattern, JsIdentifier, JsObjectPattern], value: Optional[JsExpression]) -> None
-  JsWhileStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: None, body: JsStatement, condition: JsParenthesizedExpression) -> None
-  JsWithStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: None, body: JsStatement, object: JsParenthesizedExpression) -> None
-  JsYieldExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: Optional[JsExpression]) -> None
-  Leaf(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  Node(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  NodeArgsType(multiple: bool = False, required: bool = False, types: list[SimpleNodeType] = <factory>) -> None
-    as_typehint(self, *, as_class_name: collections.Callable[[str], str], extra: Sequence[SimpleNodeType]) -> Optional[type[Node]]
-  NodeTransformer()
-    transform(self, node: Node) -> Result
-    transform_ERROR(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsArguments(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsArray(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsArrayPattern(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsArrowFunction(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsAssignmentExpression(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsAssignmentPattern(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsAugmentedAssignmentExpression(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsAwaitExpression(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsBinaryExpression(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsBreakStatement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsCallExpression(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsCatchClause(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsClass(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsClassBody(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsClassDeclaration(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsClassHeritage(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsComment(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsComputedPropertyName(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsContinueStatement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsDebuggerStatement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsDecorator(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsDoStatement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsElseClause(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsEmptyStatement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsEscapeSequence(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsExportClause(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsExportSpecifier(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsExportStatement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsExpressionStatement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsFalse(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsFieldDefinition(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsFinallyClause(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsForInStatement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsForStatement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsFormalParameters(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsFunction(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsFunctionDeclaration(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsGeneratorFunction(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsGeneratorFunctionDeclaration(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsHashBangLine(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsIdentifier(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsIfStatement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsImport(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsImportClause(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsImportSpecifier(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsImportStatement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsJsxAttribute(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsJsxClosingElement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsJsxElement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsJsxExpression(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsJsxFragment(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsJsxNamespaceName(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsJsxOpeningElement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsJsxSelfClosingElement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsJsxText(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsLabeledStatement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsLexicalDeclaration(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsMemberExpression(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsMetaProperty(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsMethodDefinition(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsNamedImports(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsNamespaceExport(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsNamespaceImport(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsNestedIdentifier(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsNewExpression(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsNull(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsNumber(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsObject(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsObjectAssignmentPattern(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsObjectPattern(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsPair(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsPairPattern(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsParenthesizedExpression(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsPrivatePropertyIdentifier(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsProgram(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsPropertyIdentifier(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsRegex(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsRegexFlags(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsRegexPattern(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsRestPattern(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsReturnStatement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsSequenceExpression(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsShorthandPropertyIdentifier(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsShorthandPropertyIdentifierPattern(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsSpreadElement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsStatementBlock(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsStatementIdentifier(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsString(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsStringFragment(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsSubscriptExpression(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsSuper(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsSwitchBody(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsSwitchCase(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsSwitchDefault(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsSwitchStatement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsTemplateString(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsTemplateSubstitution(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsTernaryExpression(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsThis(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsThrowStatement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsTrue(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsTryStatement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsUnaryExpression(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsUndefined(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsUpdateExpression(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsVariableDeclaration(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsVariableDeclarator(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsWhileStatement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsWithStatement(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-    transform_JsYieldExpression(self, *, text: str, type_name: str, start_position: Point, end_position: Point, **kwargs: dict[str, Union[Result, Node]]) -> Result
-  NodeType(type_name: str, named: bool, fields: dict[str, NodeArgsType] = <factory>, children: NodeArgsType = <factory>, subtypes: list[SimpleNodeType] = <factory>) -> None
-    as_type(self, *, as_class_name: collections.Callable[[str], str], mixins: Sequence[type] = (), extra: Sequence[SimpleNodeType], **kwargs) -> type[Node]
-    as_typehint(self, *, as_class_name: collections.Callable[[str], str]) -> type[Node]
-    is_extra(self, *, extra: Sequence[SimpleNodeType]) -> bool
-    many_as_typehint(simple_node_types: Sequence[SimpleNodeType], *, as_class_name: collections.Callable[[str], str]) -> Optional[type[Node]]
-  NodeVisitor()
-    generic_visit(self, node: Node) -> None
-    visit(self, node: Node) -> None
-    visit_ERROR(self, node: Node) -> None
-    visit_JsArguments(self, node: Node) -> None
-    visit_JsArray(self, node: Node) -> None
-    visit_JsArrayPattern(self, node: Node) -> None
-    visit_JsArrowFunction(self, node: Node) -> None
-    visit_JsAssignmentExpression(self, node: Node) -> None
-    visit_JsAssignmentPattern(self, node: Node) -> None
-    visit_JsAugmentedAssignmentExpression(self, node: Node) -> None
-    visit_JsAwaitExpression(self, node: Node) -> None
-    visit_JsBinaryExpression(self, node: Node) -> None
-    visit_JsBreakStatement(self, node: Node) -> None
-    visit_JsCallExpression(self, node: Node) -> None
-    visit_JsCatchClause(self, node: Node) -> None
-    visit_JsClass(self, node: Node) -> None
-    visit_JsClassBody(self, node: Node) -> None
-    visit_JsClassDeclaration(self, node: Node) -> None
-    visit_JsClassHeritage(self, node: Node) -> None
-    visit_JsComment(self, node: Node) -> None
-    visit_JsComputedPropertyName(self, node: Node) -> None
-    visit_JsContinueStatement(self, node: Node) -> None
-    visit_JsDebuggerStatement(self, node: Node) -> None
-    visit_JsDecorator(self, node: Node) -> None
-    visit_JsDoStatement(self, node: Node) -> None
-    visit_JsElseClause(self, node: Node) -> None
-    visit_JsEmptyStatement(self, node: Node) -> None
-    visit_JsEscapeSequence(self, node: Node) -> None
-    visit_JsExportClause(self, node: Node) -> None
-    visit_JsExportSpecifier(self, node: Node) -> None
-    visit_JsExportStatement(self, node: Node) -> None
-    visit_JsExpressionStatement(self, node: Node) -> None
-    visit_JsFalse(self, node: Node) -> None
-    visit_JsFieldDefinition(self, node: Node) -> None
-    visit_JsFinallyClause(self, node: Node) -> None
-    visit_JsForInStatement(self, node: Node) -> None
-    visit_JsForStatement(self, node: Node) -> None
-    visit_JsFormalParameters(self, node: Node) -> None
-    visit_JsFunction(self, node: Node) -> None
-    visit_JsFunctionDeclaration(self, node: Node) -> None
-    visit_JsGeneratorFunction(self, node: Node) -> None
-    visit_JsGeneratorFunctionDeclaration(self, node: Node) -> None
-    visit_JsHashBangLine(self, node: Node) -> None
-    visit_JsIdentifier(self, node: Node) -> None
-    visit_JsIfStatement(self, node: Node) -> None
-    visit_JsImport(self, node: Node) -> None
-    visit_JsImportClause(self, node: Node) -> None
-    visit_JsImportSpecifier(self, node: Node) -> None
-    visit_JsImportStatement(self, node: Node) -> None
-    visit_JsJsxAttribute(self, node: Node) -> None
-    visit_JsJsxClosingElement(self, node: Node) -> None
-    visit_JsJsxElement(self, node: Node) -> None
-    visit_JsJsxExpression(self, node: Node) -> None
-    visit_JsJsxFragment(self, node: Node) -> None
-    visit_JsJsxNamespaceName(self, node: Node) -> None
-    visit_JsJsxOpeningElement(self, node: Node) -> None
-    visit_JsJsxSelfClosingElement(self, node: Node) -> None
-    visit_JsJsxText(self, node: Node) -> None
-    visit_JsLabeledStatement(self, node: Node) -> None
-    visit_JsLexicalDeclaration(self, node: Node) -> None
-    visit_JsMemberExpression(self, node: Node) -> None
-    visit_JsMetaProperty(self, node: Node) -> None
-    visit_JsMethodDefinition(self, node: Node) -> None
-    visit_JsNamedImports(self, node: Node) -> None
-    visit_JsNamespaceExport(self, node: Node) -> None
-    visit_JsNamespaceImport(self, node: Node) -> None
-    visit_JsNestedIdentifier(self, node: Node) -> None
-    visit_JsNewExpression(self, node: Node) -> None
-    visit_JsNull(self, node: Node) -> None
-    visit_JsNumber(self, node: Node) -> None
-    visit_JsObject(self, node: Node) -> None
-    visit_JsObjectAssignmentPattern(self, node: Node) -> None
-    visit_JsObjectPattern(self, node: Node) -> None
-    visit_JsPair(self, node: Node) -> None
-    visit_JsPairPattern(self, node: Node) -> None
-    visit_JsParenthesizedExpression(self, node: Node) -> None
-    visit_JsPrivatePropertyIdentifier(self, node: Node) -> None
-    visit_JsProgram(self, node: Node) -> None
-    visit_JsPropertyIdentifier(self, node: Node) -> None
-    visit_JsRegex(self, node: Node) -> None
-    visit_JsRegexFlags(self, node: Node) -> None
-    visit_JsRegexPattern(self, node: Node) -> None
-    visit_JsRestPattern(self, node: Node) -> None
-    visit_JsReturnStatement(self, node: Node) -> None
-    visit_JsSequenceExpression(self, node: Node) -> None
-    visit_JsShorthandPropertyIdentifier(self, node: Node) -> None
-    visit_JsShorthandPropertyIdentifierPattern(self, node: Node) -> None
-    visit_JsSpreadElement(self, node: Node) -> None
-    visit_JsStatementBlock(self, node: Node) -> None
-    visit_JsStatementIdentifier(self, node: Node) -> None
-    visit_JsString(self, node: Node) -> None
-    visit_JsStringFragment(self, node: Node) -> None
-    visit_JsSubscriptExpression(self, node: Node) -> None
-    visit_JsSuper(self, node: Node) -> None
-    visit_JsSwitchBody(self, node: Node) -> None
-    visit_JsSwitchCase(self, node: Node) -> None
-    visit_JsSwitchDefault(self, node: Node) -> None
-    visit_JsSwitchStatement(self, node: Node) -> None
-    visit_JsTemplateString(self, node: Node) -> None
-    visit_JsTemplateSubstitution(self, node: Node) -> None
-    visit_JsTernaryExpression(self, node: Node) -> None
-    visit_JsThis(self, node: Node) -> None
-    visit_JsThrowStatement(self, node: Node) -> None
-    visit_JsTrue(self, node: Node) -> None
-    visit_JsTryStatement(self, node: Node) -> None
-    visit_JsUnaryExpression(self, node: Node) -> None
-    visit_JsUndefined(self, node: Node) -> None
-    visit_JsUpdateExpression(self, node: Node) -> None
-    visit_JsVariableDeclaration(self, node: Node) -> None
-    visit_JsVariableDeclarator(self, node: Node) -> None
-    visit_JsWhileStatement(self, node: Node) -> None
-    visit_JsWithStatement(self, node: Node) -> None
-    visit_JsYieldExpression(self, node: Node) -> None
-  Point(row: int, column: int) -> None
-  SimpleNodeType(type_name: str, named: bool) -> None
-    as_typehint(self, *, as_class_name: collections.Callable[[str], str]) -> type[Node]
-    is_extra(self, *, extra: Sequence[SimpleNodeType]) -> bool
-    many_as_typehint(simple_node_types: Sequence[SimpleNodeType], *, as_class_name: collections.Callable[[str], str]) -> Optional[type[Node]]
+  JsUpdateExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], argument: list[Union[JsExpression, JsError]]) -> None
+  JsVariableDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsVariableDeclarator, JsError]]) -> None
+  JsVariableDeclarator(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], name: list[Union[JsArrayPattern, JsIdentifier, JsObjectPattern, JsError]], value: list[Union[JsExpression, JsError]]) -> None
+  JsWhileStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: list[Union[JsStatement, JsError]], condition: list[Union[JsParenthesizedExpression, JsError]]) -> None
+  JsWithStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: list[Union[JsStatement, JsError]], object: list[Union[JsParenthesizedExpression, JsError]]) -> None
+  JsYieldExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsError]]) -> None

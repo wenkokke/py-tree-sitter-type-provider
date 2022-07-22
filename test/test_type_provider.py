@@ -61,7 +61,7 @@ def test_talon(golden):
     node_types = NodeType.schema().loads(node_types_json.read_text(), many=True)
 
     module = TreeSitterTypeProvider(
-        module_name, node_types, as_class_name=as_class_name, extra=golden["input"]["extra"]
+        module_name, node_types, error_as_node=True, as_class_name=as_class_name, extra=golden["input"]["extra"]
     )
 
     ctx: Context = globals() | module.__dict__
