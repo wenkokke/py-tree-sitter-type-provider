@@ -43,7 +43,6 @@ class TreeSitterTypeProvider(types.ModuleType):
         self,
         node: typing.Union[NodeTypeName, Node, NodeType, tree_sitter.Node],
     ) -> bool:
-        # node_type_name = self._node_type_name(node)
         node_type = self._node_type(node)
         # NOTE: Any node with content can have extra nodes,
         #       even if the node only has fields and no children.
@@ -53,10 +52,10 @@ class TreeSitterTypeProvider(types.ModuleType):
         self, node: typing.Union[Node, NodeType, tree_sitter.Node]
     ) -> type[Node]:
         node_type_name = self._node_type_name(node)
-        if node_type_name == "ERROR":
-            return self.ERROR
-        else:
-            return self._node_classes_by_type[node_type_name]
+        cls = self._node_classes_by_type.get(node_type_name, None)
+        if cls is None:
+            raise NodeTypeError(f"Could not find node type {node_type_name}")
+        return cls
 
     def _node_hash(self, tsnode: tree_sitter.Node) -> int:
         return hash((tsnode.start_byte, tsnode.end_byte))
