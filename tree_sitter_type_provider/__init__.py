@@ -68,9 +68,9 @@ class TreeSitterTypeProvider(types.ModuleType):
             start_position: Point = self._tspoint_to_point(tsnode.start_point)
             end_position: Point = self._tspoint_to_point(tsnode.end_point)
             fields: dict[str, Node] = {}
-            tsfield_hashes: set[int] = set()
             children: list[Node] = []
             node_type = self._node_type(tsnode)
+            tsfield_hashes: set[int] = set()
 
             if not node_type.is_extra(extra=self._extra):
                 # Get all named fields from the tsnode
