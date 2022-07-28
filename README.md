@@ -63,5 +63,5 @@ class JsWhileStatement(tstp.Node):
 As well as a function to convert to the AST:
 
 ```python
-def from_tree_sitter(self, tsnode: ts.Node, *, encoding: str = 'utf-8') -> tstp.Node
+def from_tree_sitter(self, tsvalue: ts.Tree | ts.Node | ts.TreeCursor, *, encoding: str = 'utf-8') -> tstp.Node
 ```
