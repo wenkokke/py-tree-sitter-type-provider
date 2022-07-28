@@ -4,7 +4,7 @@ input:
   class_prefix: Js
   extra: []
 output: |-
-  from_tree_sitter(self, tsnode: tree_sitter.Node, *, encoding: str = 'utf-8') -> Node
+  from_tree_sitter(self, tsvalue: Union[tree_sitter.Tree, tree_sitter.Node, tree_sitter.TreeCursor], *, encoding: str = 'utf-8') -> Node
   JsArguments(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSpreadElement, JsError]]) -> None
   JsArray(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSpreadElement, JsError]]) -> None
   JsArrayPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsAssignmentPattern, JsPattern, JsError]]) -> None

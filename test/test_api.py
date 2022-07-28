@@ -46,7 +46,7 @@ def class_signatures(object: object, ctx: Context = None) -> Generator[str, None
                 pass
 
 
-@pytest.mark.golden_test("golden/*.yml")
+@pytest.mark.golden_test("golden/api/*.yml")
 def test_talon(golden):
     class_prefix = golden["input"]["class_prefix"]
     module_name = f"tree_sitter_{ golden['input']['name'] }"

@@ -1,5 +1,6 @@
 from abc import abstractmethod
 from collections.abc import Callable
+from functools import singledispatch
 from tree_sitter_type_provider.node_types import *
 
 import tree_sitter
@@ -61,50 +62,66 @@ class TreeSitterTypeProvider(types.ModuleType):
         return hash((tsnode.start_byte, tsnode.end_byte))
 
     def from_tree_sitter(
-        self, tsnode: tree_sitter.Node, *, encoding: str = "utf-8"
+        self,
+        tsvalue: typing.Union[
+            tree_sitter.Tree, tree_sitter.Node, tree_sitter.TreeCursor
+        ],
+        *,
+        encoding: str = "utf-8",
     ) -> Node:
-        """
-        Convert a tree-sitter Node to an instance of a generated dataclass.
-        """
-        if tsnode.is_named:
-            text: str = tsnode.text.decode(encoding)
-            start_position: Point = self._tspoint_to_point(tsnode.start_point)
-            end_position: Point = self._tspoint_to_point(tsnode.end_point)
+        if isinstance(tsvalue, tree_sitter.Tree):
+            tsvalue = tsvalue.root_node
+        if isinstance(tsvalue, tree_sitter.Node):
+            tsvalue = tsvalue.walk()
+        return self._from_tree_cursor(tsvalue, encoding=encoding)
+
+    def _from_tree_cursor(
+        self,
+        tscursor: tree_sitter.TreeCursor,
+        *,
+        encoding: str = "utf-8",
+    ) -> Node:
+        if tscursor.node.is_named:
+            # Convert basic information
+            text: str = tscursor.node.text.decode(encoding)
+            type_name: str = tscursor.node.type
+            start_position: Point = self._tspoint_to_point(tscursor.node.start_point)
+            end_position: Point = self._tspoint_to_point(tscursor.node.end_point)
+
+            # Convert children
             fields: dict[str, Node] = {}
             children: list[Node] = []
-            tsfield_hashes: set[int] = set()
 
-            try:
-                # Get all named fields from the tsnode
-                node_type = self._node_type(tsnode)
-                for field_name in node_type.fields.keys():
-                    tsfield = tsnode.child_by_field_name(field_name)
-                    if tsfield.is_named:
-                        tsfield_hashes.add(self._node_hash(tsfield))
-                        field = self.from_tree_sitter(tsfield, encoding=encoding)
-                        fields[field_name] = field
-            except NodeTypeError:
-                pass
+            def convert_child(tscursor: tree_sitter.TreeCursor):
+                field_name = tscursor.current_field_name()
+                child = self._from_tree_cursor(tscursor, encoding=encoding)
+                if field_name is None:
+                    children.append(child)
+                else:
+                    fields[field_name] = child
 
-            # Get all children and extra nodes from the tsnode
-            for tschild in tsnode.children:
-                if tschild.is_named:
-                    if tschild.__hash__ not in tsfield_hashes:
-                        child_value = self.from_tree_sitter(tschild, encoding=encoding)
-                        if not isinstance(child_value, str):
-                            children.append(child_value)
+            if tscursor.goto_first_child():
+                if tscursor.node.is_named:
+                    convert_child(tscursor)
+                while tscursor.goto_next_sibling():
+                    if tscursor.node.is_named:
+                        convert_child(tscursor)
+                assert tscursor.goto_parent()
 
             # Create node instance
             kwargs: dict[str, typing.Union[str, Point, Node, list[Node]]] = {}
-            kwargs["type_name"] = tsnode.type
+            kwargs["type_name"] = type_name
             kwargs["text"] = text
             kwargs["start_position"] = start_position
             kwargs["end_position"] = end_position
-            if self._node_has_children(tsnode):
+            if self._node_has_children(tscursor.node):
                 kwargs["children"] = children
             kwargs |= fields
-            return self._node_class(tsnode)(**kwargs)  # type: ignore
-        raise ValueError(tree_sitter.Node)
+
+            # Return the node with its field name
+            return self._node_class(tscursor.node)(**kwargs)  # type: ignore
+        else:
+            raise TypeError(tscursor.node.type)
 
     def __init__(
         self,
