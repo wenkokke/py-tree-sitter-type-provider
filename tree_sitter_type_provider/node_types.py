@@ -95,13 +95,18 @@ class NodeArgsType:
     def as_typehint(
         self,
         *,
+        is_field: bool,
         as_class_name: AsClassName,
         extra: typing.Sequence[SimpleNodeType],
     ) -> typing.Optional[type[Node]]:
-        # Add the extra nodes into the possible children
-        types_with_extra = tuple((*self.types, *extra))
-        # If there are extra nodes, any node can have any number of children
-        multiple_with_extra = bool(extra) or self.multiple
+        if is_field:
+            types_with_extra = tuple(self.types)
+            multiple_with_extra = self.multiple
+        else:
+            # Add the extra nodes into the possible children
+            types_with_extra = tuple((*self.types, *extra))
+            # If there are extra nodes, a node can have any number of children
+            multiple_with_extra = bool(extra) or self.multiple
         T = SimpleNodeType.many_as_typehint(
             types_with_extra, as_class_name=as_class_name
         )
@@ -157,7 +162,7 @@ class NodeType(SimpleNodeType):
                 for field_name, field in self.fields.items():
                     if field.named:
                         field_type = field.as_typehint(
-                            as_class_name=as_class_name, extra=extra
+                            is_field=True, as_class_name=as_class_name, extra=extra
                         )
                         if field_type is not None:
                             fields[field_name] = field_type
@@ -165,7 +170,7 @@ class NodeType(SimpleNodeType):
                 # Create children for dataclass
                 if self.has_content:
                     children_type = self.children.as_typehint(
-                        as_class_name=as_class_name, extra=extra
+                        is_field=False, as_class_name=as_class_name, extra=extra
                     )
                     if children_type:
                         fields["children"] = children_type
