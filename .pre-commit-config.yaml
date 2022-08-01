@@ -7,8 +7,6 @@ repos:
       - id: check-added-large-files
       - id: check-case-conflict
       - id: check-merge-conflict
-      - id: check-symlinks
-      - id: destroyed-symlinks
       - id: detect-private-key
       - id: fix-byte-order-marker
       - id: trailing-whitespace
