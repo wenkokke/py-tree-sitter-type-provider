@@ -13,14 +13,12 @@ major:
 
 # Publish to PyPi
 
-PROJECT = "talonfmt"
-
 CURRENT_VERSION = $(shell eval $$(bumpver show --no-fetch --env) && echo "$$CURRENT_VERSION")
 
-CURRENT_WHEEL = dist/$(PROJECT)-$(CURRENT_VERSION)-py3-none-any.whl
-CURRENT_TARGZ = dist/$(PROJECT)-$(CURRENT_VERSION).tar.gz
+CURRENT_WHEEL = dist/tree-sitter-type-provider-$(CURRENT_VERSION)-py3-none-any.whl
+CURRENT_TARGZ = dist/tree_sitter_type_provider-$(CURRENT_VERSION).tar.gz
 
-SOURCES = $(shell find $(PROJECT) -name "*.py")
+SOURCES = $(shell find tree_sitter_type_provider -name "*.py")
 
 $(CURRENT_WHEEL) $(CURRENT_TARGZ): $(SOURCES)
 	pytest
