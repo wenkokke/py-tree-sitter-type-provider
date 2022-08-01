@@ -9,17 +9,17 @@ output: |-
   JsArray(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSpreadElement, JsError]]) -> None
   JsArrayPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsAssignmentPattern, JsPattern, JsError]]) -> None
   JsArrowFunction(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: Union[JsExpression, JsStatementBlock], parameter: Optional[JsIdentifier], parameters: Optional[JsFormalParameters]) -> None
-  JsAssignmentExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: Union[JsArrayPattern, JsIdentifier, JsMemberExpression, JsObjectPattern, JsParenthesizedExpression, JsSubscriptExpression, JsUndefined], right: JsExpression) -> None
-  JsAssignmentPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: JsPattern, right: JsExpression) -> None
-  JsAugmentedAssignmentExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: Union[JsIdentifier, JsMemberExpression, JsParenthesizedExpression, JsSubscriptExpression], right: JsExpression) -> None
+  JsAssignmentExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: Union[JsArrayPattern, JsIdentifier, JsMemberExpression, JsObjectPattern, JsParenthesizedExpression, JsSubscriptExpression, JsUndefined], right: 'JsExpression') -> None
+  JsAssignmentPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: 'JsPattern', right: 'JsExpression') -> None
+  JsAugmentedAssignmentExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: Union[JsIdentifier, JsMemberExpression, JsParenthesizedExpression, JsSubscriptExpression], right: 'JsExpression') -> None
   JsAwaitExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsError]]) -> None
-  JsBinaryExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: JsExpression, right: JsExpression) -> None
+  JsBinaryExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: 'JsExpression', right: 'JsExpression') -> None
   JsBreakStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], label: Optional[JsStatementIdentifier]) -> None
-  JsCallExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], arguments: Union[JsArguments, JsTemplateString], function: JsExpression) -> None
-  JsCatchClause(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: JsStatementBlock, parameter: Union[JsArrayPattern, JsIdentifier, JsObjectPattern, None]) -> None
-  JsClass(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsClassHeritage, JsError]], body: JsClassBody, decorator: list['JsDecorator'], name: Optional[JsIdentifier]) -> None
+  JsCallExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], arguments: Union[JsArguments, JsTemplateString], function: 'JsExpression') -> None
+  JsCatchClause(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatementBlock', parameter: Union[JsArrayPattern, JsIdentifier, JsObjectPattern, None]) -> None
+  JsClass(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsClassHeritage, JsError]], body: 'JsClassBody', decorator: list['JsDecorator'], name: Optional[JsIdentifier]) -> None
   JsClassBody(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], member: list[Union[JsFieldDefinition, JsMethodDefinition]]) -> None
-  JsClassDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsClassHeritage, JsError]], body: JsClassBody, decorator: list['JsDecorator'], name: JsIdentifier) -> None
+  JsClassDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsClassHeritage, JsError]], body: 'JsClassBody', decorator: list['JsDecorator'], name: 'JsIdentifier') -> None
   JsClassHeritage(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsError]]) -> None
   JsComment(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsComputedPropertyName(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsError]]) -> None
@@ -27,47 +27,47 @@ output: |-
   JsDebuggerStatement(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsDeclaration(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsDecorator(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsCallExpression, JsIdentifier, JsMemberExpression, JsError]]) -> None
-  JsDoStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: JsStatement, condition: JsParenthesizedExpression) -> None
+  JsDoStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatement', condition: 'JsParenthesizedExpression') -> None
   JsElseClause(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsStatement, JsError]]) -> None
   JsEmptyStatement(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsError(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsDeclaration, JsExpression, JsPattern, JsPrimaryExpression, JsStatement, JsArguments, JsArray, JsArrayPattern, JsArrowFunction, JsAssignmentExpression, JsAssignmentPattern, JsAugmentedAssignmentExpression, JsAwaitExpression, JsBinaryExpression, JsBreakStatement, JsCallExpression, JsCatchClause, JsClass, JsClassBody, JsClassDeclaration, JsClassHeritage, JsComputedPropertyName, JsContinueStatement, JsDebuggerStatement, JsDecorator, JsDoStatement, JsElseClause, JsEmptyStatement, JsExportClause, JsExportSpecifier, JsExportStatement, JsExpressionStatement, JsFieldDefinition, JsFinallyClause, JsForInStatement, JsForStatement, JsFormalParameters, JsFunction, JsFunctionDeclaration, JsGeneratorFunction, JsGeneratorFunctionDeclaration, JsIfStatement, JsImport, JsImportClause, JsImportSpecifier, JsImportStatement, JsJsxAttribute, JsJsxClosingElement, JsJsxElement, JsJsxExpression, JsJsxFragment, JsJsxNamespaceName, JsJsxOpeningElement, JsJsxSelfClosingElement, JsLabeledStatement, JsLexicalDeclaration, JsMemberExpression, JsMetaProperty, JsMethodDefinition, JsNamedImports, JsNamespaceExport, JsNamespaceImport, JsNestedIdentifier, JsNewExpression, JsObject, JsObjectAssignmentPattern, JsObjectPattern, JsPair, JsPairPattern, JsParenthesizedExpression, JsProgram, JsRegex, JsRestPattern, JsReturnStatement, JsSequenceExpression, JsSpreadElement, JsStatementBlock, JsString, JsSubscriptExpression, JsSwitchBody, JsSwitchCase, JsSwitchDefault, JsSwitchStatement, JsTemplateString, JsTemplateSubstitution, JsTernaryExpression, JsThrowStatement, JsTryStatement, JsUnaryExpression, JsUpdateExpression, JsVariableDeclaration, JsVariableDeclarator, JsWhileStatement, JsWithStatement, JsYieldExpression, JsComment, JsEscapeSequence, JsFalse, JsHashBangLine, JsIdentifier, JsJsxText, JsNull, JsNumber, JsPrivatePropertyIdentifier, JsPropertyIdentifier, JsRegexFlags, JsRegexPattern, JsShorthandPropertyIdentifier, JsShorthandPropertyIdentifierPattern, JsStatementIdentifier, JsStringFragment, JsSuper, JsThis, JsTrue, JsUndefined, JsError]]) -> None
   JsEscapeSequence(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsExportClause(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExportSpecifier, JsError]]) -> None
-  JsExportSpecifier(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], alias: Optional[JsIdentifier], name: JsIdentifier) -> None
+  JsExportSpecifier(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], alias: Optional[JsIdentifier], name: 'JsIdentifier') -> None
   JsExportStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExportClause, JsNamespaceExport, JsError]], declaration: Optional[JsDeclaration], decorator: list['JsDecorator'], source: Optional[JsString], value: Optional[JsExpression]) -> None
   JsExpression(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsExpressionStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSequenceExpression, JsError]]) -> None
   JsFalse(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsFieldDefinition(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], decorator: list['JsDecorator'], property: Union[JsComputedPropertyName, JsNumber, JsPrivatePropertyIdentifier, JsPropertyIdentifier, JsString], value: Optional[JsExpression]) -> None
-  JsFinallyClause(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: JsStatementBlock) -> None
-  JsForInStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: JsStatement, left: Union[JsArrayPattern, JsIdentifier, JsMemberExpression, JsObjectPattern, JsParenthesizedExpression, JsSubscriptExpression, JsUndefined], right: Union[JsExpression, JsSequenceExpression], value: Optional[JsExpression]) -> None
-  JsForStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: JsStatement, condition: Union[JsEmptyStatement, JsExpressionStatement], increment: Union[JsExpression, JsSequenceExpression, None], initializer: Union[JsEmptyStatement, JsExpressionStatement, JsLexicalDeclaration, JsVariableDeclaration]) -> None
+  JsFinallyClause(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatementBlock') -> None
+  JsForInStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatement', left: Union[JsArrayPattern, JsIdentifier, JsMemberExpression, JsObjectPattern, JsParenthesizedExpression, JsSubscriptExpression, JsUndefined], right: Union[JsExpression, JsSequenceExpression], value: Optional[JsExpression]) -> None
+  JsForStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatement', condition: Union[JsEmptyStatement, JsExpressionStatement], increment: Union[JsExpression, JsSequenceExpression, None], initializer: Union[JsEmptyStatement, JsExpressionStatement, JsLexicalDeclaration, JsVariableDeclaration]) -> None
   JsFormalParameters(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsAssignmentPattern, JsPattern, JsError]]) -> None
-  JsFunction(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: JsStatementBlock, name: Optional[JsIdentifier], parameters: JsFormalParameters) -> None
-  JsFunctionDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: JsStatementBlock, name: JsIdentifier, parameters: JsFormalParameters) -> None
-  JsGeneratorFunction(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: JsStatementBlock, name: Optional[JsIdentifier], parameters: JsFormalParameters) -> None
-  JsGeneratorFunctionDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: JsStatementBlock, name: JsIdentifier, parameters: JsFormalParameters) -> None
+  JsFunction(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatementBlock', name: Optional[JsIdentifier], parameters: 'JsFormalParameters') -> None
+  JsFunctionDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatementBlock', name: 'JsIdentifier', parameters: 'JsFormalParameters') -> None
+  JsGeneratorFunction(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatementBlock', name: Optional[JsIdentifier], parameters: 'JsFormalParameters') -> None
+  JsGeneratorFunctionDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatementBlock', name: 'JsIdentifier', parameters: 'JsFormalParameters') -> None
   JsHashBangLine(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsIdentifier(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsIfStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], alternative: Optional[JsElseClause], condition: JsParenthesizedExpression, consequence: JsStatement) -> None
+  JsIfStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], alternative: Optional[JsElseClause], condition: 'JsParenthesizedExpression', consequence: 'JsStatement') -> None
   JsImport(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsImportClause(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsIdentifier, JsNamedImports, JsNamespaceImport, JsError]]) -> None
-  JsImportSpecifier(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], alias: Optional[JsIdentifier], name: JsIdentifier) -> None
-  JsImportStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsImportClause, JsError]], source: JsString) -> None
+  JsImportSpecifier(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], alias: Optional[JsIdentifier], name: 'JsIdentifier') -> None
+  JsImportStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsImportClause, JsError]], source: 'JsString') -> None
   JsJsxAttribute(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsJsxElement, JsJsxExpression, JsJsxFragment, JsJsxNamespaceName, JsJsxSelfClosingElement, JsPropertyIdentifier, JsString, JsError]]) -> None
   JsJsxClosingElement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], name: Union[JsIdentifier, JsJsxNamespaceName, JsNestedIdentifier]) -> None
-  JsJsxElement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsJsxElement, JsJsxExpression, JsJsxFragment, JsJsxSelfClosingElement, JsJsxText, JsError]], close_tag: JsJsxClosingElement, open_tag: JsJsxOpeningElement) -> None
+  JsJsxElement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsJsxElement, JsJsxExpression, JsJsxFragment, JsJsxSelfClosingElement, JsJsxText, JsError]], close_tag: 'JsJsxClosingElement', open_tag: 'JsJsxOpeningElement') -> None
   JsJsxExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSequenceExpression, JsSpreadElement, JsError]]) -> None
   JsJsxFragment(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsJsxElement, JsJsxExpression, JsJsxFragment, JsJsxSelfClosingElement, JsJsxText, JsError]]) -> None
   JsJsxNamespaceName(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsIdentifier, JsError]]) -> None
   JsJsxOpeningElement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], attribute: list[Union[JsJsxAttribute, JsJsxExpression]], name: Union[JsIdentifier, JsJsxNamespaceName, JsNestedIdentifier]) -> None
   JsJsxSelfClosingElement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], attribute: list[Union[JsJsxAttribute, JsJsxExpression]], name: Union[JsIdentifier, JsJsxNamespaceName, JsNestedIdentifier]) -> None
   JsJsxText(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsLabeledStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: JsStatement, label: JsStatementIdentifier) -> None
+  JsLabeledStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatement', label: 'JsStatementIdentifier') -> None
   JsLexicalDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsVariableDeclarator, JsError]]) -> None
-  JsMemberExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], object: JsExpression, property: Union[JsPrivatePropertyIdentifier, JsPropertyIdentifier]) -> None
+  JsMemberExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], object: 'JsExpression', property: Union[JsPrivatePropertyIdentifier, JsPropertyIdentifier]) -> None
   JsMetaProperty(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsMethodDefinition(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: JsStatementBlock, decorator: list['JsDecorator'], name: Union[JsComputedPropertyName, JsNumber, JsPrivatePropertyIdentifier, JsPropertyIdentifier, JsString], parameters: JsFormalParameters) -> None
+  JsMethodDefinition(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatementBlock', decorator: list['JsDecorator'], name: Union[JsComputedPropertyName, JsNumber, JsPrivatePropertyIdentifier, JsPropertyIdentifier, JsString], parameters: 'JsFormalParameters') -> None
   JsNamedImports(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsImportSpecifier, JsError]]) -> None
   JsNamespaceExport(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsIdentifier, JsError]]) -> None
   JsNamespaceImport(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsIdentifier, JsError]]) -> None
@@ -76,9 +76,9 @@ output: |-
   JsNull(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsNumber(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsObject(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsMethodDefinition, JsPair, JsShorthandPropertyIdentifier, JsSpreadElement, JsError]]) -> None
-  JsObjectAssignmentPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: Union[JsArrayPattern, JsObjectPattern, JsShorthandPropertyIdentifierPattern], right: JsExpression) -> None
+  JsObjectAssignmentPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: Union[JsArrayPattern, JsObjectPattern, JsShorthandPropertyIdentifierPattern], right: 'JsExpression') -> None
   JsObjectPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsObjectAssignmentPattern, JsPairPattern, JsRestPattern, JsShorthandPropertyIdentifierPattern, JsError]]) -> None
-  JsPair(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], key: Union[JsComputedPropertyName, JsNumber, JsPrivatePropertyIdentifier, JsPropertyIdentifier, JsString], value: JsExpression) -> None
+  JsPair(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], key: Union[JsComputedPropertyName, JsNumber, JsPrivatePropertyIdentifier, JsPropertyIdentifier, JsString], value: 'JsExpression') -> None
   JsPairPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], key: Union[JsComputedPropertyName, JsNumber, JsPrivatePropertyIdentifier, JsPropertyIdentifier, JsString], value: Union[JsAssignmentPattern, JsPattern]) -> None
   JsParenthesizedExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSequenceExpression, JsError]]) -> None
   JsPattern(text: str, type_name: str, start_position: Point, end_position: Point) -> None
@@ -86,12 +86,12 @@ output: |-
   JsPrivatePropertyIdentifier(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsProgram(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsHashBangLine, JsStatement, JsError]]) -> None
   JsPropertyIdentifier(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsRegex(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], flags: Optional[JsRegexFlags], pattern: JsRegexPattern) -> None
+  JsRegex(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], flags: Optional[JsRegexFlags], pattern: 'JsRegexPattern') -> None
   JsRegexFlags(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsRegexPattern(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsRestPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsArrayPattern, JsIdentifier, JsMemberExpression, JsObjectPattern, JsSubscriptExpression, JsUndefined, JsError]]) -> None
   JsReturnStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSequenceExpression, JsError]]) -> None
-  JsSequenceExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: JsExpression, right: Union[JsExpression, JsSequenceExpression]) -> None
+  JsSequenceExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: 'JsExpression', right: Union[JsExpression, JsSequenceExpression]) -> None
   JsShorthandPropertyIdentifier(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsShorthandPropertyIdentifierPattern(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsSpreadElement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsError]]) -> None
@@ -100,24 +100,24 @@ output: |-
   JsStatementIdentifier(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsString(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsEscapeSequence, JsStringFragment, JsError]]) -> None
   JsStringFragment(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsSubscriptExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], index: Union[JsExpression, JsSequenceExpression], object: JsExpression) -> None
+  JsSubscriptExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], index: Union[JsExpression, JsSequenceExpression], object: 'JsExpression') -> None
   JsSuper(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsSwitchBody(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsSwitchCase, JsSwitchDefault, JsError]]) -> None
   JsSwitchCase(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: list['JsStatement'], value: Union[JsExpression, JsSequenceExpression]) -> None
   JsSwitchDefault(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: list['JsStatement']) -> None
-  JsSwitchStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: JsSwitchBody, value: JsParenthesizedExpression) -> None
+  JsSwitchStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsSwitchBody', value: 'JsParenthesizedExpression') -> None
   JsTemplateString(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsEscapeSequence, JsTemplateSubstitution, JsError]]) -> None
   JsTemplateSubstitution(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSequenceExpression, JsError]]) -> None
-  JsTernaryExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], alternative: JsExpression, condition: JsExpression, consequence: JsExpression) -> None
+  JsTernaryExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], alternative: 'JsExpression', condition: 'JsExpression', consequence: 'JsExpression') -> None
   JsThis(text: str, type_name: str, start_position: Point, end_position: Point) -> None
   JsThrowStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSequenceExpression, JsError]]) -> None
   JsTrue(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsTryStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: JsStatementBlock, finalizer: Optional[JsFinallyClause], handler: Optional[JsCatchClause]) -> None
-  JsUnaryExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], argument: JsExpression) -> None
+  JsTryStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatementBlock', finalizer: Optional[JsFinallyClause], handler: Optional[JsCatchClause]) -> None
+  JsUnaryExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], argument: 'JsExpression') -> None
   JsUndefined(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-  JsUpdateExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], argument: JsExpression) -> None
+  JsUpdateExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], argument: 'JsExpression') -> None
   JsVariableDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsVariableDeclarator, JsError]]) -> None
   JsVariableDeclarator(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], name: Union[JsArrayPattern, JsIdentifier, JsObjectPattern], value: Optional[JsExpression]) -> None
-  JsWhileStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: JsStatement, condition: JsParenthesizedExpression) -> None
-  JsWithStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: JsStatement, object: JsParenthesizedExpression) -> None
+  JsWhileStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatement', condition: 'JsParenthesizedExpression') -> None
+  JsWithStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatement', object: 'JsParenthesizedExpression') -> None
   JsYieldExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsError]]) -> None

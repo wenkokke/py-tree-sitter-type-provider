@@ -1,15 +1,13 @@
 from __future__ import annotations
 
+import collections.abc
 import inspect
 import pathlib
 import re
-import typing
 
 import pytest
 
-from tree_sitter_type_provider import *
-
-Context = typing.Union[None, typing.Mapping[str, typing.Any]]
+import tree_sitter_type_provider
 
 
 def short(sig: inspect.Signature) -> str:
@@ -23,27 +21,23 @@ def short(sig: inspect.Signature) -> str:
     return out
 
 
-def function_signatures(
-    object: object, ctx: Context = None
-) -> collections.abc.Iterator[str]:
+def function_signatures(object: object) -> collections.abc.Iterator[str]:
     for name, fun in inspect.getmembers(object, inspect.isfunction):
         if not (name.startswith("_") or name in ["to_dict", "to_json"]):
             try:
-                funsig = inspect.signature(fun, globals=ctx, eval_str=True)
+                funsig = inspect.signature(fun)
                 yield f"{name}{short(funsig)}"
             except ValueError:
                 pass
 
 
-def class_signatures(
-    object: object, ctx: Context = None
-) -> collections.abc.Iterator[str]:
+def class_signatures(object: object) -> collections.abc.Iterator[str]:
     for name, cls in inspect.getmembers(object, inspect.isclass):
         if not name.startswith("_"):
             try:
-                clssig = inspect.signature(cls, globals=ctx, eval_str=True)
+                clssig = inspect.signature(cls)
                 yield f"{name}{short(clssig)}"
-                for funsigstr in function_signatures(cls, ctx=ctx):
+                for funsigstr in function_signatures(cls):
                     yield f"  {funsigstr}"
             except ValueError:
                 pass
@@ -61,9 +55,11 @@ def test_talon(golden):
         return "".join(buffer)
 
     node_types_json = pathlib.Path(__file__).parent / golden["input"]["file"]
-    node_types = NodeType.schema().loads(node_types_json.read_text(), many=True)
+    node_types = tree_sitter_type_provider.NodeType.schema().loads(
+        node_types_json.read_text(), many=True
+    )
 
-    module = TreeSitterTypeProvider(
+    module = tree_sitter_type_provider.TreeSitterTypeProvider(
         module_name,
         node_types,
         error_as_node=True,
@@ -71,12 +67,12 @@ def test_talon(golden):
         extra=golden["input"]["extra"],
     )
 
-    ctx: Context = globals() | module.__dict__
+    globals().update(module.__dict__)
 
     output: list[str] = []
-    output.extend(function_signatures(module.__class__, ctx=ctx))
-    output.extend(function_signatures(module, ctx=ctx))
-    output.extend(class_signatures(module.__class__, ctx=ctx))
-    output.extend(class_signatures(module, ctx=ctx))
+    output.extend(function_signatures(module.__class__))
+    output.extend(function_signatures(module))
+    output.extend(class_signatures(module.__class__))
+    output.extend(class_signatures(module))
 
     assert "\n".join(output) == golden.out["output"]
