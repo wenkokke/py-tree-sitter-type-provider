@@ -15,7 +15,7 @@ major:
 
 CURRENT_VERSION = $(shell eval $$(bumpver show --no-fetch --env) && echo "$$CURRENT_VERSION")
 
-CURRENT_WHEEL = dist/tree-sitter-type-provider-$(CURRENT_VERSION)-py3-none-any.whl
+CURRENT_WHEEL = dist/tree_sitter_type_provider-$(CURRENT_VERSION)-py3-none-any.whl
 CURRENT_TARGZ = dist/tree_sitter_type_provider-$(CURRENT_VERSION).tar.gz
 
 SOURCES = $(shell find tree_sitter_type_provider -name "*.py")

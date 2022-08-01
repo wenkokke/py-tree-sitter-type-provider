@@ -130,3 +130,10 @@ dmypy.json
 
 # Tests
 /test/tree_sitter_*.lib
+
+# Makefile
+*.dylib
+*.dll
+*.so
+testpublish
+publish

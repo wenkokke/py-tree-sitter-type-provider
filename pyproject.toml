@@ -17,6 +17,7 @@ dependencies = ["tree_sitter", "dataclasses-json"]
 
 [project.optional-dependencies]
 test = ["pytest", "pytest-golden"]
+publish = ["build", "twine"]
 
 [project.readme]
 file = "README.md"

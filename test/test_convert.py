@@ -1,4 +1,5 @@
 import pathlib
+import sys
 import typing
 
 import pytest
@@ -41,7 +42,12 @@ def test_talon(golden):
     node_types = tstp.NodeType.schema().loads(node_types_json.read_text(), many=True)
 
     repository_path = str(TESTDIR / golden["input"]["repository_path"])
-    library_path = str(TESTDIR / f"{ module_name }.lib")
+    library_name = {
+        "linux": f"{ module_name }.so",
+        "darwin": f"{ module_name }.dylib",
+        "win32": f"{ module_name }.dll",
+    }[sys.platform]
+    library_path = str(TESTDIR / library_name)
     ts.Language.build_library(library_path, [repository_path])
 
     language = ts.Language(library_path, golden["input"]["name"])
