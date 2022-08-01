@@ -4,6 +4,8 @@ import typing
 
 import tree_sitter
 
+from tree_sitter_type_provider.node_types import Branch as Branch
+from tree_sitter_type_provider.node_types import Leaf as Leaf
 from tree_sitter_type_provider.node_types import Node as Node
 from tree_sitter_type_provider.node_types import NodeArgsType as NodeArgsType
 from tree_sitter_type_provider.node_types import NodeFieldName as NodeFieldName
