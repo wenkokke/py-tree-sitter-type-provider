@@ -16,11 +16,11 @@ class Point:
     column: int
 
 
-NodeTypeName: typing.TypeAlias = str
+NodeTypeName = str
 
-NodeFieldName: typing.TypeAlias = str
+NodeFieldName = str
 
-AsClassName: typing.TypeAlias = collections.abc.Callable[[NodeTypeName], str]
+AsClassName = collections.abc.Callable[[NodeTypeName], str]
 
 
 @dataclasses.dataclass

@@ -1,17 +1,15 @@
 from __future__ import annotations
 
 import inspect
+import pathlib
 import re
 import typing
-from collections.abc import Generator
-from pathlib import Path
 
 import pytest
 
-import tree_sitter_type_provider.node_types as nt
 from tree_sitter_type_provider import *
 
-Context: typing.TypeAlias = typing.Union[None, typing.Mapping[str, typing.Any]]
+Context = typing.Union[None, typing.Mapping[str, typing.Any]]
 
 
 def short(sig: inspect.Signature) -> str:
@@ -27,7 +25,7 @@ def short(sig: inspect.Signature) -> str:
 
 def function_signatures(
     object: object, ctx: Context = None
-) -> Generator[str, None, None]:
+) -> collections.abc.Iterator[str]:
     for name, fun in inspect.getmembers(object, inspect.isfunction):
         if not (name.startswith("_") or name in ["to_dict", "to_json"]):
             try:
@@ -37,7 +35,9 @@ def function_signatures(
                 pass
 
 
-def class_signatures(object: object, ctx: Context = None) -> Generator[str, None, None]:
+def class_signatures(
+    object: object, ctx: Context = None
+) -> collections.abc.Iterator[str]:
     for name, cls in inspect.getmembers(object, inspect.isclass):
         if not name.startswith("_"):
             try:
@@ -60,7 +60,7 @@ def test_talon(golden):
             buffer.append(part.capitalize())
         return "".join(buffer)
 
-    node_types_json = Path(__file__).parent / golden["input"]["file"]
+    node_types_json = pathlib.Path(__file__).parent / golden["input"]["file"]
     node_types = NodeType.schema().loads(node_types_json.read_text(), many=True)
 
     module = TreeSitterTypeProvider(
