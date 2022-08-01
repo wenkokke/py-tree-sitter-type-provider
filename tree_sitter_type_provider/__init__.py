@@ -6,6 +6,7 @@ import tree_sitter
 
 from tree_sitter_type_provider.node_types import Node as Node
 from tree_sitter_type_provider.node_types import NodeArgsType as NodeArgsType
+from tree_sitter_type_provider.node_types import NodeFieldName as NodeFieldName
 from tree_sitter_type_provider.node_types import NodeType as NodeType
 from tree_sitter_type_provider.node_types import NodeTypeError as NodeTypeError
 from tree_sitter_type_provider.node_types import NodeTypeName as NodeTypeName
