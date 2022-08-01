@@ -1,8 +1,9 @@
+import collections.abc
 import dataclasses
-import dataclasses_json
 import functools
 import typing
-import collections.abc
+
+import dataclasses_json
 
 
 class NodeTypeError(Exception):

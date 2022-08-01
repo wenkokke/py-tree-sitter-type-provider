@@ -1,11 +1,12 @@
+import types
+import typing
 from abc import abstractmethod
 from collections.abc import Callable
 from functools import singledispatch
-from tree_sitter_type_provider.node_types import *
 
 import tree_sitter
-import typing
-import types
+
+from tree_sitter_type_provider.node_types import *
 
 
 class TreeSitterTypeProvider(types.ModuleType):

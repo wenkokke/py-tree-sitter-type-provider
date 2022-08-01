@@ -52,12 +52,7 @@ module.exports = grammar({
     /* Context */
 
     context: ($) =>
-      seq(
-        repeat($.docstring),
-        optional($._optional_or),
-        "-",
-        $._newline
-        ),
+      seq(repeat($.docstring), optional($._optional_or), "-", $._newline),
 
     _optional_or: ($) => choice($.or, $._optional_and),
 
@@ -115,7 +110,8 @@ module.exports = grammar({
 
     /* Commands */
 
-    command: ($) => seq(field("rule", $.rule), ":", field("script", $._statement_suite)),
+    command: ($) =>
+      seq(field("rule", $.rule), ":", field("script", $._statement_suite)),
 
     /* Statements */
 
@@ -129,14 +125,7 @@ module.exports = grammar({
     block: ($) => seq(repeat($._simple_statement), $._dedent),
 
     _simple_statement: ($) =>
-      seq(
-        choice(
-          $.docstring,
-          $.assignment,
-          $.expression,
-        ),
-        $._newline
-      ),
+      seq(choice($.docstring, $.assignment, $.expression), $._newline),
 
     assignment: ($) =>
       seq(field("left", $.identifier), "=", field("right", $._expression)),

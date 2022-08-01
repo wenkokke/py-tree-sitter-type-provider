@@ -18,64 +18,64 @@ input:
 output:
   type: source_file
   children:
-  - text: '### A test file with many comments'
-    type: comment
-  - text: '# Only on macOS'
-    type: comment
-  - type: context
-    children:
-    - type: and
-      children:
-      - type: match
-        children: []
-        key:
-          text: os
-          type: identifier
-        pattern:
-          text: ' mac'
-          type: implicit_string
-      - text: '# Only on VSCode'
-        type: comment
-      - type: match
-        children: []
-        key:
-          text: app
-          type: identifier
-        pattern:
-          text: ' vscode'
-          type: implicit_string
-  - type: command
-    children:
-    - text: "### When you say 'spoken command'"
+    - text: "### A test file with many comments"
       type: comment
-    - text: '### run the spoken_command action'
+    - text: "# Only on macOS"
       type: comment
-    rule:
-      type: rule
+    - type: context
       children:
-      - type: seq
+        - type: and
+          children:
+            - type: match
+              children: []
+              key:
+                text: os
+                type: identifier
+              pattern:
+                text: " mac"
+                type: implicit_string
+            - text: "# Only on VSCode"
+              type: comment
+            - type: match
+              children: []
+              key:
+                text: app
+                type: identifier
+              pattern:
+                text: " vscode"
+                type: implicit_string
+    - type: command
+      children:
+        - text: "### When you say 'spoken command'"
+          type: comment
+        - text: "### run the spoken_command action"
+          type: comment
+      rule:
+        type: rule
         children:
-        - text: spoken
-          type: word
-        - text: command
-          type: word
-    script:
-      type: block
-      children:
-      - type: expression
-        children: []
-        expression:
-          type: action
-          children: []
-          action_name:
-            text: user.spoken_command
-            type: identifier
-          arguments:
-            type: argument_list
+          - type: seq
             children:
-            - type: string
-              children:
-              - text: Some Argument
-                type: string_content
-            - text: '1312'
-              type: integer
+              - text: spoken
+                type: word
+              - text: command
+                type: word
+      script:
+        type: block
+        children:
+          - type: expression
+            children: []
+            expression:
+              type: action
+              children: []
+              action_name:
+                text: user.spoken_command
+                type: identifier
+              arguments:
+                type: argument_list
+                children:
+                  - type: string
+                    children:
+                      - text: Some Argument
+                        type: string_content
+                  - text: "1312"
+                    type: integer

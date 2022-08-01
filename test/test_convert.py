@@ -1,8 +1,11 @@
 import pathlib
-import pytest
-import tree_sitter_type_provider as tstp
-import tree_sitter as ts
 import typing
+
+import pytest
+import tree_sitter as ts
+
+import tree_sitter_type_provider as tstp
+
 
 def node_dict_simplify(node_dict: dict[str, typing.Any]) -> None:
     if len(node_dict) > 4:
@@ -21,6 +24,7 @@ def node_dict_simplify(node_dict: dict[str, typing.Any]) -> None:
 
 
 TESTDIR = pathlib.Path(__file__).parent
+
 
 @pytest.mark.golden_test("golden/convert/*.yml")
 def test_talon(golden):

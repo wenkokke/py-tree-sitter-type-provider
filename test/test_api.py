@@ -1,12 +1,15 @@
 from __future__ import annotations
+
+import inspect
+import re
+import typing
 from collections.abc import Generator
 from pathlib import Path
-from tree_sitter_type_provider import *
-import tree_sitter_type_provider.node_types as nt
+
 import pytest
-import inspect
-import typing
-import re
+
+import tree_sitter_type_provider.node_types as nt
+from tree_sitter_type_provider import *
 
 Context: typing.TypeAlias = typing.Union[None, typing.Mapping[str, typing.Any]]
 
@@ -57,11 +60,15 @@ def test_talon(golden):
             buffer.append(part.capitalize())
         return "".join(buffer)
 
-    node_types_json = Path(__file__).parent / golden['input']['file']
+    node_types_json = Path(__file__).parent / golden["input"]["file"]
     node_types = NodeType.schema().loads(node_types_json.read_text(), many=True)
 
     module = TreeSitterTypeProvider(
-        module_name, node_types, error_as_node=True, as_class_name=as_class_name, extra=golden["input"]["extra"]
+        module_name,
+        node_types,
+        error_as_node=True,
+        as_class_name=as_class_name,
+        extra=golden["input"]["extra"],
     )
 
     ctx: Context = globals() | module.__dict__
