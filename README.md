@@ -1,6 +1,6 @@
 # Type Providers for Tree Sitter
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/wenkokke/py-tree-sitter-type-provider/CI) ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/wenkokke/py-tree-sitter-type-provider)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/wenkokke/py-tree-sitter-type-provider/CI) ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/wenkokke/py-tree-sitter-type-provider) ![PyPI](https://img.shields.io/pypi/v/tree-sitter-type-provider)
 
 Create a type AST from any `node-types.json` file, as well as a generic visitor class and a transformer class, and a function to convert to the AST from the `tree_sitter.Node` type.
 
