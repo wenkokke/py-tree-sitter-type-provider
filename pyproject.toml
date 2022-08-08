@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tree_sitter_type_provider"
-version = "1.4.8"
+version = "1.5.0"
 description = "Type providers for tree-sitter in Python"
 requires-python = ">=3.9"
 keywords = ["type-provider"]
@@ -37,7 +37,7 @@ enable_assertion_pass_hook = true
 filterwarnings = ["ignore::DeprecationWarning:.*:"]
 
 [tool.bumpver]
-current_version = "1.4.8"
+current_version = "1.5.0"
 version_pattern = "MAJOR.MINOR.PATCH"
 commit_message = "Bump version {old_version} -> {new_version}"
 commit = true
