@@ -13,11 +13,11 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Topic :: Software Development :: Compilers",
 ]
-dependencies = ["tree-sitter==0.20.0", "dataclasses-json==0.5.7"]
+dependencies = ["tree-sitter ==0.20.0", "dataclasses-json >=0.5.7, <0.6"]
 
 [project.optional-dependencies]
-dev = ["build==0.8.0", "twine==4.0.1"]
-test = ["pytest==7.1.2", "pytest-golden==0.2.2"]
+dev = ["build >=0.8.0, <0.9", "twine >=4.0.1, <5"]
+test = ["pytest >=7.1.2, <8", "pytest-golden >=0.2.2, <0.3"]
 
 [project.readme]
 file = "README.md"
