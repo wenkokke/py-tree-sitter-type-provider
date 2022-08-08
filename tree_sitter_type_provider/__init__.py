@@ -2,7 +2,7 @@ import collections.abc
 import types
 import typing
 
-import tree_sitter
+import tree_sitter  # type: ignore
 
 from tree_sitter_type_provider.node_types import Branch as Branch
 from tree_sitter_type_provider.node_types import Leaf as Leaf
@@ -48,14 +48,10 @@ class TreeSitterTypeProvider(types.ModuleType):
         self,
         node: typing.Union[NodeTypeName, Node, NodeType, tree_sitter.Node],
     ) -> bool:
-        node_type_name = self._node_type_name(node)
-        if node_type_name == "ERROR":
-            return True
-        else:
-            node_type = self._node_type(node_type_name)
-            # NOTE: Any node with content can have extra nodes,
-            #       even if the node only has fields and no children.
-            return node_type.has_content
+        node_type = self._node_type(node)
+        # NOTE: Any node with content can have extra nodes,
+        #       even if the node only has fields and no children.
+        return node_type.has_content
 
     def _node_class(
         self, node: typing.Union[Node, NodeType, tree_sitter.Node]
@@ -76,18 +72,27 @@ class TreeSitterTypeProvider(types.ModuleType):
         ],
         *,
         encoding: str = "utf-8",
+        filename: typing.Optional[str] = None,
+        raise_parse_error: bool = False,
     ) -> Node:
         if isinstance(tsvalue, tree_sitter.Tree):
             tsvalue = tsvalue.root_node
         if isinstance(tsvalue, tree_sitter.Node):
             tsvalue = tsvalue.walk()
-        return self._from_tree_cursor(tsvalue, encoding=encoding)
+        return self._from_tree_cursor(
+            tsvalue,
+            encoding=encoding,
+            filename=filename,
+            raise_parse_error=raise_parse_error,
+        )
 
     def _from_tree_cursor(
         self,
         tscursor: tree_sitter.TreeCursor,
         *,
         encoding: str = "utf-8",
+        filename: typing.Optional[str] = None,
+        raise_parse_error: bool,
     ) -> Node:
         if tscursor.node.is_named:
             # Convert basic information
@@ -102,7 +107,12 @@ class TreeSitterTypeProvider(types.ModuleType):
 
             def convert_child(tscursor: tree_sitter.TreeCursor):
                 field_name = tscursor.current_field_name()
-                child = self._from_tree_cursor(tscursor, encoding=encoding)
+                child = self._from_tree_cursor(
+                    tscursor,
+                    encoding=encoding,
+                    filename=filename,
+                    raise_parse_error=raise_parse_error,
+                )
                 if field_name is None:
                     children.append(child)
                 else:
@@ -127,7 +137,28 @@ class TreeSitterTypeProvider(types.ModuleType):
             kwargs |= fields
 
             # Return the node with its field name
-            return self._node_class(tscursor.node)(**kwargs)  # type: ignore
+
+            if raise_parse_error and type_name == "ERROR":
+
+                def _root_node(tsnode: tree_sitter.Node) -> str:
+                    # TODO: node->tree isn't bound in tree_sitter_talon
+                    if tsnode.parent:
+                        return _root_node(tsnode.parent)
+                    else:
+                        return tsnode.text.decode("utf-8")
+
+                contents = _root_node(tscursor.node)
+                raise ParseError(
+                    text=text,
+                    type_name=type_name,
+                    start_position=start_position,
+                    end_position=end_position,
+                    children=children,
+                    contents=contents,
+                    filename=filename,
+                )
+            else:
+                return self._node_class(tscursor.node)(**kwargs)  # type: ignore
         else:
             raise TypeError(tscursor.node.type)
 
@@ -136,14 +167,12 @@ class TreeSitterTypeProvider(types.ModuleType):
         module_name: str,
         node_types: typing.Sequence[NodeType],
         *,
-        error_as_node: bool = False,
         extra: typing.Sequence[NodeTypeName] = (),
         as_class_name: typing.Optional[collections.abc.Callable[[str], str]] = None,
         mixins: typing.Sequence[type] = (),
         dataclass_kwargs: dict[str, typing.Any] = {},
     ):
         super().__init__(name=module_name)
-        self._error_as_node = error_as_node
 
         if as_class_name is None:
 
@@ -158,25 +187,22 @@ class TreeSitterTypeProvider(types.ModuleType):
             if node_type.named:
                 self._node_types_by_type[node_type.type_name] = node_type
 
-        # NOTE: error_as_node, so insert a node type for ERROR, which triggers
-        #       the creation of a language-specific class as with all other nodes
-        #       (otherwise, see after the initialisation of self._node_classes_by_type)
-        if error_as_node:
-            self._node_types_by_type["ERROR"] = NodeType(
-                type_name="ERROR",
-                named=True,
-                children=NodeArgsType(
-                    multiple=True,
-                    required=True,
-                    types=list(node_types),
-                ),
-            )
+        # Insert a node type for ERROR
+        self._node_types_by_type["ERROR"] = NodeType(
+            type_name="ERROR",
+            named=True,
+            children=NodeArgsType(
+                multiple=True,
+                required=True,
+                types=list(node_types),
+            ),
+        )
 
         # Create the list of extra node types
         def _extra_node_types() -> collections.abc.Iterator[NodeType]:
             for type_name in extra:
                 yield self._node_type(type_name)
-            if error_as_node and "ERROR" not in extra:
+            if "ERROR" not in extra:
                 yield self._node_type("ERROR")
 
         self._extra: typing.Sequence = tuple(_extra_node_types())
@@ -202,17 +228,16 @@ class TreeSitterTypeProvider(types.ModuleType):
         # Dictionary of dataclasses
         self._node_classes_by_type: dict[str, type[Node]] = {}
         for node_type in self._node_types_by_type.values():
-            bases = self._node_bases_by_type.get(node_type.type_name, ())
-            cls = node_type.as_type(
-                mixins=tuple((*bases, *mixins)),
-                as_class_name=as_class_name,
-                extra=self._extra,
-                **dataclass_kwargs,
-            )
-            self._node_classes_by_type[node_type.type_name] = cls
-            setattr(self, as_class_name(node_type.type_name), cls)
-
-        # NOTE: not error_as_node, so construct ERROR nodes using ParseError
-        #       whose __post_init__ method raises itself as an exception
-        if not error_as_node:
-            self._node_classes_by_type["ERROR"] = ParseError
+            if node_type.type_name == "ERROR":
+                self._node_classes_by_type["ERROR"] = ParseError
+                setattr(self, as_class_name(node_type.type_name), ParseError)
+            else:
+                bases = self._node_bases_by_type.get(node_type.type_name, ())
+                cls = node_type.as_type(
+                    mixins=tuple((*bases, *mixins)),
+                    as_class_name=as_class_name,
+                    extra=self._extra,
+                    **dataclass_kwargs,
+                )
+                self._node_classes_by_type[node_type.type_name] = cls
+                setattr(self, as_class_name(node_type.type_name), cls)

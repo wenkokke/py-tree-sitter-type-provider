@@ -1,35 +1,19 @@
 import pathlib
 import sys
-import typing
 
 import pytest
 import tree_sitter
 
 import tree_sitter_type_provider
 
-
-def node_dict_simplify(node_dict: dict[str, typing.Any]) -> None:
-    if len(node_dict) > 4:
-        del node_dict["text"]
-
-    del node_dict["start_position"]
-    del node_dict["end_position"]
-
-    for key in node_dict.keys():
-        if isinstance(node_dict[key], dict):
-            node_dict_simplify(node_dict[key])
-        if isinstance(node_dict[key], list):
-            for val in node_dict[key]:
-                if isinstance(val, dict):
-                    node_dict_simplify(val)
-
+from . import node_dict_simplify
 
 TESTDIR = pathlib.Path(__file__).parent
 
 
 @pytest.mark.golden_test("data/golden/convert/*.yml")
 def test_talon(golden):
-    error_as_node = golden["input"]["error_as_node"]
+    raise_parse_error = golden["input"]["raise_parse_error"]
     class_prefix = golden["input"]["class_prefix"]
     module_name = f"tree_sitter_{ golden['input']['name'] }"
 
@@ -60,7 +44,6 @@ def test_talon(golden):
     types = tree_sitter_type_provider.TreeSitterTypeProvider(
         module_name,
         node_types,
-        error_as_node=error_as_node,
         as_class_name=as_class_name,
         extra=golden["input"]["extra"],
     )
@@ -68,12 +51,11 @@ def test_talon(golden):
     contents = golden["input"]["contents"]
     tree = parser.parse(bytes(contents, encoding="utf-8"))
     try:
-        node = types.from_tree_sitter(tree.root_node)
+        node = types.from_tree_sitter(
+            tree.root_node, raise_parse_error=raise_parse_error
+        )
         node_dict = node.to_dict()
         node_dict_simplify(node_dict)
         assert node_dict == golden.out["output"]
-    except tree_sitter_type_provider.ParseError as node:
-        node_dict = node.to_dict()
-        node_dict_simplify(node_dict)
-        node_dict = {"ParseError": node_dict}
-        assert node_dict == golden.out["output"]
+    except tree_sitter_type_provider.ParseError as e:
+        assert str(e) == golden.out["output"]

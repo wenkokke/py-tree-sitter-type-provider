@@ -4,7 +4,7 @@ input:
   repository_path: data/tree-sitter-talon
   class_prefix: Talon
   extra: [comment]
-  error_as_node: false
+  raise_parse_error: false
   contents: |
     ### A test file with many comments
     # Only on macOS
@@ -14,8 +14,37 @@ input:
     -
     blurp
 output:
-  ParseError:
-    type: ERROR
+  type: source_file
+  children:
+  - text: '### A test file with many comments'
+    type: comment
+  - text: '# Only on macOS'
+    type: comment
+  - type: context
+    children:
+    - type: and
+      children:
+      - type: match
+        children: []
+        key:
+          text: os
+          type: identifier
+        pattern:
+          text: ' mac'
+          type: implicit_string
+      - text: '# Only on VSCode'
+        type: comment
+      - type: match
+        children: []
+        key:
+          text: app
+          type: identifier
+        pattern:
+          text: ' vscode'
+          type: implicit_string
+  - type: ERROR
     children:
     - text: blurp
       type: word
+    contents:
+    filename:

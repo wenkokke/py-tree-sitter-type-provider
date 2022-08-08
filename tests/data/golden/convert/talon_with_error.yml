@@ -4,7 +4,7 @@ input:
   repository_path: data/tree-sitter-talon
   class_prefix: Talon
   extra: [comment]
-  error_as_node: true
+  raise_parse_error: true
   contents: |
     ### A test file with many comments
     # Only on macOS
@@ -18,71 +18,8 @@ input:
       user.spoken_command("Some Argument", 1312)
 
     blurp
-output:
-  type: source_file
-  children:
-  - text: '### A test file with many comments'
-    type: comment
-  - text: '# Only on macOS'
-    type: comment
-  - type: context
-    children:
-    - type: and
-      children:
-      - type: match
-        children: []
-        key:
-          text: os
-          type: identifier
-        pattern:
-          text: ' mac'
-          type: implicit_string
-      - text: '# Only on VSCode'
-        type: comment
-      - type: match
-        children: []
-        key:
-          text: app
-          type: identifier
-        pattern:
-          text: ' vscode'
-          type: implicit_string
-  - type: command
-    children:
-    - text: "### When you say 'spoken command'"
-      type: comment
-    - text: '### run the spoken_command action'
-      type: comment
-    rule:
-      type: rule
-      children:
-      - type: seq
-        children:
-        - text: spoken
-          type: word
-        - text: command
-          type: word
-    script:
-      type: block
-      children:
-      - type: expression
-        children: []
-        expression:
-          type: action
-          children: []
-          action_name:
-            text: user.spoken_command
-            type: identifier
-          arguments:
-            type: argument_list
-            children:
-            - type: string
-              children:
-              - text: Some Argument
-                type: string_content
-            - text: '1312'
-              type: integer
-  - type: ERROR
-    children:
-    - text: blurp
-      type: word
+
+output: |
+  Parse error on line 11 between column 0 and 5:
+  blurp
+  ^^^^^
