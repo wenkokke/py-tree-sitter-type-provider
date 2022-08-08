@@ -50,7 +50,8 @@ push = true
 [tool.tox]
 legacy_tox_ini = """
 [tox]
-envlist = py
+envlist = py39,py310
+isolated_build = True
 
 [testenv]
 deps =
