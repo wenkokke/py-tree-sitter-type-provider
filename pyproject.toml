@@ -46,3 +46,15 @@ push = true
 
 [tool.bumpver.file_patterns]
 "pyproject.toml" = ['current_version = "{version}"', 'version = "{version}"']
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist = py
+
+[testenv]
+deps =
+  pytest >=7.1.2, <8
+  pytest-golden >=0.2.2, <0.3
+commands = pytest
+"""

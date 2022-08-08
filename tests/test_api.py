@@ -4,7 +4,6 @@ import pathlib
 import re
 
 import pytest
-import tree_sitter_talon
 
 import tree_sitter_type_provider
 
