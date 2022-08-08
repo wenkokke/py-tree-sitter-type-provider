@@ -1,11 +1,10 @@
-from __future__ import annotations
-
 import collections.abc
 import inspect
 import pathlib
 import re
 
 import pytest
+import tree_sitter_talon
 
 import tree_sitter_type_provider
 
@@ -43,8 +42,9 @@ def class_signatures(object: object) -> collections.abc.Iterator[str]:
                 pass
 
 
-@pytest.mark.golden_test("golden/api/*.yml")
+@pytest.mark.golden_test("data/golden/api/*.yml")
 def test_talon(golden):
+    error_as_node = golden["input"]["error_as_node"]
     class_prefix = golden["input"]["class_prefix"]
     module_name = f"tree_sitter_{ golden['input']['name'] }"
 
@@ -62,7 +62,7 @@ def test_talon(golden):
     module = tree_sitter_type_provider.TreeSitterTypeProvider(
         module_name,
         node_types,
-        error_as_node=True,
+        error_as_node=error_as_node,
         as_class_name=as_class_name,
         extra=golden["input"]["extra"],
     )

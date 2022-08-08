@@ -13,13 +13,10 @@ from tree_sitter_type_provider.node_types import NodeType as NodeType
 from tree_sitter_type_provider.node_types import NodeTypeError as NodeTypeError
 from tree_sitter_type_provider.node_types import NodeTypeName as NodeTypeName
 from tree_sitter_type_provider.node_types import Point as Point
+from tree_sitter_type_provider.parse_error import ParseError
 
 
 class TreeSitterTypeProvider(types.ModuleType):
-    @staticmethod
-    def _tspoint_to_point(tspoint: tuple[int, int]) -> Point:
-        return Point(row=tspoint[0], column=tspoint[1])
-
     def _node_type_name(
         self,
         node: typing.Union[NodeTypeName, Node, NodeType, tree_sitter.Node],
@@ -51,10 +48,14 @@ class TreeSitterTypeProvider(types.ModuleType):
         self,
         node: typing.Union[NodeTypeName, Node, NodeType, tree_sitter.Node],
     ) -> bool:
-        node_type = self._node_type(node)
-        # NOTE: Any node with content can have extra nodes,
-        #       even if the node only has fields and no children.
-        return node_type.has_content
+        node_type_name = self._node_type_name(node)
+        if node_type_name == "ERROR":
+            return True
+        else:
+            node_type = self._node_type(node_type_name)
+            # NOTE: Any node with content can have extra nodes,
+            #       even if the node only has fields and no children.
+            return node_type.has_content
 
     def _node_class(
         self, node: typing.Union[Node, NodeType, tree_sitter.Node]
@@ -92,8 +93,8 @@ class TreeSitterTypeProvider(types.ModuleType):
             # Convert basic information
             text: str = tscursor.node.text.decode(encoding)
             type_name: str = tscursor.node.type
-            start_position: Point = self._tspoint_to_point(tscursor.node.start_point)
-            end_position: Point = self._tspoint_to_point(tscursor.node.end_point)
+            start_position: Point = Point.from_tree_sitter(tscursor.node.start_point)
+            end_position: Point = Point.from_tree_sitter(tscursor.node.end_point)
 
             # Convert children
             fields: dict[str, Node] = {}
@@ -142,6 +143,7 @@ class TreeSitterTypeProvider(types.ModuleType):
         dataclass_kwargs: dict[str, typing.Any] = {},
     ):
         super().__init__(name=module_name)
+        self._error_as_node = error_as_node
 
         if as_class_name is None:
 
@@ -156,7 +158,9 @@ class TreeSitterTypeProvider(types.ModuleType):
             if node_type.named:
                 self._node_types_by_type[node_type.type_name] = node_type
 
-        # Create a node type for ERROR
+        # NOTE: error_as_node, so insert a node type for ERROR, which triggers
+        #       the creation of a language-specific class as with all other nodes
+        #       (otherwise, see after the initialisation of self._node_classes_by_type)
         if error_as_node:
             self._node_types_by_type["ERROR"] = NodeType(
                 type_name="ERROR",
@@ -169,10 +173,13 @@ class TreeSitterTypeProvider(types.ModuleType):
             )
 
         # Create the list of extra node types
-        extra_node_types = list(self._node_type(type_name) for type_name in extra)
-        if error_as_node and "ERROR" not in extra:
-            extra_node_types.append(self._node_type("ERROR"))
-        self._extra: typing.Sequence = tuple(extra_node_types)
+        def _extra_node_types() -> collections.abc.Iterator[NodeType]:
+            for type_name in extra:
+                yield self._node_type(type_name)
+            if error_as_node and "ERROR" not in extra:
+                yield self._node_type("ERROR")
+
+        self._extra: typing.Sequence = tuple(_extra_node_types())
 
         # Dictionary of abstract classes
         self._node_bases_by_type: dict[str, list[type[Node]]] = {}
@@ -204,3 +211,8 @@ class TreeSitterTypeProvider(types.ModuleType):
             )
             self._node_classes_by_type[node_type.type_name] = cls
             setattr(self, as_class_name(node_type.type_name), cls)
+
+        # NOTE: not error_as_node, so construct ERROR nodes using ParseError
+        #       whose __post_init__ method raises itself as an exception
+        if not error_as_node:
+            self._node_classes_by_type["ERROR"] = ParseError

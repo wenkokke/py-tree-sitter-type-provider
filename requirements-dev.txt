@@ -1,6 +1,1 @@
-build==0.8.0
-dataclasses-json==0.5.7
-pytest==7.1.2
-pytest-golden==0.2.2
-tree-sitter==0.20.0
-twine==4.0.1
+.[dev]

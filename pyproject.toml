@@ -13,10 +13,11 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Topic :: Software Development :: Compilers",
 ]
-dependencies = ["tree_sitter", "dataclasses-json"]
+dependencies = ["tree-sitter ==0.20.0", "dataclasses-json ==0.5.7"]
 
 [project.optional-dependencies]
-dev = ["pytest", "pytest-golden", "build", "twine"]
+dev = ["build ==0.8.0", "twine ==4.0.1"]
+test = ["pytest ==7.1.2", "pytest-golden ==0.2.2"]
 
 [project.readme]
 file = "README.md"
@@ -29,7 +30,7 @@ repository = "https://github.com/wenkokke/py-tree-sitter-type-provider"
 tree_sitter_type_provider = ["py.typed"]
 
 [pytest]
-testpaths = "test"
+testpaths = "tests"
 
 [tool.pytest.ini_options]
 enable_assertion_pass_hook = true

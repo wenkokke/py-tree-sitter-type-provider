@@ -1,0 +1,21 @@
+input:
+  name: talon
+  node_types: data/node-types/talon.json
+  repository_path: data/tree-sitter-talon
+  class_prefix: Talon
+  extra: [comment]
+  error_as_node: false
+  contents: |
+    ### A test file with many comments
+    # Only on macOS
+    os: mac
+    # Only on VSCode
+    and app: vscode
+    -
+    blurp
+output:
+  ParseError:
+    type: ERROR
+    children:
+    - text: blurp
+      type: word

@@ -12,8 +12,12 @@ class NodeTypeError(Exception):
 
 @dataclasses.dataclass
 class Point:
-    row: int
+    line: int
     column: int
+
+    @staticmethod
+    def from_tree_sitter(tspoint: tuple[int, int]) -> "Point":
+        return Point(line=tspoint[0], column=tspoint[1])
 
 
 NodeTypeName = str

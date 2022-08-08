@@ -1,8 +1,9 @@
 input:
   name: talon
-  file: node-types/talon.json
+  file: data/node-types/talon.json
   class_prefix: Talon
   extra: [comment]
+  error_as_node: true
 output: |-
   from_tree_sitter(self, tsvalue: Union[tree_sitter.Tree, tree_sitter.Node, tree_sitter.TreeCursor], *, encoding: str = 'utf-8') -> Node
   TalonAction(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[TalonComment, TalonError]], action_name: 'TalonIdentifier', arguments: 'TalonArgumentList') -> None

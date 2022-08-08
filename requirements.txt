@@ -1,2 +1,1 @@
-dataclasses-json==0.5.7
-tree-sitter==0.20.0
+.
