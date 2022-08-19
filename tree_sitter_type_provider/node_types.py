@@ -1,6 +1,8 @@
+import abc
 import collections.abc
 import dataclasses
 import functools
+import itertools
 import typing
 
 import dataclasses_json
@@ -35,6 +37,16 @@ class Node(dataclasses_json.DataClassJsonMixin):
     )
     start_position: Point
     end_position: Point
+
+    def is_equivalent(self, other: "Node") -> bool:
+        try:
+            self.assert_equivalent(other)
+            return True
+        except AssertionError:
+            return False
+
+    def assert_equivalent(self, other: "Node"):
+        return NotImplemented
 
 
 @dataclasses.dataclass
@@ -191,11 +203,45 @@ class NodeType(SimpleNodeType):
                 else:
                     base = Leaf
 
+                # Create implementation of is_equivalent
+                def assert_equivalent(node1: Node, node2: Node):
+                    if self.has_content:
+                        # compare children
+                        if hasattr(node1, "children"):
+                            assert hasattr(node2, "children")
+                            children1 = getattr(node1, "children")
+                            children2 = getattr(node2, "children")
+                            if children1 is None:
+                                assert children2 is None
+                            if isinstance(children1, Node):
+                                assert isinstance(children2, Node)
+                                children1.assert_equivalent(children2)
+                            if isinstance(children1, typing.Sequence):
+                                assert isinstance(children2, typing.Sequence)
+                                for child1, child2 in itertools.zip_longest(
+                                    children1, children2
+                                ):
+                                    assert isinstance(child1, Node)
+                                    assert isinstance(child2, Node)
+                                    child1.assert_equivalent(child2)
+                        # compare fields
+                        for field_name in self.fields.keys():
+                            assert hasattr(node1, field_name)
+                            assert hasattr(node2, field_name)
+                            field1 = getattr(node1, field_name)
+                            field2 = getattr(node2, field_name)
+                            assert isinstance(field1, Node)
+                            assert isinstance(field2, Node)
+                            field1.assert_equivalent(field2)
+                    else:
+                        return node1.text == node2.text
+
                 # Create and return dataclass
                 return dataclasses.make_dataclass(
                     cls_name=cls_name,
                     fields=fields.items(),
                     bases=(base, *mixins),
+                    namespace={"assert_equivalent": assert_equivalent},
                     **kwargs,
                 )
         else:

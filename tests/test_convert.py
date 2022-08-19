@@ -54,6 +54,7 @@ def test_talon(golden):
         node = types.from_tree_sitter(
             tree.root_node, raise_parse_error=raise_parse_error
         )
+        assert node.is_equivalent(node)
         node_dict = node.to_dict()
         node_dict_simplify(node_dict)
         assert node_dict == golden.out["output"]
