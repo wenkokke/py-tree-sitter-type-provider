@@ -204,8 +204,11 @@ class NodeType(SimpleNodeType):
                     base = Leaf
 
                 # Create implementation of is_equivalent
+                node_type_has_content = bool(self.has_content)
+                node_type_field_names = tuple(self.fields.keys())
+
                 def assert_equivalent(self, other: Node):
-                    if self.has_content:
+                    if node_type_has_content:
                         # compare children
                         if hasattr(self, "children"):
                             assert hasattr(other, "children")
@@ -225,7 +228,7 @@ class NodeType(SimpleNodeType):
                                     assert isinstance(child2, Node)
                                     child1.assert_equivalent(child2)
                         # compare fields
-                        for field_name in self.fields.keys():
+                        for field_name in node_type_field_names:
                             assert hasattr(self, field_name)
                             assert hasattr(other, field_name)
                             field1 = getattr(self, field_name)
