@@ -6,232 +6,232 @@ input:
 output: |-
   from_tree_sitter(self, tsvalue: Union[tree_sitter.Tree, tree_sitter.Node, tree_sitter.TreeCursor], *, encoding: str = 'utf-8', filename: Optional[str] = None, raise_parse_error: bool = False) -> Node
   JsArguments(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSpreadElement, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsArray(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSpreadElement, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsArrayPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsAssignmentPattern, JsPattern, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsArrowFunction(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: Union[JsExpression, JsStatementBlock], parameter: Optional[JsIdentifier], parameters: Optional[JsFormalParameters]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsAssignmentExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: Union[JsArrayPattern, JsIdentifier, JsMemberExpression, JsObjectPattern, JsParenthesizedExpression, JsSubscriptExpression, JsUndefined], right: 'JsExpression') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsAssignmentPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: 'JsPattern', right: 'JsExpression') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsAugmentedAssignmentExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: Union[JsIdentifier, JsMemberExpression, JsParenthesizedExpression, JsSubscriptExpression], right: 'JsExpression') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsAwaitExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsBinaryExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: 'JsExpression', right: 'JsExpression') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsBreakStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], label: Optional[JsStatementIdentifier]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsCallExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], arguments: Union[JsArguments, JsTemplateString], function: 'JsExpression') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsCatchClause(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatementBlock', parameter: Union[JsArrayPattern, JsIdentifier, JsObjectPattern, None]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsClass(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsClassHeritage, JsError]], body: 'JsClassBody', decorator: list['JsDecorator'], name: Optional[JsIdentifier]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsClassBody(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], member: list[Union[JsFieldDefinition, JsMethodDefinition]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsClassDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsClassHeritage, JsError]], body: 'JsClassBody', decorator: list['JsDecorator'], name: 'JsIdentifier') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsClassHeritage(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsComment(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsComputedPropertyName(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsContinueStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], label: Optional[JsStatementIdentifier]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsDebuggerStatement(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsDeclaration(text: str, type_name: str, start_position: Point, end_position: Point) -> None
     assert_equivalent(self, other: 'Node')
     is_equivalent(self, other: 'Node') -> bool
   JsDecorator(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsCallExpression, JsIdentifier, JsMemberExpression, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsDoStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatement', condition: 'JsParenthesizedExpression') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsElseClause(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsStatement, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsEmptyStatement(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsError(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Node], contents: Optional[str] = None, filename: Optional[str] = None) -> None
     assert_equivalent(self, other: 'Node')
     is_equivalent(self, other: 'Node') -> bool
   JsEscapeSequence(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsExportClause(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExportSpecifier, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsExportSpecifier(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], alias: Optional[JsIdentifier], name: 'JsIdentifier') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsExportStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExportClause, JsNamespaceExport, JsError]], declaration: Optional[JsDeclaration], decorator: list['JsDecorator'], source: Optional[JsString], value: Optional[JsExpression]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsExpression(text: str, type_name: str, start_position: Point, end_position: Point) -> None
     assert_equivalent(self, other: 'Node')
     is_equivalent(self, other: 'Node') -> bool
   JsExpressionStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSequenceExpression, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsFalse(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsFieldDefinition(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], decorator: list['JsDecorator'], property: Union[JsComputedPropertyName, JsNumber, JsPrivatePropertyIdentifier, JsPropertyIdentifier, JsString], value: Optional[JsExpression]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsFinallyClause(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatementBlock') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsForInStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatement', left: Union[JsArrayPattern, JsIdentifier, JsMemberExpression, JsObjectPattern, JsParenthesizedExpression, JsSubscriptExpression, JsUndefined], right: Union[JsExpression, JsSequenceExpression], value: Optional[JsExpression]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsForStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatement', condition: Union[JsEmptyStatement, JsExpressionStatement], increment: Union[JsExpression, JsSequenceExpression, None], initializer: Union[JsEmptyStatement, JsExpressionStatement, JsLexicalDeclaration, JsVariableDeclaration]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsFormalParameters(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsAssignmentPattern, JsPattern, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsFunction(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatementBlock', name: Optional[JsIdentifier], parameters: 'JsFormalParameters') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsFunctionDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatementBlock', name: 'JsIdentifier', parameters: 'JsFormalParameters') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsGeneratorFunction(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatementBlock', name: Optional[JsIdentifier], parameters: 'JsFormalParameters') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsGeneratorFunctionDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatementBlock', name: 'JsIdentifier', parameters: 'JsFormalParameters') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsHashBangLine(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsIdentifier(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsIfStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], alternative: Optional[JsElseClause], condition: 'JsParenthesizedExpression', consequence: 'JsStatement') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsImport(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsImportClause(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsIdentifier, JsNamedImports, JsNamespaceImport, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsImportSpecifier(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], alias: Optional[JsIdentifier], name: 'JsIdentifier') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsImportStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsImportClause, JsError]], source: 'JsString') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsJsxAttribute(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsJsxElement, JsJsxExpression, JsJsxFragment, JsJsxNamespaceName, JsJsxSelfClosingElement, JsPropertyIdentifier, JsString, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsJsxClosingElement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], name: Union[JsIdentifier, JsJsxNamespaceName, JsNestedIdentifier]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsJsxElement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsJsxElement, JsJsxExpression, JsJsxFragment, JsJsxSelfClosingElement, JsJsxText, JsError]], close_tag: 'JsJsxClosingElement', open_tag: 'JsJsxOpeningElement') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsJsxExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSequenceExpression, JsSpreadElement, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsJsxFragment(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsJsxElement, JsJsxExpression, JsJsxFragment, JsJsxSelfClosingElement, JsJsxText, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsJsxNamespaceName(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsIdentifier, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsJsxOpeningElement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], attribute: list[Union[JsJsxAttribute, JsJsxExpression]], name: Union[JsIdentifier, JsJsxNamespaceName, JsNestedIdentifier]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsJsxSelfClosingElement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], attribute: list[Union[JsJsxAttribute, JsJsxExpression]], name: Union[JsIdentifier, JsJsxNamespaceName, JsNestedIdentifier]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsJsxText(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsLabeledStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatement', label: 'JsStatementIdentifier') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsLexicalDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsVariableDeclarator, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsMemberExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], object: 'JsExpression', property: Union[JsPrivatePropertyIdentifier, JsPropertyIdentifier]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsMetaProperty(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsMethodDefinition(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatementBlock', decorator: list['JsDecorator'], name: Union[JsComputedPropertyName, JsNumber, JsPrivatePropertyIdentifier, JsPropertyIdentifier, JsString], parameters: 'JsFormalParameters') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsNamedImports(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsImportSpecifier, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsNamespaceExport(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsIdentifier, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsNamespaceImport(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsIdentifier, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsNestedIdentifier(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsIdentifier, JsNestedIdentifier, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsNewExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], arguments: Optional[JsArguments], constructor: Union[JsNewExpression, JsPrimaryExpression]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsNull(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsNumber(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsObject(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsMethodDefinition, JsPair, JsShorthandPropertyIdentifier, JsSpreadElement, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsObjectAssignmentPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: Union[JsArrayPattern, JsObjectPattern, JsShorthandPropertyIdentifierPattern], right: 'JsExpression') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsObjectPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsObjectAssignmentPattern, JsPairPattern, JsRestPattern, JsShorthandPropertyIdentifierPattern, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsPair(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], key: Union[JsComputedPropertyName, JsNumber, JsPrivatePropertyIdentifier, JsPropertyIdentifier, JsString], value: 'JsExpression') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsPairPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], key: Union[JsComputedPropertyName, JsNumber, JsPrivatePropertyIdentifier, JsPropertyIdentifier, JsString], value: Union[JsAssignmentPattern, JsPattern]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsParenthesizedExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSequenceExpression, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsPattern(text: str, type_name: str, start_position: Point, end_position: Point) -> None
     assert_equivalent(self, other: 'Node')
@@ -240,116 +240,116 @@ output: |-
     assert_equivalent(self, other: 'Node')
     is_equivalent(self, other: 'Node') -> bool
   JsPrivatePropertyIdentifier(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsProgram(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsHashBangLine, JsStatement, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsPropertyIdentifier(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsRegex(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], flags: Optional[JsRegexFlags], pattern: 'JsRegexPattern') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsRegexFlags(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsRegexPattern(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsRestPattern(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsArrayPattern, JsIdentifier, JsMemberExpression, JsObjectPattern, JsSubscriptExpression, JsUndefined, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsReturnStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSequenceExpression, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsSequenceExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], left: 'JsExpression', right: Union[JsExpression, JsSequenceExpression]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsShorthandPropertyIdentifier(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsShorthandPropertyIdentifierPattern(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsSpreadElement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsStatement(text: str, type_name: str, start_position: Point, end_position: Point) -> None
     assert_equivalent(self, other: 'Node')
     is_equivalent(self, other: 'Node') -> bool
   JsStatementBlock(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsStatement, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsStatementIdentifier(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsString(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsEscapeSequence, JsStringFragment, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsStringFragment(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsSubscriptExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], index: Union[JsExpression, JsSequenceExpression], object: 'JsExpression') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsSuper(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsSwitchBody(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsSwitchCase, JsSwitchDefault, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsSwitchCase(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: list['JsStatement'], value: Union[JsExpression, JsSequenceExpression]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsSwitchDefault(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: list['JsStatement']) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsSwitchStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsSwitchBody', value: 'JsParenthesizedExpression') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsTemplateString(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsEscapeSequence, JsTemplateSubstitution, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsTemplateSubstitution(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSequenceExpression, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsTernaryExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], alternative: 'JsExpression', condition: 'JsExpression', consequence: 'JsExpression') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsThis(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsThrowStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsSequenceExpression, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsTrue(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsTryStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatementBlock', finalizer: Optional[JsFinallyClause], handler: Optional[JsCatchClause]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsUnaryExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], argument: 'JsExpression') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsUndefined(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsUpdateExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], argument: 'JsExpression') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsVariableDeclaration(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsVariableDeclarator, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsVariableDeclarator(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], name: Union[JsArrayPattern, JsIdentifier, JsObjectPattern], value: Optional[JsExpression]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsWhileStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatement', condition: 'JsParenthesizedExpression') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsWithStatement(text: str, type_name: str, start_position: Point, end_position: Point, children: list['JsError'], body: 'JsStatement', object: 'JsParenthesizedExpression') -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
   JsYieldExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: list[Union[JsExpression, JsError]]) -> None
-    assert_equivalent(node1: Node, node2: Node)
+    assert_equivalent(self, other: Node)
     is_equivalent(self, other: 'Node') -> bool
