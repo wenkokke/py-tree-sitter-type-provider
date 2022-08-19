@@ -204,13 +204,13 @@ class NodeType(SimpleNodeType):
                     base = Leaf
 
                 # Create implementation of is_equivalent
-                def assert_equivalent(node1: Node, node2: Node):
+                def assert_equivalent(self, other: Node):
                     if self.has_content:
                         # compare children
-                        if hasattr(node1, "children"):
-                            assert hasattr(node2, "children")
-                            children1 = getattr(node1, "children")
-                            children2 = getattr(node2, "children")
+                        if hasattr(self, "children"):
+                            assert hasattr(other, "children")
+                            children1 = getattr(self, "children")
+                            children2 = getattr(other, "children")
                             if children1 is None:
                                 assert children2 is None
                             if isinstance(children1, Node):
@@ -226,15 +226,15 @@ class NodeType(SimpleNodeType):
                                     child1.assert_equivalent(child2)
                         # compare fields
                         for field_name in self.fields.keys():
-                            assert hasattr(node1, field_name)
-                            assert hasattr(node2, field_name)
-                            field1 = getattr(node1, field_name)
-                            field2 = getattr(node2, field_name)
+                            assert hasattr(self, field_name)
+                            assert hasattr(other, field_name)
+                            field1 = getattr(self, field_name)
+                            field2 = getattr(other, field_name)
                             assert isinstance(field1, Node)
                             assert isinstance(field2, Node)
                             field1.assert_equivalent(field2)
                     else:
-                        return node1.text == node2.text
+                        return self.text == other.text
 
                 # Create and return dataclass
                 return dataclasses.make_dataclass(
