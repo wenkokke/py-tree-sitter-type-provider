@@ -118,6 +118,14 @@ class TreeSitterTypeProvider(types.ModuleType):
                 else:
                     fields[field_name] = child
 
+            # Handle optional fields.
+            for field_name, field_type in self._node_type(type_name).fields.items():
+                if not field_type.required and field_name not in fields.keys():
+                    if field_type.multiple:
+                        fields[field_name] = []  # type: ignore
+                    else:
+                        fields[field_name] = None  # type: ignore
+
             if tscursor.goto_first_child():
                 if tscursor.node.is_named:
                     convert_child(tscursor)
