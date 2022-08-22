@@ -95,13 +95,13 @@ class TreeSitterTypeProvider(types.ModuleType):
         raise_parse_error: bool,
     ) -> Node:
         if tscursor.node.is_named:
-            # Convert basic information
+            # Convert basic information.
             text: str = tscursor.node.text.decode(encoding)
             type_name: str = tscursor.node.type
             start_position: Point = Point.from_tree_sitter(tscursor.node.start_point)
             end_position: Point = Point.from_tree_sitter(tscursor.node.end_point)
 
-            # Convert children
+            # Convert children.
             fields: dict[str, Node] = {}
             children: list[Node] = []
 
@@ -119,12 +119,15 @@ class TreeSitterTypeProvider(types.ModuleType):
                     fields[field_name] = child
 
             # Handle optional fields.
-            for field_name, field_type in self._node_type(type_name).fields.items():
-                if not field_type.required and field_name not in fields.keys():
-                    if field_type.multiple:
-                        fields[field_name] = []  # type: ignore
-                    else:
-                        fields[field_name] = None  # type: ignore
+            try:
+                for field_name, field_type in self._node_type(type_name).fields.items():
+                    if not field_type.required and field_name not in fields.keys():
+                        if field_type.multiple:
+                            fields[field_name] = []  # type: ignore
+                        else:
+                            fields[field_name] = None  # type: ignore
+            except NodeTypeError:
+                pass
 
             if tscursor.goto_first_child():
                 if tscursor.node.is_named:
@@ -144,8 +147,7 @@ class TreeSitterTypeProvider(types.ModuleType):
                 kwargs["children"] = children
             kwargs |= fields
 
-            # Return the node with its field name
-
+            # Return the node with its field name.
             if raise_parse_error and type_name == "ERROR":
 
                 def _root_node(tsnode: tree_sitter.Node) -> str:
