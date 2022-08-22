@@ -42,7 +42,7 @@ module.exports = grammar({
     source_file: ($) =>
       seq(
         optional($.context),
-        repeat(choice($.include_tag, $.settings, $.command))
+        repeat(choice($.include_tag, $.settings, $.command)),
       ),
 
     comment: ($) => token(seq("#", /.*/)),
@@ -89,14 +89,14 @@ module.exports = grammar({
                 "app.bundle",
                 "title",
                 "code.language",
-                "language"
+                "language",
               ),
-              $.identifier
-            )
+              $.identifier,
+            ),
           ),
           token.immediate(":"),
-          field("pattern", $.implicit_string)
-        )
+          field("pattern", $.implicit_string),
+        ),
       ),
 
     /* Tags */
@@ -119,7 +119,7 @@ module.exports = grammar({
       choice(
         alias($._simple_statement, $.block),
         seq($._indent, $.block),
-        alias($._newline, $.block)
+        alias($._newline, $.block),
       ),
 
     block: ($) => seq(repeat($._simple_statement), $._dedent),
@@ -158,7 +158,7 @@ module.exports = grammar({
         $.optional,
         $.repeat,
         $.repeat1,
-        $.parenthesized_rule
+        $.parenthesized_rule,
       ),
 
     word: ($) => /[\p{Letter}\p{Number}-]+/,
@@ -187,7 +187,7 @@ module.exports = grammar({
         $.key_action,
         $.sleep_action,
         $.action,
-        $.parenthesized_expression
+        $.parenthesized_expression,
       ),
 
     variable: ($) => field("variable_name", $.identifier),
@@ -214,10 +214,10 @@ module.exports = grammar({
             seq(
               field("left", $._expression),
               field("operator", alias(operator, $.operator)),
-              field("right", $._expression)
-            )
-          )
-        )
+              field("right", $._expression),
+            ),
+          ),
+        ),
       );
     },
 
@@ -228,8 +228,8 @@ module.exports = grammar({
           "key",
           "(",
           field("arguments", alias(/[^\)]*/, $.implicit_string)),
-          ")"
-        )
+          ")",
+        ),
       ),
 
     sleep_action: ($) =>
@@ -239,8 +239,8 @@ module.exports = grammar({
           "sleep",
           "(",
           field("arguments", alias(/[^\)]*/, $.implicit_string)),
-          ")"
-        )
+          ")",
+        ),
       ),
 
     action: ($) =>
@@ -248,8 +248,8 @@ module.exports = grammar({
         PREC.action,
         seq(
           field("action_name", $.identifier),
-          field("arguments", $.argument_list)
-        )
+          field("arguments", $.argument_list),
+        ),
       ),
 
     argument_list: ($) => seq("(", sep($._expression, ","), optional(","), ")"),
@@ -276,10 +276,10 @@ module.exports = grammar({
             repeat1(/[0-9]+_?/),
             choice(
               optional(/[Ll]/), // long numbers
-              optional(/[jJ]/) // complex numbers
-            )
-          )
-        )
+              optional(/[jJ]/), // complex numbers
+            ),
+          ),
+        ),
       ),
 
     float: ($) => {
@@ -291,10 +291,10 @@ module.exports = grammar({
           choice(
             seq(digits, ".", optional(digits), optional(exponent)),
             seq(optional(digits), ".", digits, optional(exponent)),
-            seq(digits, exponent)
+            seq(digits, exponent),
           ),
-          optional(choice(/[Ll]/, /[jJ]/))
-        )
+          optional(choice(/[Ll]/, /[jJ]/)),
+        ),
       );
     },
 
@@ -307,10 +307,10 @@ module.exports = grammar({
           choice(
             $._regex_content,
             $.regex_escape_sequence,
-            $._not_escapesequence
-          )
+            $._not_escapesequence,
+          ),
         ),
-        alias($._regex_end, "/")
+        alias($._regex_end, "/"),
       ),
 
     regex_escape_sequence: ($) =>
@@ -334,12 +334,12 @@ module.exports = grammar({
                 "]",
                 "{",
                 "}",
-                "/"
-              )
-            )
-          )
+                "/",
+              ),
+            ),
+          ),
         ),
-        alias($.string_escape_sequence, $.regex_escape_sequence)
+        alias($.string_escape_sequence, $.regex_escape_sequence),
       ),
 
     /* Strings */
@@ -356,10 +356,10 @@ module.exports = grammar({
             alias($._not_interpolation, $.string_content),
             $.string_escape_sequence,
             alias($._not_escapesequence, $.string_content),
-            $.string_content
-          )
+            $.string_content,
+          ),
         ),
-        alias($._string_end, '"')
+        alias($._string_end, '"'),
       ),
 
     interpolation: ($) => prec(1, seq("{", $._expression, "}")),
@@ -388,10 +388,10 @@ module.exports = grammar({
               "n",
               "t",
               "v",
-              "\\"
-            )
-          )
-        )
+              "\\",
+            ),
+          ),
+        ),
       ),
 
     _not_escapesequence: ($) => "\\",
