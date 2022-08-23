@@ -109,6 +109,23 @@ class NodeArgsType:
     def __bool__(self) -> bool:
         return bool(self.types)
 
+    def assert_equivalent(
+        self,
+        node1: typing.Union[None, Node, typing.Sequence[Node]],
+        node2: typing.Union[None, Node, typing.Sequence[Node]],
+    ) -> None:
+        if node1 is None:
+            assert node2 is None
+        elif isinstance(node1, Node):
+            assert isinstance(node2, Node)
+            node1.assert_equivalent(node2)
+        else:
+            assert isinstance(node2, typing.Sequence)
+            for child1, child2 in itertools.zip_longest(node1, node2):
+                assert isinstance(child1, Node)
+                assert isinstance(child2, Node)
+                child1.assert_equivalent(child2)
+
     def as_typehint(
         self,
         *,
@@ -159,6 +176,24 @@ class NodeType(SimpleNodeType):
     def has_content(self) -> bool:
         return len(self.fields) > 0 or bool(self.children)
 
+    def assert_equivalent(self, node1: Node, node2: Node):
+        if self.has_content:
+            # compare children
+            if hasattr(node1, "children"):
+                assert hasattr(node2, "children")
+                children1 = getattr(node1, "children")
+                children2 = getattr(node2, "children")
+                self.children.assert_equivalent(children1, children2)
+            # compare fields
+            for field_name, field_type in self.fields.items():
+                assert hasattr(node1, field_name)
+                assert hasattr(node2, field_name)
+                field1 = getattr(node1, field_name)
+                field2 = getattr(node2, field_name)
+                field_type.assert_equivalent(field1, field2)
+        else:
+            return node1.text == node2.text
+
     def as_type(
         self,
         *,
@@ -204,40 +239,10 @@ class NodeType(SimpleNodeType):
                     base = Leaf
 
                 # Create implementation of is_equivalent
-                node_type_has_content = bool(self.has_content)
-                node_type_field_names = tuple(self.fields.keys())
+                node_type = self
 
                 def assert_equivalent(self, other: Node):
-                    if node_type_has_content:
-                        # compare children
-                        if hasattr(self, "children"):
-                            assert hasattr(other, "children")
-                            children1 = getattr(self, "children")
-                            children2 = getattr(other, "children")
-                            if children1 is None:
-                                assert children2 is None
-                            if isinstance(children1, Node):
-                                assert isinstance(children2, Node)
-                                children1.assert_equivalent(children2)
-                            if isinstance(children1, typing.Sequence):
-                                assert isinstance(children2, typing.Sequence)
-                                for child1, child2 in itertools.zip_longest(
-                                    children1, children2
-                                ):
-                                    assert isinstance(child1, Node)
-                                    assert isinstance(child2, Node)
-                                    child1.assert_equivalent(child2)
-                        # compare fields
-                        for field_name in node_type_field_names:
-                            assert hasattr(self, field_name)
-                            assert hasattr(other, field_name)
-                            field1 = getattr(self, field_name)
-                            field2 = getattr(other, field_name)
-                            assert isinstance(field1, Node)
-                            assert isinstance(field2, Node)
-                            field1.assert_equivalent(field2)
-                    else:
-                        return self.text == other.text
+                    node_type.assert_equivalent(self, other)
 
                 # Create and return dataclass
                 return dataclasses.make_dataclass(
