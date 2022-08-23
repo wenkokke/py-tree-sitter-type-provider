@@ -102,7 +102,7 @@ class TreeSitterTypeProvider(types.ModuleType):
             end_position: Point = Point.from_tree_sitter(tscursor.node.end_point)
 
             # Convert children.
-            fields: dict[str, Node] = {}
+            fields: dict[str, typing.Union[None, Node, list[Node]]] = {}
             children: list[Node] = []
 
             def convert_child(tscursor: tree_sitter.TreeCursor):
@@ -116,18 +116,27 @@ class TreeSitterTypeProvider(types.ModuleType):
                 if field_name is None:
                     children.append(child)
                 else:
-                    fields[field_name] = child
+                    if self._node_type(child).fields[field_name].multiple:
+                        if field_name in fields:
+                            field_value = fields[field_name]
+                            if field_value is None:
+                                fields[field_name] = child
+                            elif isinstance(field_value, Node):
+                                fields[field_name] = [field_value, child]
+                            else:
+                                field_value.append(child)
+                        else:
+                            fields[field_name] = [child]
+                    else:
+                        fields[field_name] = child
 
             # Handle optional fields.
-            try:
-                for field_name, field_type in self._node_type(type_name).fields.items():
-                    if not field_type.required and field_name not in fields.keys():
-                        if field_type.multiple:
-                            fields[field_name] = []  # type: ignore
-                        else:
-                            fields[field_name] = None  # type: ignore
-            except NodeTypeError:
-                pass
+            for field_name, field_type in self._node_type(type_name).fields.items():
+                if not field_type.required and field_name not in fields:
+                    if field_type.multiple:
+                        fields[field_name] = []
+                    else:
+                        fields[field_name] = None
 
             if tscursor.goto_first_child():
                 if tscursor.node.is_named:
@@ -138,7 +147,7 @@ class TreeSitterTypeProvider(types.ModuleType):
                 assert tscursor.goto_parent()
 
             # Create node instance
-            kwargs: dict[str, typing.Union[str, Point, Node, list[Node]]] = {}
+            kwargs: dict[str, typing.Union[str, Point, None, Node, list[Node]]] = {}
             kwargs["type_name"] = type_name
             kwargs["text"] = text
             kwargs["start_position"] = start_position
