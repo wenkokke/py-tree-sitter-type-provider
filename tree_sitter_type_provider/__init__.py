@@ -98,6 +98,7 @@ class TreeSitterTypeProvider(types.ModuleType):
             # Convert basic information.
             text: str = tscursor.node.text.decode(encoding)
             type_name: str = tscursor.node.type
+            node_type: NodeType = self._node_type(type_name)
             start_position: Point = Point.from_tree_sitter(tscursor.node.start_point)
             end_position: Point = Point.from_tree_sitter(tscursor.node.end_point)
 
@@ -116,7 +117,7 @@ class TreeSitterTypeProvider(types.ModuleType):
                 if field_name is None:
                     children.append(child)
                 else:
-                    if self._node_type(child).fields[field_name].multiple:
+                    if node_type.fields[field_name].multiple:
                         if field_name in fields:
                             field_value = fields[field_name]
                             if field_value is None:
@@ -130,14 +131,6 @@ class TreeSitterTypeProvider(types.ModuleType):
                     else:
                         fields[field_name] = child
 
-            # Handle optional fields.
-            for field_name, field_type in self._node_type(type_name).fields.items():
-                if not field_type.required and field_name not in fields:
-                    if field_type.multiple:
-                        fields[field_name] = []
-                    else:
-                        fields[field_name] = None
-
             if tscursor.goto_first_child():
                 if tscursor.node.is_named:
                     convert_child(tscursor)
@@ -145,6 +138,14 @@ class TreeSitterTypeProvider(types.ModuleType):
                     if tscursor.node.is_named:
                         convert_child(tscursor)
                 assert tscursor.goto_parent()
+
+            # Handle optional fields.
+            for field_name, field_type in node_type.fields.items():
+                if not field_type.required and field_name not in fields:
+                    if field_type.multiple:
+                        fields[field_name] = []
+                    else:
+                        fields[field_name] = None
 
             # Create node instance
             kwargs: dict[str, typing.Union[str, Point, None, Node, list[Node]]] = {}
