@@ -250,7 +250,6 @@ class NodeType(SimpleNodeType):
                     fields=fields.items(),
                     bases=(base, *mixins),
                     namespace={
-                        "__reduce__": lambda self: self.astuple(),
                         "assert_equivalent": assert_equivalent,
                     },
                     **kwargs,
