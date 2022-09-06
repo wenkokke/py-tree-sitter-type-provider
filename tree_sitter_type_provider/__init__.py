@@ -207,6 +207,11 @@ class TreeSitterTypeProvider(types.ModuleType):
             if node_type.named:
                 self._node_types_by_type[node_type.type_name] = node_type
 
+        # Insert node types for extra nodes
+        for type_name in extra:
+            if type_name not in self._node_types_by_type:
+                self._node_types_by_type[type_name] = NodeType(type_name, named=True)
+
         # Insert a node type for ERROR
         self._node_types_by_type["ERROR"] = NodeType(
             type_name="ERROR",
