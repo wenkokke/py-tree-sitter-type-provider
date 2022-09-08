@@ -26,15 +26,23 @@ content-type = "text/markdown"
 [project.urls]
 repository = "https://github.com/wenkokke/py-tree-sitter-type-provider"
 
-[tool.setuptools.package-data]
-tree_sitter_type_provider = ["py.typed"]
-
 [pytest]
 testpaths = "tests"
 
 [tool.pytest.ini_options]
 enable_assertion_pass_hook = true
 filterwarnings = ["ignore::DeprecationWarning:.*:"]
+
+[tool.setuptools.package-data]
+tree_sitter_type_provider = ["py.typed"]
+
+[tool.mypy]
+python_version = 3.9
+namespace_packages = true
+explicit_package_bases = true
+ignore_missing_imports = true
+warn_return_any = true
+warn_unused_configs = true
 
 [tool.bumpver]
 current_version = "2.1.8"

@@ -22,7 +22,7 @@ class TreeSitterTypeProvider(types.ModuleType):
         node: typing.Union[NodeTypeName, Node, NodeType, tree_sitter.Node],
     ) -> str:
         if isinstance(node, tree_sitter.Node):
-            return node.type
+            return typing.cast(str, node.type)
         elif isinstance(node, Node):
             return node.type_name
         elif isinstance(node, NodeType):
@@ -165,7 +165,7 @@ class TreeSitterTypeProvider(types.ModuleType):
                     if tsnode.parent:
                         return _root_node(tsnode.parent)
                     else:
-                        return tsnode.text.decode("utf-8")
+                        return typing.cast(str, tsnode.text.decode("utf-8"))
 
                 contents = _root_node(tscursor.node)
                 raise ParseError(

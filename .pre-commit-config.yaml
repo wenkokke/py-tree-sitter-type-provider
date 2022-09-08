@@ -35,4 +35,4 @@ repos:
     rev: "v0.971"
     hooks:
       - id: mypy
-        exclude: "^(tests|build)"
+        args: ["--config-file", "pyproject.toml"]
