@@ -35,10 +35,12 @@ jobs:
         uses: Gr1N/setup-poetry@v7
 
       - name: Build
-        run: poetry install --with test
+        run: poetry install --with dev --with test
 
       - name: Test
-        run: poetry run pytest
+        run: |
+          poetry run bumpver update --patch --dry
+          poetry run pytest
 
   publish:
     name: Publish

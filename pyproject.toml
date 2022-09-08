@@ -20,10 +20,12 @@ classifiers = [
 python = "^3.9"
 tree-sitter = "^0.20.0"
 dataclasses-json = "^0.5.7"
+bumpver = { version = "*", optional = true }
 pytest = { version = "^7.1.2", optional = true }
 pytest-golden = { version = "^0.2.2", optional = true }
 
 [tool.poetry.extras]
+dev = ["bumpver"]
 test = ["pytest", "pytest-golden"]
 
 # MyPy
