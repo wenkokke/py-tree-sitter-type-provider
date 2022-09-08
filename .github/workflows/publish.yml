@@ -30,7 +30,7 @@ jobs:
           PYPI_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
 
       - name: Publish to GitHub Releases
-        uses: softprops/action-gh-Publish@v1
+        uses: softprops/action-gh-release@v1
         with:
           files: |
             dist/*.tar.gz
