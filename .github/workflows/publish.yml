@@ -1,0 +1,38 @@
+name: Publish
+
+on:
+  workflow_call:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - uses: Gr1N/setup-poetry@v7
+
+      - name: Build
+        run: poetry build
+
+      - name: Publish to PyPi
+        run: poetry publish --username ${{ env.PYPI_USERNAME }} --password ${{ env.PYPI_PASSWORD }}
+        env:
+          PYPI_USERNAME: __token__
+          PYPI_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+
+      - name: Publish to GitHub Releases
+        uses: softprops/action-gh-Publish@v1
+        with:
+          files: |
+            dist/*.tar.gz
+            dist/*.whl
+          fail_on_unmatched_files: true

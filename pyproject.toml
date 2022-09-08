@@ -20,17 +20,13 @@ classifiers = [
 python = "^3.9"
 tree-sitter = "^0.20.0"
 dataclasses-json = "^0.5.7"
+pytest = { version = "^7.1.2", optional = true }
+pytest-golden = { version = "^0.2.2", optional = true }
 
-[tool.poetry.group.test]
-[tool.poetry.group.test.dependencies]
-pytest = "^7.1.2"
-pytest-golden = "^0.2.2"
+[tool.poetry.extras]
+test = ["pytest", "pytest-golden"]
 
-[tool.pytest.ini_options]
-enable_assertion_pass_hook = true
-filterwarnings = ["ignore::DeprecationWarning:.*:"]
-testpaths = "tests"
-
+# MyPy
 [tool.mypy]
 python_version = 3.9
 namespace_packages = true
@@ -40,6 +36,7 @@ warn_redundant_casts = true
 warn_return_any = true
 warn_unused_configs = true
 
+# Versions
 [tool.bumpver]
 current_version = "2.1.8"
 version_pattern = "MAJOR.MINOR.PATCH"
@@ -51,15 +48,23 @@ push = true
 [tool.bumpver.file_patterns]
 "pyproject.toml" = ['current_version = "{version}"', 'version = "{version}"']
 
+# Tests
+[tool.pytest.ini_options]
+enable_assertion_pass_hook = true
+filterwarnings = ["ignore::DeprecationWarning:.*:"]
+testpaths = "tests"
+
 [tool.tox]
 legacy_tox_ini = """
 [tox]
+requires =
+  tox-poetry
 envlist = py39,py310
 isolated_build = True
 
 [testenv]
-deps =
-  pytest==7.1.2
-  pytest-golden==0.2.2
-commands = pytest
+extras =
+  test
+commands =
+  pytest tests/
 """
