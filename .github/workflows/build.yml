@@ -35,7 +35,7 @@ jobs:
         uses: Gr1N/setup-poetry@v7
 
       - name: Build
-        run: poetry install --with dev --with test
+        run: poetry install --with dev,test
 
       - name: Test
         run: |
