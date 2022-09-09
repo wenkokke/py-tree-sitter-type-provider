@@ -7,6 +7,10 @@ defaults:
   run:
     shell: bash
 
+env:
+  TWINE_USERNAME: __token__
+  TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+
 jobs:
   publish:
     name: Release
@@ -26,14 +30,11 @@ jobs:
         run: |
           twine check dist/**.tar.gz dist/**.whl
           twine upload --skip-existing -r pypi dist/**.tar.gz dist/**.whl
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
 
       - name: Publish to GitHub Releases
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            dist/*.tar.gz
-            dist/*.whl
+            dist/**.tar.gz
+            dist/**.whl
           fail_on_unmatched_files: true
