@@ -34,11 +34,6 @@ jobs:
       - name: Build & Test
         run: tox --skip-missing-interpreters true
 
-  build-doc:
-    name: Build Doc
-    needs: [build]
-    uses: ./.github/workflows/build-doc.yml
-
   release:
     name: Release
     needs: [build]
