@@ -1,35 +1,19 @@
-# Bump versions
+build:
+	poetry build
 
-patch:
-	bumpver update --patch
+test:
+	tox --skip-missing-interpreters true
 
-minor:
-	bumpver update --minor
+bump-patch:
+	@poetry run bumpver update --patch
+	@$(MAKE) release
 
-major:
-	bumpver update --major
+bump-minor:
+	@poetry run bumpver update --minor
+	@$(MAKE) release
 
-.PHONY: patch minor major
+bump-major:
+	@poetry run bumpver update --major
+	@$(MAKE) release
 
-# Publish to PyPi
-
-CURRENT_VERSION = $(shell eval $$(bumpver show --no-fetch --env) && echo "$$CURRENT_VERSION")
-
-CURRENT_WHEEL = dist/tree_sitter_type_provider-$(CURRENT_VERSION)-py3-none-any.whl
-CURRENT_TARGZ = dist/tree_sitter_type_provider-$(CURRENT_VERSION).tar.gz
-
-SOURCES = $(shell find tree_sitter_type_provider -name "*.py")
-
-$(CURRENT_WHEEL) $(CURRENT_TARGZ): $(SOURCES)
-	pytest
-	python -m build
-
-testpublish: $(CURRENT_WHEEL) $(CURRENT_TARGZ)
-	twine check $(CURRENT_WHEEL) $(CURRENT_TARGZ)
-	twine upload -r testpypi $(CURRENT_WHEEL) $(CURRENT_TARGZ)
-	touch testpublish
-
-publish: $(CURRENT_WHEEL) $(CURRENT_TARGZ)
-	twine check $(CURRENT_WHEEL) $(CURRENT_TARGZ)
-	twine upload -r pypi $(CURRENT_WHEEL) $(CURRENT_TARGZ)
-	touch publish
+.PHONY: build build-doc test bump-patch bump-minor bump-major
