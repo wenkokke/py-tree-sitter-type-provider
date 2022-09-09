@@ -22,11 +22,11 @@ jobs:
       - name: Build Package
         run: poetry build
 
-      - name: Publish to PyPi
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          verbose: true
-          password: ${{ secrets.PYPI_API_TOKEN }}
+      # - name: Publish to PyPi
+      #   uses: pypa/gh-action-pypi-publish@release/v1
+      #   with:
+      #     verbose: true
+      #     password: ${{ secrets.PYPI_API_TOKEN }}
 
       - name: Publish to GitHub Releases
         uses: softprops/action-gh-release@v1
