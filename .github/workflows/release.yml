@@ -24,8 +24,11 @@ jobs:
 
       - name: Publish to PyPi
         run: |
-          poetry config pypi-token.pypi '${{ secrets.PYPI_API_TOKEN }}'
-          poetry publish --skip-existing
+          twine check dist/**.tar.gz dist/**.whl
+          twine upload --skip-existing -r pypi dist/**.tar.gz dist/**.whl
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
 
       - name: Publish to GitHub Releases
         uses: softprops/action-gh-release@v1
