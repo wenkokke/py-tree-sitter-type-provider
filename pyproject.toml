@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "tree_sitter_type_provider"
-version = "2.1.14"
+version = "2.1.15"
 description = "Type providers for tree-sitter in Python."
 license = "MIT"
 authors = ["Wen Kokke <wenkokke@users.noreply.github.com>"]
@@ -40,7 +40,7 @@ warn_unused_configs = true
 
 # Versions
 [tool.bumpver]
-current_version = "2.1.14"
+current_version = "2.1.15"
 version_pattern = "MAJOR.MINOR.PATCH"
 commit_message = "Bump version {old_version} -> {new_version}"
 commit = true
