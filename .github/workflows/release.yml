@@ -1,4 +1,4 @@
-name: Publish
+name: Release
 
 on:
   workflow_call:
@@ -9,25 +9,23 @@ defaults:
 
 jobs:
   publish:
-    name: Publish
+    name: Release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v4
+      - name: Setup Python
+        uses: ./.github/actions/setup-python
         with:
           python-version: "3.9"
 
-      - uses: Gr1N/setup-poetry@v7
-
-      - name: Build
+      - name: Build Package
         run: poetry build
 
       - name: Publish to PyPi
-        run: poetry publish --username ${{ env.PYPI_USERNAME }} --password ${{ env.PYPI_PASSWORD }}
-        env:
-          PYPI_USERNAME: __token__
-          PYPI_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: |
+          poetry config pypi-token.pypi '${{ secrets.PYPI_API_TOKEN }}'
+          poetry publish --skip-existing
 
       - name: Publish to GitHub Releases
         uses: softprops/action-gh-release@v1
