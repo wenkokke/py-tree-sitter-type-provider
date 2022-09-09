@@ -2,7 +2,7 @@ build:
 	poetry build
 
 test:
-	tox --skip-missing-interpreters true
+	tox --skip-missing-interpreters
 
 bump-patch:
 	@poetry run bumpver update --patch
