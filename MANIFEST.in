@@ -1,3 +1,0 @@
-include README.md
-include LICENSE
-include tree_sitter_type_provider/py.typed
