@@ -25,8 +25,15 @@ pytest = { version = "^7.1.2", optional = true }
 pytest-golden = { version = "^0.2.2", optional = true }
 
 [tool.poetry.extras]
-dev = ["bumpver"]
-test = ["pytest", "pytest-golden"]
+test = ["bumpver", "pytest", "pytest-golden"]
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^0.971"
+tox = "^3.25.1"
+black = "^22.8.0"
+isort = "^5.10.1"
+flake8 = "^5.0.4"
+bumpver = "*"
 
 # MyPy
 [tool.mypy]
@@ -68,5 +75,6 @@ isolated_build = True
 extras =
   test
 commands =
+  bumpver update --patch --dry --no-fetch
   pytest tests/
 """
