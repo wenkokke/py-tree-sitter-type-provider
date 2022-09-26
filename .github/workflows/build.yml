@@ -25,27 +25,6 @@ jobs:
         experimental: [false]
         include:
           - os: ubuntu-latest
-            python-version: "3.9.1"
-            experimental: true
-          - os: ubuntu-latest
-            python-version: "3.9.2"
-            experimental: true
-          - os: ubuntu-latest
-            python-version: "3.9.3"
-            experimental: true
-          - os: ubuntu-latest
-            python-version: "3.9.4"
-            experimental: true
-          - os: ubuntu-latest
-            python-version: "3.9.5"
-            experimental: true
-          - os: ubuntu-latest
-            python-version: "3.9.6"
-            experimental: true
-          - os: ubuntu-latest
-            python-version: "3.9.7"
-            experimental: true
-          - os: ubuntu-latest
             python-version: "3.9.8"
             experimental: true
           - os: ubuntu-latest
