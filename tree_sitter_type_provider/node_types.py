@@ -187,11 +187,13 @@ class NodeType(SimpleNodeType):
                 self.children.assert_equivalent(children1, children2)
             # compare fields
             for field_name, field_type in self.fields.items():
-                assert hasattr(node1, field_name)
-                assert hasattr(node2, field_name)
-                field1 = getattr(node1, field_name)
-                field2 = getattr(node2, field_name)
-                field_type.assert_equivalent(field1, field2)
+                if hasattr(node1, field_name):
+                    assert hasattr(node2, field_name)
+                    field1 = getattr(node1, field_name)
+                    field2 = getattr(node2, field_name)
+                    field_type.assert_equivalent(field1, field2)
+                else:
+                    assert not hasattr(node2, field_name)
         else:
             return node1.text == node2.text
 
