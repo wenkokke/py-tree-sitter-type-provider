@@ -114,17 +114,18 @@ class NodeArgsType:
         node1: typing.Union[None, Node, typing.Sequence[Node]],
         node2: typing.Union[None, Node, typing.Sequence[Node]],
     ) -> None:
-        if node1 is None:
-            assert node2 is None
-        elif isinstance(node1, Node):
-            assert isinstance(node2, Node)
-            node1.assert_equivalent(node2)
-        else:
-            assert isinstance(node2, typing.Sequence)
-            for child1, child2 in itertools.zip_longest(node1, node2):
-                assert isinstance(child1, Node)
-                assert isinstance(child2, Node)
-                child1.assert_equivalent(child2)
+        if self.named:
+            if node1 is None:
+                assert node2 is None
+            elif isinstance(node1, Node):
+                assert isinstance(node2, Node)
+                node1.assert_equivalent(node2)
+            else:
+                assert isinstance(node2, typing.Sequence)
+                for child1, child2 in itertools.zip_longest(node1, node2):
+                    assert isinstance(child1, Node)
+                    assert isinstance(child2, Node)
+                    child1.assert_equivalent(child2)
 
     def as_typehint(
         self,
