@@ -17,7 +17,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.9.8"
+python = ">=3.9.8,<4.0"
 tree-sitter = "^0.20.0"
 dataclasses-json = "^0.5.7"
 bumpver = { version = "*", optional = true }

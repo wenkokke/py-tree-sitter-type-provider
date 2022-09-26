@@ -528,8 +528,8 @@ test = ["bumpver", "pytest", "pytest-golden"]
 
 [metadata]
 lock-version = "1.1"
-python-versions = "^3.9"
-content-hash = "414d8f098b49b6cbc4286fe4ef0c1e97f6141192dd72c2bf9fcb4c382cdc0188"
+python-versions = ">=3.9.8,<4.0"
+content-hash = "ece68f1d64434663e7e893bf339217027f2ffdd70d6d94d3ba69ede28d89017d"
 
 [metadata.files]
 atomicwrites = [
