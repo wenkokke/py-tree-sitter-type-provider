@@ -32,7 +32,9 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Build & Test
-        run: tox --skip-missing-interpreters true
+        run: |
+          poetry install --no-root --with ci
+          poetry run tox --skip-missing-interpreters true
 
   release:
     name: Release
