@@ -44,6 +44,7 @@ jobs:
             experimental: true
           - os: ubuntu-latest
             python-version: "3.9.7"
+            experimental: true
           - os: ubuntu-latest
             python-version: "3.9.8"
             experimental: true
