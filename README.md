@@ -14,7 +14,7 @@ node_types_json = pathlib.Path("tree-sitter-javascript/src/node-types.json")
 node_types = tstp.NodeType.schema().loads(node_types_json.read_text(), many=True)
 
 def as_class_name(node_type_name: str) -> str:
-    class_name_parts: list[str] = ["Js"]
+    class_name_parts: typing.List[str] = ["Js"]
     for part in node_type_name.split("_"):
         class_name_parts.append(part.capitalize())
     return "".join(class_name_parts)
@@ -33,6 +33,7 @@ The module contains a number of dataclasses which represent the AST nodes:
 ```python
 import tree_sitter as ts
 import tree_sitter_type_provider as tstp
+import typing
 
 @dataclass
 class JsArray(tstp.Node):
@@ -40,7 +41,7 @@ class JsArray(tstp.Node):
     type_name: str
     start_position: tstp.Point
     end_position: tstp.Point
-    children: list[Union[JsExpression, JsSpreadElement]]
+    children: typing.List[typing.Union[JsExpression, JsSpreadElement]]
 
 @dataclass
 class JsDeclaration(tstp.Node):
@@ -64,5 +65,5 @@ class JsWhileStatement(tstp.Node):
 As well as a function to convert to the AST:
 
 ```python
-def from_tree_sitter(self, tsvalue: ts.Tree | ts.Node | ts.TreeCursor, *, encoding: str = 'utf-8') -> tstp.Node
+def from_tree_sitter(self, tsvalue: typing.Union[ts.Tree, ts.Node, ts.TreeCursor], *, encoding: str = 'utf-8') -> tstp.Node
 ```

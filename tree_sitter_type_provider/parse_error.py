@@ -1,4 +1,3 @@
-import collections.abc
 import dataclasses
 import typing
 
@@ -7,7 +6,7 @@ from .node_types import Branch, Node, Point
 
 @dataclasses.dataclass
 class ParseError(Exception, Branch):
-    children: list[Node]
+    children: typing.List[Node]
     contents: typing.Optional[str] = None
     filename: typing.Optional[str] = None
 
@@ -26,14 +25,14 @@ class ParseError(Exception, Branch):
 
             def _annotated_lines(
                 lines: typing.Sequence[str],
-            ) -> collections.abc.Iterator[str]:
+            ) -> typing.Iterator[str]:
                 for l, line in enumerate(lines):
                     yield line
                     is_first_line = l == 0
                     is_last_line = l == len(lines) - 1
                     start = self.start_position.column if is_first_line else 0
                     end = self.end_position.column if is_last_line else len(line)
-                    annotation: list[str] = []
+                    annotation: typing.List[str] = []
                     for c, _ in enumerate(line):
                         if c < start or end < c:
                             annotation.append(" ")

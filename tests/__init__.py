@@ -1,7 +1,7 @@
 import typing
 
 
-def node_dict_simplify(node_dict: dict[str, typing.Any]) -> None:
+def node_dict_simplify(node_dict: typing.Dict[str, typing.Any]) -> None:
     if len(node_dict) > 4:
         del node_dict["text"]
 

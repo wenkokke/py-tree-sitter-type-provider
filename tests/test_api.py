@@ -1,7 +1,7 @@
-import collections.abc
 import inspect
 import pathlib
 import re
+import typing
 
 import pytest
 
@@ -13,13 +13,14 @@ def short(sig: inspect.Signature) -> str:
     out = out.replace("tree_sitter_type_provider.node_types.", "")
     out = re.sub(r"ForwardRef\('(\w+)'\)", r"\1", out)
     out = out.replace("typing.", "")
+    out = re.sub(r"Optional\[([^\]]+)\]", r"Union[\1, None]", out)
     out = out.replace("NoneType", "None")
     out = out.replace("abc.", "")
     out = out.replace("~Result", "Result")
     return out
 
 
-def function_signatures(object: object) -> collections.abc.Iterator[str]:
+def function_signatures(object: object) -> typing.Iterator[str]:
     for name, fun in inspect.getmembers(object, inspect.isfunction):
         if not (name.startswith("_") or name in ["to_dict", "to_json"]):
             try:
@@ -29,7 +30,7 @@ def function_signatures(object: object) -> collections.abc.Iterator[str]:
                 pass
 
 
-def class_signatures(object: object) -> collections.abc.Iterator[str]:
+def class_signatures(object: object) -> typing.Iterator[str]:
     for name, cls in inspect.getmembers(object, inspect.isclass):
         if not name.startswith("_"):
             try:
@@ -47,7 +48,7 @@ def test_talon(golden):
     module_name = f"tree_sitter_{ golden['input']['name'] }"
 
     def as_class_name(node_type_name: str) -> str:
-        buffer: list[str] = [class_prefix]
+        buffer: typing.List[str] = [class_prefix]
         for part in node_type_name.split("_"):
             buffer.append(part.capitalize())
         return "".join(buffer)
@@ -66,7 +67,7 @@ def test_talon(golden):
 
     globals().update(module.__dict__)
 
-    output: list[str] = []
+    output: typing.List[str] = []
     output.extend(function_signatures(module.__class__))
     output.extend(function_signatures(module))
     output.extend(class_signatures(module.__class__))

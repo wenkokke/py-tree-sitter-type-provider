@@ -1,5 +1,3 @@
-import abc
-import collections.abc
 import dataclasses
 import functools
 import itertools
@@ -18,7 +16,7 @@ class Point:
     column: int
 
     @staticmethod
-    def from_tree_sitter(tspoint: tuple[int, int]) -> "Point":
+    def from_tree_sitter(tspoint: typing.Tuple[int, int]) -> "Point":
         return Point(line=tspoint[0], column=tspoint[1])
 
 
@@ -26,7 +24,7 @@ NodeTypeName = str
 
 NodeFieldName = str
 
-AsClassName = collections.abc.Callable[[NodeTypeName], str]
+AsClassName = typing.Callable[[NodeTypeName], str]
 
 
 @dataclasses.dataclass
@@ -70,7 +68,7 @@ class SimpleNodeType:
     def is_extra(self, *, extra: typing.Sequence["SimpleNodeType"]) -> bool:
         return any(self.type_name == other.type_name for other in extra)
 
-    def as_typehint(self, *, as_class_name: AsClassName) -> type[Node]:
+    def as_typehint(self, *, as_class_name: AsClassName) -> typing.Type[Node]:
         if self.named:
             return typing.cast(type, as_class_name(self.type_name))
         raise ValueError(self)
@@ -80,8 +78,8 @@ class SimpleNodeType:
         simple_node_types: typing.Sequence["SimpleNodeType"],
         *,
         as_class_name: AsClassName,
-    ) -> typing.Optional[type[Node]]:
-        Ts: list[type] = []
+    ) -> typing.Optional[typing.Type[Node]]:
+        Ts: typing.List[type] = []
         for simple_node_type in simple_node_types:
             if simple_node_type.named:
                 Ts.append(simple_node_type.as_typehint(as_class_name=as_class_name))
@@ -100,7 +98,7 @@ class SimpleNodeType:
 class NodeArgsType:
     multiple: bool = False
     required: bool = False
-    types: list[SimpleNodeType] = dataclasses.field(default_factory=list)
+    types: typing.List[SimpleNodeType] = dataclasses.field(default_factory=list)
 
     @property
     def named(self) -> bool:
@@ -133,7 +131,7 @@ class NodeArgsType:
         is_field: bool,
         as_class_name: AsClassName,
         extra: typing.Sequence[SimpleNodeType],
-    ) -> typing.Optional[type[Node]]:
+    ) -> typing.Optional[typing.Type[Node]]:
         if is_field:
             types_with_extra = tuple(self.types)
             multiple_with_extra = self.multiple
@@ -147,7 +145,7 @@ class NodeArgsType:
         )
         if T is not None:
             if multiple_with_extra:
-                return list[T]  # type: ignore
+                return typing.List[T]  # type: ignore
             else:
                 if self.required:
                     return T
@@ -160,9 +158,11 @@ class NodeArgsType:
 @dataclasses_json.dataclass_json
 @dataclasses.dataclass
 class NodeType(SimpleNodeType):
-    fields: dict[NodeFieldName, NodeArgsType] = dataclasses.field(default_factory=dict)
+    fields: typing.Dict[NodeFieldName, NodeArgsType] = dataclasses.field(
+        default_factory=dict
+    )
     children: NodeArgsType = dataclasses.field(default_factory=NodeArgsType)
-    subtypes: list[SimpleNodeType] = dataclasses.field(default_factory=list)
+    subtypes: typing.List[SimpleNodeType] = dataclasses.field(default_factory=list)
 
     def __post_init__(self, **kwargs):
         assert not (
@@ -204,14 +204,14 @@ class NodeType(SimpleNodeType):
         mixins: typing.Sequence[type] = (),
         extra: typing.Sequence[SimpleNodeType],
         **kwargs,
-    ) -> type[Node]:
+    ) -> typing.Type[Node]:
         if self.named:
             cls_name = as_class_name(self.type_name)
             if self.is_abstract:
                 # TODO: should be a dynamic type alias
                 return type(cls_name, (Node,), {})
             else:
-                fields: dict[NodeFieldName, type] = {}
+                fields: typing.Dict[NodeFieldName, typing.Type] = {}
 
                 # Create fields for dataclass
                 for field_name, field in self.fields.items():
@@ -233,7 +233,7 @@ class NodeType(SimpleNodeType):
                         fields["children"] = typing.cast(type, None)
 
                 # Create bases for dataclass
-                base: type[Node]
+                base: typing.Type[Node]
                 if self.is_abstract:
                     base = Node
                 elif self.has_content:
