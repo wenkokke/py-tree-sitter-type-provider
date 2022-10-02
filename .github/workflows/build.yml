@@ -27,6 +27,10 @@ jobs:
           - # Earliest supported version:
             os: ubuntu-latest
             python-version: "3.7.1"
+          - # Upcoming release candidate:
+            os: ubuntu-latest
+            python-version: "3.11.0-alpha - 3.11.0"
+            experimental: true
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.experimental }}
     steps:
