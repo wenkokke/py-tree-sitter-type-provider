@@ -21,18 +21,12 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: ["3.9", "3.10"]
+        python-version: ["3.7", "3.8", "3.9", "3.10"]
         experimental: [false]
         include:
-          - os: ubuntu-latest
+          - # Earliest supported version:
+            os: ubuntu-latest
             python-version: "3.7.1"
-            experimental: true
-          - os: ubuntu-latest
-            python-version: "3.7"
-            experimental: true
-          - os: ubuntu-latest
-            python-version: "3.8"
-            experimental: true
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.experimental }}
     steps:
