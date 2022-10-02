@@ -27,6 +27,7 @@ jobs:
           - # Earliest supported version:
             os: ubuntu-latest
             python-version: "3.7.1"
+            experimental: false
           - # Upcoming release candidate:
             os: ubuntu-latest
             python-version: "3.11.0-alpha - 3.11.0"
