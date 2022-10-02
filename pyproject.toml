@@ -17,7 +17,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.7,<4"
+python = "^3.7.1"
 tree-sitter = "^0.20.0"
 dataclasses-json = "^0.5.7"
 bumpver = { version = "*", optional = true }
@@ -87,8 +87,6 @@ python =
 extras =
   test
 commands =
-  pytest tests --update-goldens
+  bumpver update --patch --dry --no-fetch
+  pytest tests -x
 """
-
-  # bumpver update --patch --dry --no-fetch
-  # pytest tests/
