@@ -1,8 +1,10 @@
 import pathlib
 import sys
 import typing
+
 import pytest
 import tree_sitter
+
 import tree_sitter_type_provider
 
 from . import node_dict_simplify
