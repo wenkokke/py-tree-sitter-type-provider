@@ -1,9 +1,8 @@
 import pathlib
 import typing
-
 import pytest
-
 import tree_sitter_type_provider
+
 from tests import class_signatures, function_signatures, pyver
 
 

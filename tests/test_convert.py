@@ -1,9 +1,8 @@
 import pathlib
 import sys
-
+import typing
 import pytest
 import tree_sitter
-
 import tree_sitter_type_provider
 
 from . import node_dict_simplify
@@ -18,7 +17,7 @@ def test_talon(golden):
     module_name = f"tree_sitter_{ golden['input']['name'] }"
 
     def as_class_name(node_type_name: str) -> str:
-        buffer: list[str] = [class_prefix]
+        buffer: typing.List[str] = [class_prefix]
         for part in node_type_name.split("_"):
             buffer.append(part.capitalize())
         return "".join(buffer)
