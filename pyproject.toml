@@ -30,7 +30,7 @@ test = ["bumpver", "pytest", "pytest-golden"]
 [tool.poetry.group.dev.dependencies]
 mypy = ">=0.971,<1.1"
 tox = "^3.25.1"
-black = "^22.8.0"
+black = ">=22.8,<24.0"
 isort = "^5.10.1"
 flake8 = "^5.0.4"
 bumpver = "*"
