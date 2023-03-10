@@ -71,7 +71,6 @@ skip_missing_interpreters = true
 
 [testenv]
 skip_install = true
-allowlist_externals = poetry
 deps =
   poetry==1.4.0
 commands_pre =
