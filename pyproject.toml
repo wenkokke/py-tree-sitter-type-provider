@@ -28,8 +28,7 @@ pytest-golden = { version = "^0.2.2", optional = true }
 test = ["bumpver", "pytest", "pytest-golden"]
 
 [tool.poetry.group.dev.dependencies]
-mypy = ">=0.971,<1.1"
-tox = "^3.25.1"
+mypy = "^1.1.1"
 black = ">=22.8,<24.0"
 isort = "^5.10.1"
 flake8 = "^5.0.4"
@@ -66,23 +65,19 @@ testpaths = "tests"
 [tool.tox]
 legacy_tox_ini = """
 [tox]
-requires =
-  tox-poetry
-envlist = py37,py38,py39,py310,py311
-isolated_build = True
-
-[gh-actions]
-python =
-  3.7: py37
-  3.8: py38
-  3.9: py39
-  3.10: py310
-  3.11: py311
+envlist = py37, py38, py39, py310, py311
+isolated_build = true
+skip_missing_interpreters = true
 
 [testenv]
-extras =
-  test
+skip_install = true
+allowlist_externals = poetry
+deps =
+  poetry==1.4.0
+commands_pre =
+  poetry lock --no-update
+  poetry install -E test
 commands =
-  bumpver update --patch --dry --no-fetch
-  pytest tests -x
+  poetry run bumpver update --patch --dry --no-fetch
+  poetry run pytest tests -x
 """
