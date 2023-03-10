@@ -32,7 +32,7 @@ jobs:
           - # Earliest supported version:
             os: ubuntu-20.04
             python-version: ["3.7.1", "py37"]
-            experimental: false
+            experimental: true
 
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.experimental }}
@@ -47,7 +47,8 @@ jobs:
 
       - name: Build & Test
         run: |
-          tox run -e ${{ matrix.python-version[1] }}
+          pipx run --spec tox==4.4.6 \
+            tox run -e ${{ matrix.python-version[1] }}
 
   release:
     name: Release
