@@ -31,11 +31,11 @@ jobs:
           pipx run --spec poetry==1.4.0 \
             poetry build --format=sdist
 
-      - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          verbose: true
-          password: ${{ secrets.PYPI_API_TOKEN }}
+      # - name: Publish to PyPI
+      #   uses: pypa/gh-action-pypi-publish@release/v1
+      #   with:
+      #     verbose: true
+      #     password: ${{ secrets.PYPI_API_TOKEN }}
 
       - name: Publish to GitHub Releases
         uses: softprops/action-gh-release@v1
