@@ -72,12 +72,9 @@ isolated_build = true
 skip_missing_interpreters = true
 
 [testenv]
-skip_install = true
-deps =
-  poetry==1.4.0
-commands_pre =
-  poetry install -E test
+extras =
+  test
 commands =
-  poetry run bumpver update --patch --dry --no-fetch
-  poetry run pytest tests -x
+  {envpython} -m bumpver update --patch --dry --no-fetch
+  {envpython} -m pytest tests -x
 """
