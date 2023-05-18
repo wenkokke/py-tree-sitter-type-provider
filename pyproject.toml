@@ -48,12 +48,8 @@ push = true
 
 [tool.mypy]
 python_version = 3.7
-namespace_packages = true
-explicit_package_bases = true
+strict = true
 ignore_missing_imports = true
-warn_redundant_casts = true
-warn_return_any = true
-warn_unused_configs = true
 
 [tool.pytest.ini_options]
 enable_assertion_pass_hook = true

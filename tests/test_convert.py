@@ -1,6 +1,6 @@
-import pathlib
 import sys
-import typing
+from pathlib import Path
+from typing import Any, List
 
 import pytest
 import tree_sitter
@@ -9,17 +9,17 @@ import tree_sitter_type_provider
 
 from . import node_dict_simplify
 
-TESTDIR = pathlib.Path(__file__).parent
+TESTDIR = Path(__file__).parent
 
 
-@pytest.mark.golden_test("data/golden/convert/*.yml")
-def test_talon(golden):
+@pytest.mark.golden_test("data/golden/convert/*.yml")  # type: ignore
+def test_talon(golden: Any) -> None:
     raise_parse_error = golden["input"]["raise_parse_error"]
     class_prefix = golden["input"]["class_prefix"]
     module_name = f"tree_sitter_{ golden['input']['name'] }"
 
     def as_class_name(node_type_name: str) -> str:
-        buffer: typing.List[str] = [class_prefix]
+        buffer: List[str] = [class_prefix]
         for part in node_type_name.split("_"):
             buffer.append(part.capitalize())
         return "".join(buffer)

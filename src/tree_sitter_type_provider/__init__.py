@@ -1,7 +1,19 @@
-import types
-import typing
+from dataclasses import dataclass
+from types import ModuleType
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Iterator,
+    List,
+    Optional,
+    Sequence,
+    Type,
+    Union,
+    cast,
+)
 
-import tree_sitter  # type: ignore
+import tree_sitter
 
 from tree_sitter_type_provider.node_types import Branch as Branch
 from tree_sitter_type_provider.node_types import Leaf as Leaf
@@ -12,16 +24,68 @@ from tree_sitter_type_provider.node_types import NodeType as NodeType
 from tree_sitter_type_provider.node_types import NodeTypeError as NodeTypeError
 from tree_sitter_type_provider.node_types import NodeTypeName as NodeTypeName
 from tree_sitter_type_provider.node_types import Point as Point
-from tree_sitter_type_provider.parse_error import ParseError
 
 
-class TreeSitterTypeProvider(types.ModuleType):
+@dataclass
+class ParseError(Exception, Branch):
+    children: List[Node]
+    contents: Optional[str] = None
+    filename: Optional[str] = None
+
+    @staticmethod
+    def _point_to_str(point: Point) -> str:
+        return f"line {point.line}, column {point.column}"
+
+    def _range(self) -> str:
+        if self.start_position.line == self.end_position.line:
+            return f"on line {self.start_position.line} between column {self.start_position.column} and {self.end_position.column}"
+        else:
+            return f" between {self._point_to_str(self.start_position)} and {self._point_to_str(self.end_position)}"
+
+    def _annotated_region(self) -> str:
+        if self.contents:
+
+            def _annotated_lines(
+                lines: Sequence[str],
+            ) -> Iterator[str]:
+                for l, line in enumerate(lines):
+                    yield line
+                    is_first_line = l == 0
+                    is_last_line = l == len(lines) - 1
+                    start = self.start_position.column if is_first_line else 0
+                    end = self.end_position.column if is_last_line else len(line)
+                    annotation: List[str] = []
+                    for c, _ in enumerate(line):
+                        if c < start or end < c:
+                            annotation.append(" ")
+                        else:
+                            annotation.append("^")
+                    yield "".join(annotation)
+
+            lines = self.contents.splitlines()
+            lines = lines[self.start_position.line : self.end_position.line + 1]
+            return "\n".join(_annotated_lines(lines))
+        else:
+            return self.text
+
+    def __str__(self) -> str:
+        return "".join(
+            (
+                f"Parse error ",
+                f"in {self.filename} " if self.filename else "",
+                f"{self._range()}:\n",
+                f"{self._annotated_region()}\n",
+            )
+        )
+
+
+class TreeSitterTypeProvider(ModuleType):
     def _node_type_name(
         self,
-        node: typing.Union[NodeTypeName, Node, NodeType, tree_sitter.Node],
+        node: Union[NodeTypeName, Node, NodeType, tree_sitter.Node],
     ) -> str:
         if isinstance(node, tree_sitter.Node):
-            return typing.cast(str, node.type)
+            return cast(str, node.type)
         elif isinstance(node, Node):
             return node.type_name
         elif isinstance(node, NodeType):
@@ -35,7 +99,7 @@ class TreeSitterTypeProvider(types.ModuleType):
 
     def _node_type(
         self,
-        node: typing.Union[NodeTypeName, Node, NodeType, tree_sitter.Node],
+        node: Union[NodeTypeName, Node, NodeType, tree_sitter.Node],
     ) -> NodeType:
         node_type_name = self._node_type_name(node)
         node_type = self._node_types_by_type.get(node_type_name, None)
@@ -45,16 +109,14 @@ class TreeSitterTypeProvider(types.ModuleType):
 
     def _node_has_children(
         self,
-        node: typing.Union[NodeTypeName, Node, NodeType, tree_sitter.Node],
+        node: Union[NodeTypeName, Node, NodeType, tree_sitter.Node],
     ) -> bool:
         node_type = self._node_type(node)
         # NOTE: Any node with content can have extra nodes,
         #       even if the node only has fields and no children.
         return node_type.has_content
 
-    def _node_class(
-        self, node: typing.Union[Node, NodeType, tree_sitter.Node]
-    ) -> typing.Type[Node]:
+    def _node_class(self, node: Union[Node, NodeType, tree_sitter.Node]) -> Type[Node]:
         node_type_name = self._node_type_name(node)
         cls = self._node_classes_by_type.get(node_type_name, None)
         if cls is None:
@@ -66,12 +128,10 @@ class TreeSitterTypeProvider(types.ModuleType):
 
     def from_tree_sitter(
         self,
-        tsvalue: typing.Union[
-            tree_sitter.Tree, tree_sitter.Node, tree_sitter.TreeCursor
-        ],
+        tsvalue: Union[tree_sitter.Tree, tree_sitter.Node, tree_sitter.TreeCursor],
         *,
         encoding: str = "utf-8",
-        filename: typing.Optional[str] = None,
+        filename: Optional[str] = None,
         raise_parse_error: bool = False,
     ) -> Node:
         if isinstance(tsvalue, tree_sitter.Tree):
@@ -90,7 +150,7 @@ class TreeSitterTypeProvider(types.ModuleType):
         tscursor: tree_sitter.TreeCursor,
         *,
         encoding: str = "utf-8",
-        filename: typing.Optional[str] = None,
+        filename: Optional[str] = None,
         raise_parse_error: bool,
     ) -> Node:
         if tscursor.node.is_named:
@@ -102,10 +162,10 @@ class TreeSitterTypeProvider(types.ModuleType):
             end_position: Point = Point.from_tree_sitter(tscursor.node.end_point)
 
             # Convert children.
-            fields: typing.Dict[str, typing.Union[None, Node, typing.List[Node]]] = {}
-            children: typing.List[Node] = []
+            fields: Dict[str, Union[None, Node, List[Node]]] = {}
+            children: List[Node] = []
 
-            def convert_child(tscursor: tree_sitter.TreeCursor):
+            def convert_child(tscursor: tree_sitter.TreeCursor) -> None:
                 field_name = tscursor.current_field_name()
                 child = self._from_tree_cursor(
                     tscursor,
@@ -147,9 +207,7 @@ class TreeSitterTypeProvider(types.ModuleType):
                         fields[field_name] = None
 
             # Create node instance
-            kwargs: typing.Dict[
-                str, typing.Union[str, Point, None, Node, typing.List[Node]]
-            ] = {}
+            kwargs: Dict[str, Union[str, Point, None, Node, List[Node]]] = {}
             kwargs["type_name"] = type_name
             kwargs["text"] = text
             kwargs["start_position"] = start_position
@@ -166,7 +224,7 @@ class TreeSitterTypeProvider(types.ModuleType):
                     if tsnode.parent:
                         return _root_node(tsnode.parent)
                     else:
-                        return typing.cast(str, tsnode.text.decode("utf-8"))
+                        return cast(str, tsnode.text.decode("utf-8"))
 
                 contents = _root_node(tscursor.node)
                 raise ParseError(
@@ -179,19 +237,19 @@ class TreeSitterTypeProvider(types.ModuleType):
                     filename=filename,
                 )
             else:
-                return self._node_class(tscursor.node)(**kwargs)  # type: ignore
+                return self._node_class(tscursor.node)(**kwargs)  # type: ignore[arg-type]
         else:
             raise TypeError(tscursor.node.type)
 
     def __init__(
         self,
         module_name: str,
-        node_types: typing.Sequence[NodeType],
+        node_types: Sequence[NodeType],
         *,
-        extra: typing.Sequence[NodeTypeName] = (),
-        as_class_name: typing.Optional[typing.Callable[[str], str]] = None,
-        mixins: typing.Sequence[type] = (),
-        dataclass_kwargs: typing.Dict[str, typing.Any] = {},
+        extra: Sequence[NodeTypeName] = (),
+        as_class_name: Optional[Callable[[str], str]] = None,
+        mixins: Sequence[type] = (),
+        dataclass_kwargs: Dict[str, Any] = {},
     ):
         super().__init__(name=module_name)
 
@@ -203,7 +261,7 @@ class TreeSitterTypeProvider(types.ModuleType):
             as_class_name = snake_to_pascal
 
         # Dictionary of named node types
-        self._node_types_by_type: typing.Dict[str, NodeType] = {}
+        self._node_types_by_type: Dict[str, NodeType] = {}
         for node_type in node_types:
             if node_type.named:
                 self._node_types_by_type[node_type.type_name] = node_type
@@ -225,16 +283,16 @@ class TreeSitterTypeProvider(types.ModuleType):
         )
 
         # Create the list of extra node types
-        def _extra_node_types() -> typing.Iterator[NodeType]:
+        def _extra_node_types() -> Iterator[NodeType]:
             for type_name in extra:
                 yield self._node_type(type_name)
             if "ERROR" not in extra:
                 yield self._node_type("ERROR")
 
-        self._extra: typing.Sequence = tuple(_extra_node_types())
+        self._extra: Sequence[NodeType] = tuple(_extra_node_types())
 
         # Dictionary of abstract classes
-        self._node_bases_by_type: typing.Dict[str, typing.List[typing.Type[Node]]] = {}
+        self._node_bases_by_type: Dict[str, List[Type[Node]]] = {}
         for node_type in self._node_types_by_type.values():
             if node_type.is_abstract:
                 abscls = node_type.as_type(
@@ -252,7 +310,7 @@ class TreeSitterTypeProvider(types.ModuleType):
                         self._node_bases_by_type[subtype.type_name].append(abscls)
 
         # Dictionary of dataclasses
-        self._node_classes_by_type: typing.Dict[str, typing.Type[Node]] = {}
+        self._node_classes_by_type: Dict[str, Type[Node]] = {}
         for node_type in self._node_types_by_type.values():
             if node_type.type_name == "ERROR":
                 self._node_classes_by_type["ERROR"] = ParseError

@@ -1,22 +1,33 @@
-import dataclasses
 import functools
 import itertools
-import typing
+from dataclasses import dataclass, field, make_dataclass
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    List,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 
-import dataclasses_json
+from dataclasses_json import DataClassJsonMixin, config, dataclass_json
 
 
 class NodeTypeError(Exception):
     pass
 
 
-@dataclasses.dataclass
+@dataclass
 class Point:
     line: int
     column: int
 
     @staticmethod
-    def from_tree_sitter(tspoint: typing.Tuple[int, int]) -> "Point":
+    def from_tree_sitter(tspoint: Tuple[int, int]) -> "Point":
         return Point(line=tspoint[0], column=tspoint[1])
 
 
@@ -24,15 +35,13 @@ NodeTypeName = str
 
 NodeFieldName = str
 
-AsClassName = typing.Callable[[NodeTypeName], str]
+AsClassName = Callable[[NodeTypeName], str]
 
 
-@dataclasses.dataclass
-class Node(dataclasses_json.DataClassJsonMixin):
+@dataclass
+class Node(DataClassJsonMixin):
     text: str
-    type_name: NodeTypeName = dataclasses.field(
-        metadata=dataclasses_json.config(field_name="type")
-    )
+    type_name: NodeTypeName = field(metadata=config(field_name="type"))
     start_position: Point
     end_position: Point
 
@@ -43,43 +52,40 @@ class Node(dataclasses_json.DataClassJsonMixin):
         except AssertionError:
             return False
 
-    def assert_equivalent(self, other: "Node"):
-        return NotImplemented
+    def assert_equivalent(self, other: "Node") -> None:
+        pass
 
 
-@dataclasses.dataclass
+@dataclass
 class Leaf(Node):
     pass
 
 
-@dataclasses.dataclass
+@dataclass
 class Branch(Node):
-    children: typing.Union[None, Node, typing.Sequence[Node]]
+    children: Union[None, Node, Sequence[Node]]
 
 
-@dataclasses_json.dataclass_json
-@dataclasses.dataclass
-class SimpleNodeType:
-    type_name: NodeTypeName = dataclasses.field(
-        metadata=dataclasses_json.config(field_name="type")
-    )
+@dataclass
+class SimpleNodeType(DataClassJsonMixin):
+    type_name: NodeTypeName = field(metadata=config(field_name="type"))
     named: bool
 
-    def is_extra(self, *, extra: typing.Sequence["SimpleNodeType"]) -> bool:
+    def is_extra(self, *, extra: Sequence["SimpleNodeType"]) -> bool:
         return any(self.type_name == other.type_name for other in extra)
 
-    def as_typehint(self, *, as_class_name: AsClassName) -> typing.Type[Node]:
+    def as_typehint(self, *, as_class_name: AsClassName) -> Type[Node]:
         if self.named:
-            return typing.cast(type, as_class_name(self.type_name))
+            return cast(type, as_class_name(self.type_name))
         raise ValueError(self)
 
     @staticmethod
     def many_as_typehint(
-        simple_node_types: typing.Sequence["SimpleNodeType"],
+        simple_node_types: Sequence["SimpleNodeType"],
         *,
         as_class_name: AsClassName,
-    ) -> typing.Optional[typing.Type[Node]]:
-        Ts: typing.List[type] = []
+    ) -> Optional[Type[Node]]:
+        Ts: List[type] = []
         for simple_node_type in simple_node_types:
             if simple_node_type.named:
                 Ts.append(simple_node_type.as_typehint(as_class_name=as_class_name))
@@ -90,15 +96,15 @@ class SimpleNodeType:
         if len(Ts) == 1:
             return Ts[0]
 
-        return functools.reduce(lambda R, T: typing.cast(type, typing.Union[R, T]), Ts)
+        return functools.reduce(lambda R, T: cast(type, Union[R, T]), Ts)
 
 
-@dataclasses_json.dataclass_json
-@dataclasses.dataclass
+@dataclass_json
+@dataclass
 class NodeArgsType:
     multiple: bool = False
     required: bool = False
-    types: typing.List[SimpleNodeType] = dataclasses.field(default_factory=list)
+    types: List[SimpleNodeType] = field(default_factory=list)
 
     @property
     def named(self) -> bool:
@@ -109,8 +115,8 @@ class NodeArgsType:
 
     def assert_equivalent(
         self,
-        node1: typing.Union[None, Node, typing.Sequence[Node]],
-        node2: typing.Union[None, Node, typing.Sequence[Node]],
+        node1: Union[None, Node, Sequence[Node]],
+        node2: Union[None, Node, Sequence[Node]],
     ) -> None:
         if self.named:
             if node1 is None:
@@ -119,7 +125,7 @@ class NodeArgsType:
                 assert isinstance(node2, Node)
                 node1.assert_equivalent(node2)
             else:
-                assert isinstance(node2, typing.Sequence)
+                assert isinstance(node2, Sequence)
                 for child1, child2 in itertools.zip_longest(node1, node2):
                     assert isinstance(child1, Node)
                     assert isinstance(child2, Node)
@@ -130,8 +136,8 @@ class NodeArgsType:
         *,
         is_field: bool,
         as_class_name: AsClassName,
-        extra: typing.Sequence[SimpleNodeType],
-    ) -> typing.Optional[typing.Type[Node]]:
+        extra: Sequence[SimpleNodeType],
+    ) -> Optional[Type[Node]]:
         if is_field:
             types_with_extra = tuple(self.types)
             multiple_with_extra = self.multiple
@@ -145,26 +151,23 @@ class NodeArgsType:
         )
         if T is not None:
             if multiple_with_extra:
-                return typing.List[T]  # type: ignore
+                return List[T]  # type: ignore
             else:
                 if self.required:
                     return T
                 else:
-                    return typing.Optional[T]  # type: ignore
+                    return Optional[T]  # type: ignore
         else:
             return None
 
 
-@dataclasses_json.dataclass_json
-@dataclasses.dataclass
+@dataclass
 class NodeType(SimpleNodeType):
-    fields: typing.Dict[NodeFieldName, NodeArgsType] = dataclasses.field(
-        default_factory=dict
-    )
-    children: NodeArgsType = dataclasses.field(default_factory=NodeArgsType)
-    subtypes: typing.List[SimpleNodeType] = dataclasses.field(default_factory=list)
+    fields: Dict[NodeFieldName, NodeArgsType] = field(default_factory=dict)
+    children: NodeArgsType = field(default_factory=NodeArgsType)
+    subtypes: List[SimpleNodeType] = field(default_factory=list)
 
-    def __post_init__(self, **kwargs):
+    def __post_init__(self, **kwargs: Any) -> None:
         assert not (
             self.is_abstract and self.has_content
         ), "Nodes can have either fields and children or subtypes, but not both."
@@ -177,7 +180,7 @@ class NodeType(SimpleNodeType):
     def has_content(self) -> bool:
         return len(self.fields) > 0 or bool(self.children)
 
-    def assert_equivalent(self, node1: Node, node2: Node):
+    def assert_equivalent(self, node1: Node, node2: Node) -> None:
         if self.has_content:
             # compare children
             if hasattr(node1, "children"):
@@ -195,23 +198,23 @@ class NodeType(SimpleNodeType):
                 else:
                     assert not hasattr(node2, field_name)
         else:
-            return node1.text == node2.text
+            assert node1.text == node2.text
 
     def as_type(
         self,
         *,
         as_class_name: AsClassName,
-        mixins: typing.Sequence[type] = (),
-        extra: typing.Sequence[SimpleNodeType],
-        **kwargs,
-    ) -> typing.Type[Node]:
+        mixins: Sequence[type] = (),
+        extra: Sequence[SimpleNodeType],
+        **kwargs: Any,
+    ) -> Type[Node]:
         if self.named:
             cls_name = as_class_name(self.type_name)
             if self.is_abstract:
                 # TODO: should be a dynamic type alias
                 return type(cls_name, (Node,), {})
             else:
-                fields: typing.Dict[NodeFieldName, typing.Type] = {}
+                fields: Dict[NodeFieldName, Type[Any]] = {}
 
                 # Create fields for dataclass
                 for field_name, field in self.fields.items():
@@ -230,10 +233,10 @@ class NodeType(SimpleNodeType):
                     if children_type:
                         fields["children"] = children_type
                     else:
-                        fields["children"] = typing.cast(type, None)
+                        fields["children"] = cast(type, None)
 
                 # Create bases for dataclass
-                base: typing.Type[Node]
+                base: Type[Node]
                 if self.is_abstract:
                     base = Node
                 elif self.has_content:
@@ -244,16 +247,16 @@ class NodeType(SimpleNodeType):
                 # Create implementation of is_equivalent
                 node_type = self
 
-                def assert_equivalent(self, other: Node):
+                def _assert_equivalent(self: Node, other: Node) -> None:
                     node_type.assert_equivalent(self, other)
 
                 # Create and return dataclass
-                return dataclasses.make_dataclass(
+                return make_dataclass(
                     cls_name=cls_name,
                     fields=fields.items(),
                     bases=(base, *mixins),
                     namespace={
-                        "assert_equivalent": assert_equivalent,
+                        "assert_equivalent": _assert_equivalent,
                     },
                     **kwargs,
                 )
