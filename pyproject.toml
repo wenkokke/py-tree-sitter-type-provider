@@ -9,7 +9,6 @@ description = "Type providers for tree-sitter in Python."
 license = { file = 'LICENSE' }
 authors = [{ name = "Wen Kokke", email = "wenkokke@users.noreply.github.com" }]
 readme = "README.md"
-repository = "https://github.com/wenkokke/py-tree-sitter-type-provider"
 keywords = ["parser", "tree-sitter", "type-provider"]
 classifiers = [
   "License :: OSI Approved :: MIT License",
