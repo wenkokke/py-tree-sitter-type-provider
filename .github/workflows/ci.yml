@@ -152,41 +152,6 @@ jobs:
         run: pipx run tox
 
   ################################################################################
-  # Publish docs to GitHub Pages
-  ################################################################################
-
-  publish-docs-to-github-pages:
-    name: Publish docs to GitHub Pages
-    runs-on: ubuntu-latest
-    needs: [test]
-
-    steps:
-      - name: Get source
-        uses: actions/checkout@v3
-        with:
-          submodules: true
-
-      - # Required to run job via act: https://github.com/nektos/act
-        name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          cache: "pip"
-          cache-dependency-path: "./pyproject.toml"
-          python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
-
-      - name: Setup dependencies
-        run: pip install .[docs]
-
-      - name: Build docs
-        run: sphinx-build -M 'html' 'docs' 'docs/_build'"
-
-      - name: Deploy doc
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
-        with:
-          branch: docs
-          folder: docs/_build/html
-
-  ################################################################################
   # Publish package to GitHub Releases
   ################################################################################
 
