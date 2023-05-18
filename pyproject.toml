@@ -67,9 +67,11 @@ envlist = py37, py38, py39, py310, py311
 isolated_build = true
 
 [testenv]
+pass_env =
+  PYTEST_ARGS
 extras =
   test
 commands =
   {envpython} -m bumpver update --patch --dry --no-fetch
-  {envpython} -m pytest tests -x
+  {envpython} -m pytest tests {env:PYTEST_ARGS}
 """

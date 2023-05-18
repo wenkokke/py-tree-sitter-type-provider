@@ -6,137 +6,137 @@ input:
 output: |-
   from_tree_sitter(self, tsvalue: Union[tree_sitter.Tree, tree_sitter.Node, tree_sitter.TreeCursor], *, encoding: str = 'utf-8', filename: Union[str, NoneType] = None, raise_parse_error: bool = False) -> Node
   TalonAction(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonComment, TalonError]], action_name: TalonIdentifier, arguments: TalonArgumentList) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonAnd(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonAnd, TalonMatch, TalonNot, TalonComment, TalonError]]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonArgumentList(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment, TalonError]]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonAssignment(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonComment, TalonError]], left: TalonIdentifier, right: Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonBinaryOperator(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonComment, TalonError]], left: Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable], operator: TalonOperator, right: Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonBlock(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonAssignment, TalonDocstring, TalonExpression, TalonComment, TalonError]]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonCapture(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonComment, TalonError]], capture_name: TalonIdentifier) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonChoice(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonCapture, TalonEndAnchor, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonSeq, TalonStartAnchor, TalonWord, TalonComment, TalonError]]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonCommand(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonComment, TalonError]], rule: TalonRule, script: TalonBlock) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonComment(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonContext(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonAnd, TalonDocstring, TalonMatch, TalonNot, TalonOr, TalonComment, TalonError]]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonDocstring(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonEndAnchor(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonError(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Node], contents: Union[str, NoneType] = None, filename: Union[str, NoneType] = None) -> None
-    assert_equivalent(self, other: 'Node')
+    assert_equivalent(self, other: 'Node') -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonComment, TalonError]], expression: Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonFloat(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonIdentifier(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonImplicitString(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonIncludeTag(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonComment, TalonError]], tag: TalonIdentifier) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonInteger(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonInterpolation(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment, TalonError]]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonKeyAction(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonComment, TalonError]], arguments: TalonImplicitString) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonList(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonComment, TalonError]], list_name: TalonIdentifier) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonMatch(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonComment, TalonError]], key: TalonIdentifier, pattern: TalonImplicitString) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonNot(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonMatch, TalonComment, TalonError]]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonNumber(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonFloat, TalonInteger, TalonComment, TalonError]]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonOperator(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonOptional(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonCapture, TalonChoice, TalonEndAnchor, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonSeq, TalonStartAnchor, TalonWord, TalonComment, TalonError]]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonOr(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonAnd, TalonMatch, TalonNot, TalonComment, TalonError]]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonParenthesizedExpression(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonAction, TalonBinaryOperator, TalonFloat, TalonInteger, TalonKeyAction, TalonParenthesizedExpression, TalonSleepAction, TalonString, TalonVariable, TalonComment, TalonError]]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonParenthesizedRule(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonCapture, TalonChoice, TalonEndAnchor, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonSeq, TalonStartAnchor, TalonWord, TalonComment, TalonError]]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonRegexEscapeSequence(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonRegexEscapeSequence, TalonComment, TalonError]]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonRepeat(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonCapture, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonWord, TalonComment, TalonError]]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonRepeat1(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonCapture, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonWord, TalonComment, TalonError]]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonRule(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonCapture, TalonChoice, TalonEndAnchor, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonSeq, TalonStartAnchor, TalonWord, TalonComment, TalonError]]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonSeq(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonCapture, TalonList, TalonOptional, TalonParenthesizedRule, TalonRepeat, TalonRepeat1, TalonWord, TalonComment, TalonError]]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonSettings(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonBlock, TalonComment, TalonError]]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonSleepAction(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonComment, TalonError]], arguments: TalonImplicitString) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonSourceFile(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonCommand, TalonContext, TalonIncludeTag, TalonSettings, TalonComment, TalonError]]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonStartAnchor(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonString(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonInterpolation, TalonStringContent, TalonStringEscapeSequence, TalonComment, TalonError]]) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonStringContent(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonStringEscapeSequence(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonVariable(text: str, type_name: str, start_position: Point, end_position: Point, children: List[Union[TalonComment, TalonError]], variable_name: TalonIdentifier) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
   TalonWord(text: str, type_name: str, start_position: Point, end_position: Point) -> None
-    assert_equivalent(self, other: Node)
+    assert_equivalent(self: Node, other: Node) -> None
     is_equivalent(self, other: 'Node') -> bool
