@@ -2,13 +2,14 @@ from pathlib import Path
 from typing import Any, List
 
 import pytest
+from pytest_golden.plugin import GoldenTestFixture
 
 import tree_sitter_type_provider
 from tests import class_signatures, function_signatures, pyver
 
 
 @pytest.mark.golden_test(f"data/golden/api/*.{pyver()}.yml")  # type: ignore[misc]
-def test_talon(golden: Any) -> None:
+def test_talon(golden: GoldenTestFixture) -> None:
     class_prefix = golden["input"]["class_prefix"]
     module_name = f"tree_sitter_{ golden['input']['name'] }"
 

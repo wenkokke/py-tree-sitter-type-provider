@@ -1,9 +1,10 @@
 import sys
 from pathlib import Path
-from typing import Any, List
+from typing import List
 
 import pytest
 import tree_sitter
+from pytest_golden.plugin import GoldenTestFixture
 
 import tree_sitter_type_provider
 
@@ -13,7 +14,7 @@ TESTDIR = Path(__file__).parent
 
 
 @pytest.mark.golden_test("data/golden/convert/*.yml")  # type: ignore
-def test_talon(golden: Any) -> None:
+def test_talon(golden: GoldenTestFixture) -> None:
     raise_parse_error = golden["input"]["raise_parse_error"]
     class_prefix = golden["input"]["class_prefix"]
     module_name = f"tree_sitter_{ golden['input']['name'] }"
