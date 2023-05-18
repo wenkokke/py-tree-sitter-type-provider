@@ -60,6 +60,9 @@ enable_assertion_pass_hook = true
 filterwarnings = ["ignore::DeprecationWarning:.*:"]
 testpaths = "tests"
 
+[tool.setuptools.packages.find]
+where = ["src"]
+
 [tool.tox]
 legacy_tox_ini = """
 [tox]
