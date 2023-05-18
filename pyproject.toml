@@ -46,20 +46,6 @@ push = true
   'version = "{pep440_version}"'
 ]
 
-[tool.cibuildwheel]
-build-frontend = "build"
-skip = [
-  # 18-04-2023:
-  # PyPy builds do not work.
-  "pp*",
-]
-test-command = "pytest {package}/tests"
-test-extras = "test"
-
-[tool.cibuildwheel.macos]
-# Skip trying to test arm64 builds on Intel Macs
-test-skip = "*-macosx_arm64 *-macosx_universal2:arm64"
-
 [tool.mypy]
 python_version = 3.7
 namespace_packages = true
