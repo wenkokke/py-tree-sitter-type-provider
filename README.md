@@ -1,6 +1,6 @@
 ![PyPI](https://img.shields.io/pypi/v/tree-sitter-type-provider)
 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/wenkokke/py-tree-sitter-type-provider)
-[![GitHub Workflow Status](https://github.com/wenkokke/py-tree-sitter-type-provider/actions/workflows/build.yml/badge.svg)](https://github.com/wenkokke/py-tree-sitter-talon/actions/workflows/build.yml)
+[![GitHub Workflow Status](https://github.com/wenkokke/py-tree-sitter-type-provider/actions/workflows/ci.yml/badge.svg)](https://github.com/wenkokke/py-tree-sitter-talon/actions/workflows/ci.yml)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/wenkokke/py-tree-sitter-type-provider/dev.svg)](https://results.pre-commit.ci/latest/github/wenkokke/py-tree-sitter-type-provider/dev)
 
 # Type Providers for Tree Sitter
