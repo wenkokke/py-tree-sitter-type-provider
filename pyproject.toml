@@ -1,52 +1,38 @@
 [build-system]
-requires = ["poetry-core>=1.5.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=45"]
+build-backend = "setuptools.build_meta"
 
-[tool.poetry]
+[project]
 name = "tree_sitter_type_provider"
 version = "2.1.21"
 description = "Type providers for tree-sitter in Python."
-license = "MIT"
-authors = ["Wen Kokke <wenkokke@users.noreply.github.com>"]
+license = { file = 'LICENSE' }
+authors = [{ name = "Wen Kokke", email = "wenkokke@users.noreply.github.com" }]
 readme = "README.md"
 repository = "https://github.com/wenkokke/py-tree-sitter-type-provider"
 keywords = ["parser", "tree-sitter", "type-provider"]
 classifiers = [
   "License :: OSI Approved :: MIT License",
   "Topic :: Software Development :: Compilers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+]
+requires-python = ">=3.7.1,<3.12"
+dependencies = ["tree_sitter >=0.20,<0.21", "dataclasses_json >=0.5.7,<0.6"]
+
+[project.optional-dependencies]
+mypy = ["types_setuptools"]
+test = [
+  "bumpver",
+  "mypy >=1.1.1,<2",
+  "pytest >=7.1.2,<8",
+  "pytest_golden >=0.2.2,<0.3",
 ]
 
-[tool.poetry.dependencies]
-python = "^3.7.1"
-tree-sitter = "^0.20.0"
-dataclasses-json = "^0.5.7"
-bumpver = { version = "*", optional = true }
-pytest = { version = "^7.1.2", optional = true }
-pytest-golden = { version = "^0.2.2", optional = true }
-# Prevent Poetry 1.3 from removing setuptools
-setuptools = "*"
-
-[tool.poetry.extras]
-test = ["bumpver", "pytest", "pytest-golden"]
-
-[tool.poetry.group.dev.dependencies]
-mypy = "^1.1.1"
-black = ">=22.8,<24.0"
-isort = "^5.10.1"
-flake8 = "^5.0.4"
-bumpver = "*"
-
-# MyPy
-[tool.mypy]
-python_version = 3.7
-namespace_packages = true
-explicit_package_bases = true
-ignore_missing_imports = true
-warn_redundant_casts = true
-warn_return_any = true
-warn_unused_configs = true
-
-# Versions
 [tool.bumpver]
 current_version = "2.1.21"
 version_pattern = "MAJOR.MINOR.PATCH"
@@ -56,9 +42,20 @@ tag = true
 push = true
 
 [tool.bumpver.file_patterns]
-"pyproject.toml" = ['current_version = "{version}"', 'version = "{version}"']
+"pyproject.toml" = [
+  'current_version = "{version}"',
+  'version = "{pep440_version}"'
+]
 
-# Tests
+[tool.mypy]
+python_version = 3.7
+namespace_packages = true
+explicit_package_bases = true
+ignore_missing_imports = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unused_configs = true
+
 [tool.pytest.ini_options]
 enable_assertion_pass_hook = true
 filterwarnings = ["ignore::DeprecationWarning:.*:"]
