@@ -226,7 +226,7 @@ jobs:
 
     environment:
       name: pypi
-      url: https://pypi.org/p/tree-sitter-talon
+      url: https://pypi.org/p/tree-sitter-type-provider
 
     permissions:
       id-token: write # IMPORTANT: this permission is mandatory for trusted publishing
