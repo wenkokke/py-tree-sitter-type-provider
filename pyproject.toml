@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tree_sitter_type_provider"
-version = "2.1.24"
+version = "2.1.25"
 description = "Type providers for tree-sitter in Python."
 license = { file = 'LICENSE' }
 authors = [{ name = "Wen Kokke", email = "wenkokke@users.noreply.github.com" }]
@@ -34,7 +34,7 @@ test = [
 ]
 
 [tool.bumpver]
-current_version = "2.1.24"
+current_version = "2.1.25"
 version_pattern = "MAJOR.MINOR.PATCH"
 commit_message = "Bump version {old_version} -> {new_version}"
 commit = true
