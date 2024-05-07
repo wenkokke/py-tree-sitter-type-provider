@@ -166,7 +166,10 @@ class TreeSitterTypeProvider(ModuleType):
             children: List[Node] = []
 
             def convert_child(tscursor: tree_sitter.TreeCursor) -> None:
-                field_name = tscursor.current_field_name()
+                try:
+                    field_name = tscursor.field_name
+                except AttributeError:
+                    field_name = tscursor.current_field_name()
                 child = self._from_tree_cursor(
                     tscursor,
                     encoding=encoding,
