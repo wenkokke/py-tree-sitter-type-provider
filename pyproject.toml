@@ -34,6 +34,9 @@ test = [
   "setuptools>=45",
 ]
 
+[project.urls]
+Repository = "https://github.com/wenkokke/py-tree-sitter-type-provider"
+
 [tool.bumpver]
 current_version = "2.2.0"
 version_pattern = "MAJOR.MINOR.PATCH"
