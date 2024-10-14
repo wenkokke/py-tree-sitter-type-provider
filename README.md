@@ -25,7 +25,6 @@ def as_class_name(node_type_name: str) -> str:
 sys.modules[__name__] = tstp.TreeSitterTypeProvider(
     "tree_sitter_javascript",
     node_types,
-    error_as_node=True,          # Include ERROR as a node in the AST
     as_class_name=as_class_name, # How to convert node types to Python class names
     extra=["comment"],           # Nodes which are marked as 'extra' in the grammar
 )
